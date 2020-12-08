@@ -164,22 +164,21 @@ else
     fi
 fi
 unset __conda_setup
-conda config --set auto_activate_base false
 # <<< conda initialize <<<
-
-mergeti() {
-FileName=$1.pdf
-pdftk $(ls [1-9].pdf) cat output "$FileName"
-PageNum=$(pdftk $FileName dump_data | grep NumberOfPages | sed 's/[^0-9]*//')
-pdftk $FileName cat 1-"$PageNum"right output $FileName-new
-mv $FileName-new $FileName
-evince $FileName
-}
-
-# The next line updates PATH for the Google Cloud SDK.
-if [ -f '/home/zandi/Downloads/google-cloud-sdk/path.bash.inc' ]; then . '/home/zandi/Downloads/google-cloud-sdk/path.bash.inc'; fi
-
-# The next line enables shell command completion for gcloud.
-if [ -f '/home/zandi/Downloads/google-cloud-sdk/completion.bash.inc' ]; then . '/home/zandi/Downloads/google-cloud-sdk/completion.bash.inc'; fi
-
-source /usr/share/bash-completion/bash_completion
+#########
+#########mergeti() {
+#########FileName=$1.pdf
+#########pdftk $(ls [1-9].pdf) cat output "$FileName"
+#########PageNum=$(pdftk $FileName dump_data | grep NumberOfPages | sed 's/[^0-9]*//')
+#########pdftk $FileName cat 1-"$PageNum"right output $FileName-new
+#########mv $FileName-new $FileName
+#########evince $FileName
+#########}
+#########
+########## The next line updates PATH for the Google Cloud SDK.
+#########if [ -f '/home/zandi/Downloads/google-cloud-sdk/path.bash.inc' ]; then . '/home/zandi/Downloads/google-cloud-sdk/path.bash.inc'; fi
+#########
+########## The next line enables shell command completion for gcloud.
+#########if [ -f '/home/zandi/Downloads/google-cloud-sdk/completion.bash.inc' ]; then . '/home/zandi/Downloads/google-cloud-sdk/completion.bash.inc'; fi
+#########
+#########source /usr/share/bash-completion/bash_completion

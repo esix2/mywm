@@ -10,3 +10,6 @@ set spelllang=en_us
 :nmap <silent> <F3> ^i#<esc>
 :vmap <silent> <F4> :s/#//g<s-enter>
 :nmap <silent> <F4> ^x<esc>
+:nmap <silent> <F6> :JupyterConnect<CR>
+:nmap <silent> <F5> :let l = line(".") <bar> 1,$ JupyterSendRange <bar> exe l<CR>
+""let g:jupyter_mapkeys = 0
