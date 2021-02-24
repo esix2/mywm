@@ -40,6 +40,8 @@ set number "acticvates line numbers
 " Advanced tab completion for :
 set wildmenu
 
+"load vim setting for bash files
+autocmd BufNewFile,BufRead *.sh so ~/.vim/bash.vim
 "load vim setting for *.tex files
 autocmd BufNewFile,BufRead *.tex so ~/.vim/latex.vim
 "load vim setting for python files

@@ -1,20 +1,113 @@
-export HISTSIZE=10000
-export NO_AT_BRIDGE=1
-export GUROBI_HOME="/opt/gurobi702/linux64"
-export PATH="${PATH}:${GUROBI_HOME}/bin"
-export LD_LIBRARY_PATH="${LD_LIBRARY_PATH}:${GUROBI_HOME}/lib"
-export PATH=$HOME/bin:$PATH
-export GUROBI_HOME="/home/zandi/.gurobi/gurobi801/linux64"
-export GRB_LICENSE_FILE='/home/zandi/.gurobi/gurobi.lic'
-export PATH="${PATH}:${GUROBI_HOME}/bin"
-export LD_LIBRARY_PATH="${LD_LIBRARY_PATH}:${GUROBI_HOME}/lib"
-export LD_LIBRARY_PATH="${GUROBI_HOME}/lib"
+# ~/.bashrc: executed by bash(1) for non-login shells.
+# see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
+# for examples
 
+# If not running interactively, don't do anything
+case $- in
+    *i*) ;;
+      *) return;;
+esac
 
-bind '"\e[A": history-search-backward'
-bind '"\e[B": history-search-forward'
+# don't put duplicate lines or lines starting with space in the history.
+# See bash(1) for more options
+HISTCONTROL=ignoreboth
 
-# enable bash completion in interactive shells
+# append to the history file, don't overwrite it
+shopt -s histappend
+
+# for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
+HISTSIZE=1000
+HISTFILESIZE=2000
+
+# check the window size after each command and, if necessary,
+# update the values of LINES and COLUMNS.
+shopt -s checkwinsize
+
+# If set, the pattern "**" used in a pathname expansion context will
+# match all files and zero or more directories and subdirectories.
+#shopt -s globstar
+
+# make less more friendly for non-text input files, see lesspipe(1)
+[ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
+
+# set variable identifying the chroot you work in (used in the prompt below)
+if [ -z "${debian_chroot:-}" ] && [ -r /etc/debian_chroot ]; then
+    debian_chroot=$(cat /etc/debian_chroot)
+fi
+
+# set a fancy prompt (non-color, unless we know we "want" color)
+case "$TERM" in
+    xterm-color|*-256color) color_prompt=yes;;
+esac
+
+# uncomment for a colored prompt, if the terminal has the capability; turned
+# off by default to not distract the user: the focus in a terminal window
+# should be on the output of commands, not on the prompt
+#force_color_prompt=yes
+
+if [ -n "$force_color_prompt" ]; then
+    if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then
+	# We have color support; assume it's compliant with Ecma-48
+	# (ISO/IEC-6429). (Lack of such support is extremely rare, and such
+	# a case would tend to support setf rather than setaf.)
+	color_prompt=yes
+    else
+	color_prompt=
+    fi
+fi
+
+if [ "$color_prompt" = yes ]; then
+    PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
+else
+    PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
+fi
+unset color_prompt force_color_prompt
+
+# If this is an xterm set the title to user@host:dir
+case "$TERM" in
+xterm*|rxvt*)
+    PS1="\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h: \w\a\]$PS1"
+    ;;
+*)
+    ;;
+esac
+
+# enable color support of ls and also add handy aliases
+if [ -x /usr/bin/dircolors ]; then
+    test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
+    alias ls='ls --color=auto'
+    #alias dir='dir --color=auto'
+    #alias vdir='vdir --color=auto'
+
+    alias grep='grep --color=auto'
+    alias fgrep='fgrep --color=auto'
+    alias egrep='egrep --color=auto'
+fi
+
+# colored GCC warnings and errors
+#export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
+
+# some more ls aliases
+alias ll='ls -alF'
+alias la='ls -A'
+alias l='ls -CF'
+
+# Add an "alert" alias for long running commands.  Use like so:
+#   sleep 10; alert
+alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
+
+# Alias definitions.
+# You may want to put all your additions into a separate file like
+# ~/.bash_aliases, instead of adding them here directly.
+# See /usr/share/doc/bash-doc/examples in the bash-doc package.
+
+if [ -f ~/.bash_aliases ]; then
+    . ~/.bash_aliases
+fi
+
+# enable programmable completion features (you don't need to enable
+# this, if it's already enabled in /etc/bash.bashrc and /etc/profile
+# sources /etc/bash.bashrc).
 if ! shopt -oq posix; then
   if [ -f /usr/share/bash-completion/bash_completion ]; then
     . /usr/share/bash-completion/bash_completion
@@ -22,163 +115,77 @@ if ! shopt -oq posix; then
     . /etc/bash_completion
   fi
 fi
-# alias for python3.5
-##alias py=python3.5
+
+
+bind '"\e[A": history-search-backward'
+bind '"\e[B": history-search-forward'
+
+rightdisp=DP-2-1
+leftdisp=DP-2-2
+maindisp=eDP-1
+main-screen(){
+xrandr --output $maindisp --auto
+xrandr --output $leftdisp --off
+xrandr --output $leftdisp
+}
+
+single-screen(){
+xrandr --output $maindisp --off
+xrandr --output $leftdisp --off
+xrandr --output $rightdisp --auto
+}
+double-screen(){
+xrandr --output $maindisp --off
+xrandr --output $leftdisp --auto
+xrandr --output $rightdisp --auto
+xrandr --output $leftdisp --primary
+xrandr --output $leftdisp --left-of $rightdisp
+}
+
+
+## >>> conda initialize >>>
+## !! Contents within this block are managed by 'conda init' !!
+#__conda_setup="$('/home/ehsan/anaconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
+#if [ $? -eq 0 ]; then
+#    eval "$__conda_setup"
+#else
+#    if [ -f "/home/ehsan/anaconda3/etc/profile.d/conda.sh" ]; then
+#        . "/home/ehsan/anaconda3/etc/profile.d/conda.sh"
+#    else
+#        export PATH="/home/ehsan/anaconda3/bin:$PATH"
+#    fi
+#fi
+#unset __conda_setup
+## <<< conda initialize <<<
+#
+
+##########################################################
+####### user defined settings
+##########################################################
+##########################################################
+##########################################################
+##########################################################
+
+
+
+
+export HISTSIZE=10000
+export NO_AT_BRIDGE=1
+export PATH=$HOME/bin:$PATH
+
+# disable CPS LOCK
+setxkbmap -option ctrl:nocaps
+
+alias ?='whatis'
+
+### aliases for git
 alias st='git status'
 alias graph='git log --decorate --oneline --graph --all'
 
-# alias for /media/zandi/Daten
-shopt -s cdable_vars
-export data=/media/zandi/Daten
-export git=/media/zandi/Daten/git
-
 # alias for latexmk
 alias texmake='latexmk -pdf -pvc -interaction=nonstopmode' 
+
+# alias for easycopy
 alias easycopy='echo $(pwd) | xclip -i -selection clipboard'
 alias easypaste='xclip -selection clipboard -o'
 alias easyopen='nemo $(pwd) &'
-alias savescreen='ffmpeg -f x11grab -y -r 30 -s 1280x720 -i :0.0 -vcodec huffyuv out.avi'
-alias pdflatex_piped='pdflatex --enable-pipes --shell-escape'
-alias joinalsongs='ls *.mp3 | sed -e "s/\(.*\)/file '\1'/" | ffmpeg -protocol_whitelist 'file,pipe' -f concat -i - -c copy output.mp3'
-home-screen(){
-xrandr --output eDP-1 --off
-xrandr --output HDMI-2 --auto
-xrandr --output HDMI-2 --rotate normal
-xrandr --output HDMI-2 --scale 1x1
-xrandr --output eDP-1 --auto
-xrandr --output eDP-1 --primary
-xrandr --output eDP-1 --right-of HDMI-2
-xrandr --output eDP-1 --scale 0.5x0.5
-}
-main-screen(){
-xrandr --output DP-2-1 --off
-xrandr --output DP-2-2 --off
-xrandr --output DP-2-3 --off
-xrandr --output HDMI-2 --off
-xrandr --output eDP-1 --auto
-xrandr --output eDP-1 --scale 0.5x0.5
-#xrandr --output DP-2-2 --mode 8192x8192 --scalw 1x1
-}
-home-double-screen(){
-rightdisp=DP-2-2
-leftdisp=DP-2-1
-xrandr --output eDP-1 --off
-xrandr --output $leftdisp --rotate normal
-xrandr --output $leftdisp --auto
-xrandr --output $leftdisp --scale 1x1
-xrandr --output $leftdisp --primary
-xrandr --output $rightdisp --auto
-xrandr --output $rightdisp --right-of $leftdisp
-xrandr --output $rightdisp --scale 1x1
-xrandr --output $rightdisp --rotate normal
-}
-office-screen(){
-rightdisp=DP-2-3
-leftdisp=DP-2-2
-xrandr --output eDP-1 --off
-xrandr --output $leftdisp --rotate normal
-xrandr --output $leftdisp --auto
-xrandr --output $leftdisp --scale 1x1
-xrandr --output $leftdisp --primary
-xrandr --output $rightdisp --auto
-xrandr --output $rightdisp --right-of $leftdisp
-xrandr --output $rightdisp --scale 1x1
-xrandr --output $rightdisp --rotate normal
-}
-
-pdftovid(){
-if [ -d tmp ]; then
-rm -rf tmp
-else
-mkdir tmp
-fi
-BaseName=${1%*.pdf}
-pdfFile=$1
-PageNum=$(pdftk "$BaseName.pdf" dump_data | grep NumberOfPages | sed 's/[^0-9]*//')
-pdftoppm -scale-to-x 1920 -scale-to-y 1080 "$pdfFile" "tmp/$BaseName" -png
-outFile="$BaseName-tmp.mp4"
-if [ -f tmp/$BaseName-00001.png ]; then
-ffmpeg -r 2 -f image2 -s 1920x1080 -start_number 1 -i tmp/$BaseName-%05d.png -vframes "$PageNum" -vcodec libx264 -vf pad="width=ceil(iw/2)*2:height=ceil(ih/2)*2" -crf 25 -pix_fmt yuv420p $outFile
-elif [ -f tmp/$BaseName-0001.png ]; then
-ffmpeg -r 2 -f image2 -s 1920x1080 -start_number 1 -i tmp/$BaseName-%04d.png -vframes "$PageNum" -vcodec libx264 -vf pad="width=ceil(iw/2)*2:height=ceil(ih/2)*2" -crf 25 -pix_fmt yuv420p $outFile
-elif [ -f tmp/$BaseName-001.png ]; then
-ffmpeg -r 2 -f image2 -s 1920x1080 -start_number 1 -i tmp/$BaseName-%03d.png -vframes "$PageNum" -vcodec libx264 -vf pad="width=ceil(iw/2)*2:height=ceil(ih/2)*2" -crf 25 -pix_fmt yuv420p $outFile
-fi
-}
-
-alias record='timeout 41m ffmpeg -f x11grab -y -r 2 -s 1280x720 -i :0.0 -vcodec huffyuv out.avi | okular -p 1 --presentation 1.pdf'
-### create avi file of video
-giftoavi(){
-file=${1%*.gif}
-convert -coalesce "$file.gif" "$file-bak.png"
-N=$(ls $file-bak*.png | wc -l)
-if  [ $N -eq 1 ]; then mv "$file-bak.png" "$file-bak-0.png"; fi
-### length in seconds
-length=90
-for (( i=0; i<=$((2*$length/$N)); i++ ))
-    do 
-        for (( n=0; n<=$(($N-1)); n++ ))
-        do
-        new=$(($i*$N+$n))
-        #echo "$n to $new"
-        if [ $new -le $((2*$length)) ]
-        then
-         cp "$file-bak-$n.png" "$file-$new.png"
-         caption=$(($length-$new/2))
-            if [ $caption -le 5 ]
-            then
-                 convert -font helvetica -fill red -pointsize 100 -draw "text 50,100 '$caption'" "$file-$new.png" "$file-$new.png"
-             else
-                 convert -font helvetica -fill black -pointsize 100 -draw "text 50,100 '$caption'" "$file-$new.png" "$file-$new.png"
-             fi
-         fi
-        done
-    done
-ffmpeg -framerate 2 -start_number 0 -i $file-%d.png -vcodec mpeg4 $file.avi
-#ffmpeg -i $file.avi -ss 00:00:40 $file-cycle.avi
-#ffmpeg -i $file.avi -ss 00:00:50 $file-rest.avi
-#ffmpeg -i $file.avi -ss 00:00:49 $file-prep.avi
-rm $file-*.png
-mv *.avi avi/
-}
-cutandmix(){
-#input=$1
-#start=$2
-#duration=$3
-#music=$4
-#ffmpeg -i $input -ss 00:00:$start -t 00:$duration -c:v copy -c:a copy tmp.avi
-ffmpeg -i out.avi -ss 00:00:11 -t 00:39:52 -c:v copy -c:a copy output.avi
-ffmpeg -i tmp.avi -i $music -c copy tmp.avi
-echo "tmp.avi is created!"
-}
-# >>> conda initialize >>>
-# !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/home/zandi/anaconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
-if [ $? -eq 0 ]; then
-    eval "$__conda_setup"
-else
-    if [ -f "/home/zandi/anaconda3/etc/profile.d/conda.sh" ]; then
-        . "/home/zandi/anaconda3/etc/profile.d/conda.sh"
-    else
-        export PATH="/home/zandi/anaconda3/bin:$PATH"
-    fi
-fi
-unset __conda_setup
-# <<< conda initialize <<<
-#########
-#########mergeti() {
-#########FileName=$1.pdf
-#########pdftk $(ls [1-9].pdf) cat output "$FileName"
-#########PageNum=$(pdftk $FileName dump_data | grep NumberOfPages | sed 's/[^0-9]*//')
-#########pdftk $FileName cat 1-"$PageNum"right output $FileName-new
-#########mv $FileName-new $FileName
-#########evince $FileName
-#########}
-#########
-########## The next line updates PATH for the Google Cloud SDK.
-#########if [ -f '/home/zandi/Downloads/google-cloud-sdk/path.bash.inc' ]; then . '/home/zandi/Downloads/google-cloud-sdk/path.bash.inc'; fi
-#########
-########## The next line enables shell command completion for gcloud.
-#########if [ -f '/home/zandi/Downloads/google-cloud-sdk/completion.bash.inc' ]; then . '/home/zandi/Downloads/google-cloud-sdk/completion.bash.inc'; fi
-#########
-#########source /usr/share/bash-completion/bash_completion

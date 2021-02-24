@@ -1,0 +1,18 @@
+#! /bin/bash
+if [ -d tmp ]; then
+rm -rf tmp
+else
+mkdir tmp
+fi
+BaseName=${1%*.pdf}
+pdfFile=$1
+PageNum=$(pdftk "$BaseName.pdf" dump_data | grep NumberOfPages | sed 's/[^0-9]*//')
+pdftoppm -scale-to-x 1920 -scale-to-y 1080 "$pdfFile" "tmp/$BaseName" -png
+outFile="$BaseName-tmp.mp4"
+if [ -f tmp/$BaseName-00001.png ]; then
+ffmpeg -r 2 -f image2 -s 1920x1080 -start_number 1 -i tmp/$BaseName-%05d.png -vframes "$PageNum" -vcodec libx264 -vf pad="width=ceil(iw/2)*2:height=ceil(ih/2)*2" -crf 25 -pix_fmt yuv420p $outFile
+elif [ -f tmp/$BaseName-0001.png ]; then
+ffmpeg -r 2 -f image2 -s 1920x1080 -start_number 1 -i tmp/$BaseName-%04d.png -vframes "$PageNum" -vcodec libx264 -vf pad="width=ceil(iw/2)*2:height=ceil(ih/2)*2" -crf 25 -pix_fmt yuv420p $outFile
+elif [ -f tmp/$BaseName-001.png ]; then
+ffmpeg -r 2 -f image2 -s 1920x1080 -start_number 1 -i tmp/$BaseName-%03d.png -vframes "$PageNum" -vcodec libx264 -vf pad="width=ceil(iw/2)*2:height=ceil(ih/2)*2" -crf 25 -pix_fmt yuv420p $outFile
+fi
