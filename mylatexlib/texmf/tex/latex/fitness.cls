@@ -1,1 +1,0 @@
-/home/zandi/git/fitness/fitness.cls

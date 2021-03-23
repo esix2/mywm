@@ -16,8 +16,8 @@ HISTCONTROL=ignoreboth
 shopt -s histappend
 
 # for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
-HISTSIZE=1000
-HISTFILESIZE=2000
+HISTSIZE=10000
+HISTFILESIZE=20000
 
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
@@ -186,6 +186,18 @@ alias graph='git log --decorate --oneline --graph --all'
 alias texmake='latexmk -pdf -pvc -interaction=nonstopmode' 
 
 # alias for easycopy
-alias easycopy='echo $(pwd) | xclip -i -selection clipboard'
+alias easypath='echo $(pwd) | xclip -i -selection clipboard'
+alias lastcomm='!$:p | xclip -i -selection clipboard'
+
 alias easypaste='xclip -selection clipboard -o'
 alias easyopen='nemo $(pwd) &'
+
+alias getmonitors='xrandr | grep -w connected'
+alias sshcore='ssh m3c@10.1.0.1'
+#alias sshcore='ssh m3c@192.168.1.11'
+alias sshblinq='ssh -oHostKeyAlgorithms=+ssh-dss admin@192.168.1.44'
+alias ipa='ip -br -4 a'
+alias ipl='ip -br link'
+#export ETH0=enp0s25
+alias gettime='date +%Y-%m-%d-%H-%M-%S'
+export PATH=$PATH:/usr/local/go/bin
