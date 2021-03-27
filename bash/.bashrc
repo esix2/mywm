@@ -200,4 +200,3 @@ alias ipa='ip -br -4 a'
 alias ipl='ip -br link'
 #export ETH0=enp0s25
 alias gettime='date +%Y-%m-%d-%H-%M-%S'
-export PATH=$PATH:/usr/local/go/bin
