@@ -200,3 +200,4 @@ alias ipa='ip -br -4 a'
 alias ipl='ip -br link'
 #export ETH0=enp0s25
 alias gettime='date +%Y-%m-%d-%H-%M-%S'
+alias dimmestscreen='brightnessctl set 1% > /dev/null'

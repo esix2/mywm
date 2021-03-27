@@ -6,6 +6,7 @@ input * {
 }
 #output * resolution --custom 1920x1080
 font pango: SourceCodePro Medium 14
+
 # Default config for sway
 #
 # Copy this to ~/.config/sway/config and edit it to your liking.
@@ -227,3 +228,4 @@ bar {
 #}
 
 include /etc/sway/config.d/*
+include ./volscreen
