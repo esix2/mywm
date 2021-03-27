@@ -1,10 +1,11 @@
-# kezboard lazout
+# keyboard layout
 input * {
     xkb_layout "de"
-    xkb_variant "colemak,,typewriter"
-    xkb_options "grp:win_space_toggle"
+#    xkb_variant "colemak,,typewriter"
+#    xkb_options "grp:win_space_toggle"
 }
-input <identifier> xkb_model "pc101"
+#output * resolution --custom 1920x1080
+font pango: SourceCodePro Medium 14
 # Default config for sway
 #
 # Copy this to ~/.config/sway/config and edit it to your liking.
