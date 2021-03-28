@@ -5,8 +5,30 @@
     // "width": 1366, // Waybar width
     // Choose the order of the modules
     "modules-left": ["sway/workspaces", "sway/mode", "custom/spotify"],
-    "modules-center": ["sway/window"],
-    "modules-right": ["pulseaudio", "network", "battery", "tray", "clock"],
+    "modules-center": [
+    "clock#1", 
+    "custom/comma",
+    "clock#2",
+    "custom/comma",
+    "clock#3"
+    ],
+    "modules-right": [
+    "pulseaudio",
+    "custom/pipe",
+    "backlight", 
+    "custom/pipe",
+    "network",
+    "custom/pipe",
+    "battery", 
+    "tray"],
+	"custom/comma": {
+		"format": ",",
+		"tooltip": false
+	},
+	"custom/pipe": {
+		"format": "  |  ",
+		"tooltip": false
+	},
     "sway/workspaces": {
         "disable-scroll": true,
         "all-outputs": false,
@@ -27,11 +49,23 @@
         "format": "<span style=\"italic\">{}</span>"
     },
     "tray": {
-        // "icon-size": 21,
+        "icon-size": 1,
         "spacing": 10
     },
+	"clock#1": {
+		"format": "{:%a}",
+		"tooltip": false
+	},
+	"clock#3": {
+		"format": "{:%H:%M}",
+		"tooltip": false
+	},
+	"clock#2": {
+		"format": "{:%d.%m.%Y}",
+		"tooltip": false
+	},
     "clock": {
-        "format-alt": "{:%Y-%m-%d}"
+        "format-alt": "{%Y-%m-%d}"
     },
     "cpu": {
         "format": "{usage}% "
@@ -53,15 +87,20 @@
     },
     "network": {
         // "interface": "wlp2s0", // (Optional) To force the use of this interface
-        "format-wifi": "({signalStrength}%) ",
-        "format-ethernet": "{ifname}: {ipaddr}/{cidr} ",
+        "format-wifi": " ",
+        "format-ethernet": " ",
         "format-disconnected": "Disconnected ⚠"
     },
+    "backlight": {
+        "device": "intel_backlight",
+            "format": "{icon}",
+                "format-icons": ["","","", "","",""]
+                },
     "pulseaudio": {
         //"scroll-step": 1,
         "format": "{volume}% {icon}",
-        "format-bluetooth": "{volume}% {icon}",
-        "format-muted": "",
+        "format-bluetooth": "{Volume}% {icon}",
+        "format-muted": " ",
         "format-icons": {
             "headphones": "",
             "handsfree": "",
@@ -69,7 +108,7 @@
             "phone": "",
             "portable": "",
             "car": "",
-            "default": ["", ""]
+            "default": ["", "", "", "","","","",""]
         },
         "on-click": "pavucontrol"
     },

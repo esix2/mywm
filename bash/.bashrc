@@ -186,6 +186,7 @@ alias graph='git log --decorate --oneline --graph --all'
 alias texmake='latexmk -pdf -pvc -interaction=nonstopmode' 
 
 # alias for easycopy
+alias easycopy='xclip -i -selection clipboard'
 alias easypath='echo $(pwd) | xclip -i -selection clipboard'
 alias lastcomm='!$:p | xclip -i -selection clipboard'
 

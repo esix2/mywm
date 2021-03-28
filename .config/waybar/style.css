@@ -2,14 +2,14 @@
     border: none;
     border-radius: 0;
     font-family: "Ubuntu Nerd Font";
-    font-size: 13px;
+    font-size: 18px;
     min-height: 0;
 }
-
 window#waybar {
-    background: transparent;
-    color: white;
+	background: #292b2e;
+	color: #fdf6e3;
 }
+
 
 #window {
     font-weight: bold;
