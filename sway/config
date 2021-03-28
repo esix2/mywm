@@ -1,4 +1,4 @@
-output "*" bg /home/priv/Pictures/Italian-Cafe.jpg fill
+output "*" bg /home/priv/pictures/Italian-Cafe.jpg fill
 # keyboard layout
 input * {
     xkb_layout "de"
