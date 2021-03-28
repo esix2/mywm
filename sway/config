@@ -1,10 +1,3 @@
-output "*" bg /home/priv/pictures/Italian-Cafe.jpg fill
-# keyboard layout
-input * {
-     xkb_layout "de,us"
-#    xkb_variant "colemak,,typewriter"
-    xkb_options "grp:lctrl_lwin_toggle"
-}
 #output * resolution --custom 1920x1080
 font pango: SourceCodePro Medium 14
 
@@ -33,14 +26,13 @@ set $menu wofi --show run
 ### Output configuration
 #
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
-output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
+output "*" bg /home/priv/pictures/Italian-Cafe.jpg fill
 #
 # Example configuration:
 #
 #   output HDMI-A-1 resolution 1920x1080 position 1920,0
 #
 # You can get the names of your outputs by running: swaymsg -t get_outputs
-
 ### Idle configuration
 #
 # Example configuration:
@@ -63,6 +55,13 @@ output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
 # Read `man 5 sway-input` for more information about this section.
 input "type:keyboard" xkb_options caps:ctrl_modifier
 input * accel_profile flat
+# keyboard layout
+input * {
+    xkb_Layout de,us
+#    xkb_variant "colemak,,typewriter"
+    xkb_options caps:ctrl_modifier,grp:win_space_toggle
+    }
+#input <identifier> xkb_model "pc101"
 ### Key bindings
 #
 # Basics:

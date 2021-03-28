@@ -1,0 +1,8 @@
+#! /bin/sh
+current=$(pacmd dump-volumes | awk 'NR==1{print $8}' | sed 's/\%//')
+pactl set-sink-mute @DEFAULT_SINK@ false
+if [ $current -lt 135 ]; then
+pactl set-sink-volume @DEFAULT_SINK@ +5%
+else
+pactl set-sink-volume @DEFAULT_SINK@ 140%
+fi

@@ -107,9 +107,9 @@
         "device": "intel_backlight",
         "format": "{icon}",
         "format-icons": ["","","", "","",""],
-        "on-scroll-up": "brightnessctl set 15%+",
-        "on-scroll-down": "brightnessctl set 15%-",
-        "on-click": "brightnessctl set 20%+",
+        //"on-scroll-up": "brightnessctl set 5%+",
+        //"on-scroll-down": "brightnessctl set 5%-",
+        "on-click": "brightnessctl set 10%+",
         "on-click-right": "brightnessctl set 1%"
         },
     "pulseaudio": {
@@ -126,6 +126,8 @@
             "car": "",
             "default": ["", "", "", "","","","",""]
         },
+       "on-scroll-up": "exec ~/.config/sway/increasevolume",
+       "on-scroll-down": "pactl set-sink-volume @DEFAULT_SINK@ -5%",
        "on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle"
     },
     "pulseaudio#1": {
@@ -133,7 +135,7 @@
         "format": "{format_source}",
         "format-source": "{volume}% ",
         "format-source-muted": " ",
-       "on-scroll-up": "pactl set-source-volume @DEFAULT_SOURCE@ +5%",
+       "on-scroll-up": "exec ~/.config/sway/increasemic",
        "on-scroll-down": "pactl set-source-volume @DEFAULT_SOURCE@ -5%",
        "on-click": "pactl set-source-mute @DEFAULT_SOURCE@ toggle"
     }
