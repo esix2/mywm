@@ -77,9 +77,9 @@
     },
 	"clock": {
         "interval" : 1,
-		"format": "{:%a  %d %b %Y, %H:%M:%S}",
+		"format": "{:%a  %d %b %Y, %H:%M}",
 		"tooltip": false,
-        "on-click": "gnome-control-center datetime"
+        "on-click-right": "gnome-control-center datetime"
 	},
     "cpu": {
         "format": "{usage}% "
@@ -100,7 +100,7 @@
         "format-charging": "{capacity}% ",
         "format-full": "{capacity}% ",
         "format-icons": ["", "", "", "", ""],
-        "on-click": "gnome-control-center power"
+        "on-click-right": "gnome-control-center power"
     },
     "network": {
         // "interface": "wlp2s0", // (Optional) To force the use of this interface
@@ -109,7 +109,7 @@
         "tooltip-format-wifi": "{essid}   \n {signaldBm}dBm, {frequency}MHz, {signalStrength}%\n {ipaddr} ",
         "tooltip-format-ethernet": "{ipaddr} ",
         "format-disconnected": "⚠",
-        "on-click": "gnome-control-center wifi"
+        "on-click-right": "gnome-control-center wifi"
     },
     "backlight": {
         "device": "intel_backlight",
