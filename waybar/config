@@ -1,0 +1,118 @@
+{
+    "layer": "top", // Waybar at top layer
+    "position": "top", // Waybar at the bottom of your screen
+    "height": 24, // Waybar height
+    // "width": 1366, // Waybar width
+    // Choose the order of the modules
+    "modules-left": ["sway/workspaces", "sway/mode", "custom/spotify"],
+    "modules-center": [
+    "clock", 
+    ],
+    "modules-right": [
+    "cpu",
+    "custom/pipe",
+    "memory",
+    "custom/pipe",
+    "pulseaudio#1",
+    "custom/pipe",
+    "pulseaudio",
+    "custom/pipe",
+    "backlight", 
+    "custom/pipe",
+    "network",
+    "custom/pipe",
+    "battery", 
+    "tray"],
+	"custom/comma": {
+		"format": ",",
+		"tooltip": false
+	},
+	"custom/pipe": {
+		"format": "  |  ",
+		"tooltip": false
+	},
+    "sway/workspaces": {
+        "disable-scroll": true,
+        "all-outputs": false,
+        "format": "{name}",
+        "format-icons": {
+            "1:web": "",
+            "2:code": "",
+            "3:term": "",
+            "4:work": "",
+            "5:music": "",
+            "6:docs": "",
+            "urgent": "",
+            "focused": "",
+            "default": ""
+        }
+    },
+    "sway/mode": {
+        "format": "<span style=\"italic\">{}</span>"
+    },
+    "tray": {
+        "icon-size": 1,
+        "spacing": 10
+    },
+	"clock": {
+        "interval" : 1,
+		"format": "{:%a %d-%b-%Y, %H:%M:%S}",
+		"tooltip": false,
+        "on-click" : "cal"
+	},
+    "cpu": {
+        "format": "{usage}% "
+    },
+    "memory": {
+        "format": "{}% ",
+    },
+    "battery": {
+        "bat": "BAT1",
+        "states": {
+            "good": 95,
+            "warning": 50,
+            "critical": 15
+        },
+        "format-discharging": "{capacity}% {icon}",
+        "format-charging": "{capacity}% ",
+        "format-full": "{capacity}% ",
+        "format-icons": ["", "", "", "", ""],
+    },
+    "network": {
+        // "interface": "wlp2s0", // (Optional) To force the use of this interface
+        "format-wifi": " ",
+        "format-ethernet": " ",
+        "format-disconnected": "Disconnected ⚠"
+    },
+    "backlight": {
+        "device": "intel_backlight",
+            "format": "{icon}",
+                "format-icons": ["","","", "","",""],
+       "on-scroll-up": "brightnessctl set 15%+",
+       "on-scroll-down": "brightnessctl set 15%-"
+        },
+    "pulseaudio": {
+        "scroll-step": 10,
+        "format": "{volume}% {icon}",
+        "format-bluetooth": "{volume}% {icon}",
+        "format-muted": " ",
+        "format-icons": {
+            "headphones": "",
+            "handsfree": "",
+            "headset": "",
+            "phone": "",
+            "portable": "",
+            "car": "",
+            "default": ["", "", "", "","","","",""]
+        },
+        "on-click": "pavucontrol"
+    },
+    "pulseaudio#1": {
+        "scroll-step": 50,
+        "format": "{format_source}",
+        "format-source": "{volume}% ",
+        "format-source-muted": " ",
+       "on-scroll-up": "pactl set-source-volume @DEFAULT_SOURCE@ +5%",
+       "on-scroll-down": "pactl set-source-volume @DEFAULT_SOURCE@ -5%"
+    }
+}
