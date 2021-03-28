@@ -110,6 +110,9 @@ window#waybar {
     color: rgb(0, 130, 192);
 }
 
+#custom-settings {
+    color: rgb(120, 120, 150);
+}
 #tray {
 }
 
