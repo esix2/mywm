@@ -1,9 +1,9 @@
 output "*" bg /home/priv/pictures/Italian-Cafe.jpg fill
 # keyboard layout
 input * {
-    xkb_layout "de"
+     xkb_layout "de,us"
 #    xkb_variant "colemak,,typewriter"
-#    xkb_options "grp:win_space_toggle"
+    xkb_options "grp:lctrl_lwin_toggle"
 }
 #output * resolution --custom 1920x1080
 font pango: SourceCodePro Medium 14
@@ -87,7 +87,7 @@ input * accel_profile flat
     bindsym $mod+Shift+c reload
 
     # Exit sway (logs you out of your Wayland session)
-    bindsym $mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -b 'Yes, exit sway' 'swaymsg exit'
+    bindsym $mod+Shift+q exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -b 'Yes, exit sway' 'swaymsg exit'
 #
 # Moving around:
 #

@@ -4,7 +4,12 @@
     "height": 24, // Waybar height
     // "width": 1366, // Waybar width
     // Choose the order of the modules
-    "modules-left": ["sway/workspaces", "sway/mode", "custom/spotify"],
+    "modules-left": [
+    "sway/workspaces", 
+    "sway/mode", 
+    "custom/firefox",
+    "custom/thunderbird"
+    ],
     "modules-center": [
     "clock", 
     ],
@@ -23,6 +28,16 @@
     "custom/pipe",
     "battery", 
     "tray"],
+	"custom/firefox": {
+		"format": "   ",
+		"tooltip": false,
+		"on-click": "firefox"
+	},
+	"custom/thunderbird": {
+		"format": " ",
+		"tooltip": false,
+		"on-click": "thunderbird"
+	},
 	"custom/comma": {
 		"format": ",",
 		"tooltip": false
@@ -69,9 +84,11 @@
     "battery": {
         "bat": "BAT1",
         "states": {
-            "good": 95,
+            "verygood": 90,
+            "good": 80,
             "warning": 50,
-            "critical": 15
+            "bad": 20,
+            "critical": 10
         },
         "format-discharging": "{capacity}% {icon}",
         "format-charging": "{capacity}% ",
@@ -82,17 +99,21 @@
         // "interface": "wlp2s0", // (Optional) To force the use of this interface
         "format-wifi": " ",
         "format-ethernet": " ",
-        "format-disconnected": "Disconnected ⚠"
+        "tooltip-format-wifi": "{essid}   \n {signaldBm}dBm, {frequency}MHz, {signalStrength}%\n {ipaddr} ",
+        "tooltip-format-ethernet": "{ipaddr} ",
+        "format-disconnected": "⚠"
     },
     "backlight": {
         "device": "intel_backlight",
-            "format": "{icon}",
-                "format-icons": ["","","", "","",""],
-       "on-scroll-up": "brightnessctl set 15%+",
-       "on-scroll-down": "brightnessctl set 15%-"
+        "format": "{icon}",
+        "format-icons": ["","","", "","",""],
+        "on-scroll-up": "brightnessctl set 15%+",
+        "on-scroll-down": "brightnessctl set 15%-",
+        "on-click": "brightnessctl set 20%+",
+        "on-click-right": "brightnessctl set 1%"
         },
     "pulseaudio": {
-        "scroll-step": 10,
+        "scroll-step": 5.0,
         "format": "{volume}% {icon}",
         "format-bluetooth": "{volume}% {icon}",
         "format-muted": " ",
@@ -105,14 +126,15 @@
             "car": "",
             "default": ["", "", "", "","","","",""]
         },
-        "on-click": "pavucontrol"
+       "on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle"
     },
     "pulseaudio#1": {
-        "scroll-step": 50,
+        "scroll-step": 5.0,
         "format": "{format_source}",
         "format-source": "{volume}% ",
         "format-source-muted": " ",
        "on-scroll-up": "pactl set-source-volume @DEFAULT_SOURCE@ +5%",
-       "on-scroll-down": "pactl set-source-volume @DEFAULT_SOURCE@ -5%"
+       "on-scroll-down": "pactl set-source-volume @DEFAULT_SOURCE@ -5%",
+       "on-click": "pactl set-source-mute @DEFAULT_SOURCE@ toggle"
     }
 }
