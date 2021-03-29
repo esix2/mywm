@@ -7,6 +7,8 @@
     "modules-left": [
     "sway/workspaces", 
     "sway/mode", 
+    "custom/search", 
+    "custom/file",
     "custom/firefox",
     "custom/thunderbird",
     "custom/settings"
@@ -29,6 +31,16 @@
     "custom/pipe",
     "battery", 
     "tray"],
+	"custom/search": {
+		"format": "  ",
+		"tooltip": false,
+		"on-click": "wofi --show run"
+	},
+	"custom/file": {
+		"format": "  ",
+		"tooltip": false,
+		"on-click": "nemo"
+	},
 	"custom/settings": {
 		"format": "   ",
 		"tooltip": false,

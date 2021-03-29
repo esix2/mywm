@@ -10,7 +10,7 @@ font pango: SourceCodePro Medium 14
 ### Variables
 #
 # Logo key. Use Mod1 for Alt.
-set $mod Mod1
+set $mod Mod4
 # Home row direction keys, like vim
 set $left h
 set $down j
@@ -59,7 +59,7 @@ input * accel_profile flat
 input * {
     xkb_Layout de,us
 #    xkb_variant "colemak,,typewriter"
-    xkb_options caps:ctrl_modifier,grp:win_space_toggle
+    xkb_options caps:ctrl_modifier,grp:lalt_lshift_toggle
     }
 #input <identifier> xkb_model "pc101"
 ### Key bindings

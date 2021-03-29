@@ -103,6 +103,12 @@ window#waybar {
 #pulseaudio.muted {
 }
 
+#custom-search {
+    color: rgb(214, 214, 214);
+}
+#custom-file {
+    color: rgb(214, 214, 214);
+}
 #custom-firefox {
     color: rgb(214, 66, 3);
 }
