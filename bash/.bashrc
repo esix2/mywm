@@ -120,19 +120,19 @@ fi
 bind '"\e[A": history-search-backward'
 bind '"\e[B": history-search-forward'
 
-rightdisp=DP-2-1
-leftdisp=DP-2-2
+rightdisp=DP-3
+leftdisp=DP-4
 maindisp=eDP-1
 main-screen(){
-xrandr --output $maindisp --auto
-xrandr --output $leftdisp --off
-xrandr --output $leftdisp
+sway output $main enable > /dev/null
+sway output $rightdisp disable > /dev/null
+sway output $leftdisp disable > /dev/null
 }
 
 single-screen(){
-xrandr --output $maindisp --off
-xrandr --output $leftdisp --off
-xrandr --output $rightdisp --auto
+sway output $maindisp disable > /dev/null
+sway output $rightdisp enable > /dev/null
+sway output $leftdisp disable > /dev/null
 }
 double-screen(){
 xrandr --output $maindisp --off
@@ -186,7 +186,6 @@ alias graph='git log --decorate --oneline --graph --all'
 alias texmake='latexmk -pdf -pvc -interaction=nonstopmode' 
 
 # alias for easycopy
-alias easycopy='xclip -i -selection clipboard'
 alias easypath='echo $(pwd) | xclip -i -selection clipboard'
 alias lastcomm='!$:p | xclip -i -selection clipboard'
 
@@ -201,4 +200,4 @@ alias ipa='ip -br -4 a'
 alias ipl='ip -br link'
 #export ETH0=enp0s25
 alias gettime='date +%Y-%m-%d-%H-%M-%S'
-alias dimmestscreen='brightnessctl set 1% > /dev/null'
+export PATH=$PATH:/usr/local/go/bin
