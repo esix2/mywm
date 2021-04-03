@@ -9,6 +9,7 @@
     "sway/mode", 
     "custom/search", 
     "custom/file",
+    "custom/teams",
     "custom/firefox",
     "custom/thunderbird",
     "custom/settings"
@@ -37,17 +38,22 @@
 		"on-click": "wofi --show run"
 	},
 	"custom/file": {
-		"format": "  ",
+		"format": "    ",
 		"tooltip": false,
 		"on-click": "nemo"
 	},
 	"custom/settings": {
-		"format": "   ",
+		"format": "     ",
 		"tooltip": false,
 		"on-click": "gnome-control-center"
 	},
+	"custom/teams": {
+		"format": "     ",
+		"tooltip": false,
+		"on-click": "teams"
+	},
 	"custom/firefox": {
-		"format": "   ",
+		"format": "     ",
 		"tooltip": false,
 		"on-click": "firefox"
 	},

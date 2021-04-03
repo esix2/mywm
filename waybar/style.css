@@ -109,6 +109,9 @@ window#waybar {
 #custom-file {
     color: rgb(214, 214, 214);
 }
+#custom-teams {
+    color: rgb(123, 131, 235);
+}
 #custom-firefox {
     color: rgb(214, 66, 3);
 }

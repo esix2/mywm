@@ -1,6 +1,5 @@
 #! /bin/sh
 current=$(pacmd list-sources | grep dB | awk 'NR==3{print $5}' | sed 's/\%//')
-echo $current 
 pactl set-source-mute @DEFAULT_SOURCE@ false
 if [ $current -lt 95 ]; then
 pactl set-source-volume @DEFAULT_SOURCE@ +5%

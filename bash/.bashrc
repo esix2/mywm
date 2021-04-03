@@ -195,9 +195,11 @@ alias easyopen='nemo $(pwd) &'
 alias getmonitors='xrandr | grep -w connected'
 alias sshcore='ssh m3c@10.1.0.1'
 #alias sshcore='ssh m3c@192.168.1.11'
-alias sshblinq='ssh -oHostKeyAlgorithms=+ssh-dss admin@192.168.1.44'
+alias sshenb1='ssh -oHostKeyAlgorithms=+ssh-dss admin@192.168.1.44'
+alias sshenb2='ssh -oHostKeyAlgorithms=+ssh-dss admin@192.168.1.45'
 alias ipa='ip -br -4 a'
 alias ipl='ip -br link'
 #export ETH0=enp0s25
 alias gettime='date +%Y-%m-%d-%H-%M-%S'
 export PATH=$PATH:/usr/local/go/bin
+alias vlanrm='for i in {1..9}; do sudo ip l del vlan.900 2>/dev/null; done'

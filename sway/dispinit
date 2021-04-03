@@ -1,0 +1,16 @@
+#! /bin/sh
+numDisp=$(swaymsg -t get_outputs | grep DP | wc -l)
+rightdisp=DP-3
+leftdisp=DP-4
+maindisp=eDP-1
+if [ $numDisp -gt 1 ]; then
+    echo "here" > ~/log
+    sway output $maindisp disable > /dev/null
+    sway output $rightdisp enable > /dev/null
+    sway output $leftdisp disable > /dev/null
+else
+    sway output $maindisp enable > /dev/null
+    sway output $rightdisp disable > /dev/null
+    sway output $leftdisp disable > /dev/null
+    echo "there" > ~/log
+fi
