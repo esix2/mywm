@@ -202,4 +202,4 @@ alias ipl='ip -br link'
 #export ETH0=enp0s25
 alias gettime='date +%Y-%m-%d-%H-%M-%S'
 export PATH=$PATH:/usr/local/go/bin
-alisa vlanrm='for i in {1..9}; do sudo ip l del vlan.900 2>/dev/null; done'
+alias vlanrm='for i in {1..9}; do sudo ip l del vlan.900 2>/dev/null; done'
