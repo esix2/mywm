@@ -1,8 +1,0 @@
-let g:netrw_dirhistmax  =10
-let g:netrw_dirhistcnt =6
-let g:netrw_dirhist_6='/home/priv/git/configs/waybar'
-let g:netrw_dirhist_5='/home/priv/.profile'
-let g:netrw_dirhist_4='/home/priv/git/configs/.config/sway'
-let g:netrw_dirhist_3='/etc/modprobe.d'
-let g:netrw_dirhist_2='/home/zandi/git/NN'
-let g:netrw_dirhist_1='/home/zandi/git/Teaching/tiisek/uebungen/WS1920'
