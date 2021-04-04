@@ -43,7 +43,7 @@
 		"on-click": "nemo"
 	},
 	"custom/settings": {
-		"format": "     ",
+		"format": "     ",
 		"tooltip": false,
 		"on-click": "gnome-control-center"
 	},
