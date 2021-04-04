@@ -67,7 +67,7 @@
 		"tooltip": false
 	},
 	"custom/pipe": {
-		"format": "  |  ",
+		"format": " | ",
 		"tooltip": false
 	},
     "sway/workspaces": {
@@ -100,10 +100,10 @@
         "on-click-right": "gnome-control-center datetime"
 	},
     "cpu": {
-        "format": "{usage}% "
+        "format": " {usage}%"
     },
     "memory": {
-        "format": "{}% ",
+        "format": " {}%",
     },
     "battery": {
         "bat": "BAT1",
@@ -115,7 +115,7 @@
             "critical": 10
         },
         "format-discharging": "{capacity}% {icon}",
-        "format-charging": "{capacity}% ",
+        "format-charging": "{capacity}% ",
         "format-full": "{capacity}% ",
         "format-icons": ["", "", "", "", ""],
         "on-click-right": "gnome-control-center power"
@@ -131,16 +131,16 @@
     },
     "backlight": {
         "device": "intel_backlight",
-        "format": "{icon}",
+        "format": "{icon} {percent}%",
         "format-icons": ["","","", "","",""],
-        //"on-scroll-up": "brightnessctl set 5%+",
-        //"on-scroll-down": "brightnessctl set 5%-",
-        "on-click": "brightnessctl set 10%+",
-        "on-click-right": "brightnessctl set 1"
+        "on-scroll-up": "exec ~/.config/waybar/backlight inc",
+        "on-scroll-down": "exec ~/.config/waybar/backlight dec",
+        "on-click": "exec ~/.config/waybar/backlight inc",
+        "on-click-right": "exec ~/.config/waybar/backlight dark",
         },
     "pulseaudio": {
         "scroll-step": 5.0,
-        "format": "{volume}% {icon}",
+        "format": "{icon} {volume}% ",
         "format-bluetooth": "{volume}% {icon}",
         "format-muted": " ",
         "format-icons": {
@@ -160,7 +160,7 @@
     "pulseaudio#1": {
         "scroll-step": 5.0,
         "format": "{format_source}",
-        "format-source": "{volume}% ",
+        "format-source": " {volume}%",
         "format-source-muted": " ",
        "on-scroll-up": "exec ~/.config/sway/increasemic",
        "on-scroll-down": "pactl set-source-volume @DEFAULT_SOURCE@ -5%",
