@@ -139,10 +139,10 @@
         "device": "intel_backlight",
         "format": "{icon} {percent}%",
         "format-icons": ["","","", "","",""],
-        "on-scroll-up": "exec ~/.config/sway/backlight inc",
-        "on-scroll-down": "exec ~/.config/sway/backlight dec notoff",
-        "on-click": "exec ~/.config/sway/backlight inc",
-        "on-click-right": "exec ~/.config/sway/backlight dark",
+        "on-scroll-up": "exec ~/.config/wmbash/backlight inc",
+        "on-scroll-down": "exec ~/.config/wmbash/backlight dec notoff",
+        "on-click": "exec ~/.config/wmbash/backlight inc",
+        "on-click-right": "exec ~/.config/wmbash/backlight dark",
         },
     "pulseaudio": {
         "scroll-step": 5.0,
@@ -158,9 +158,9 @@
             "car": "",
             "default": ["", "", "", "","","","",""]
         },
-        "on-scroll-up": "exec ~/.config/sway/volume vol inc",
-        "on-scroll-down": "exec ~/.config/sway/volume vol dec",
-        "on-click": "exec ~/.config/sway/volume vol toggle",
+        "on-scroll-up": "exec ~/.config/wmbash/volume vol inc",
+        "on-scroll-down": "exec ~/.config/wmbash/volume vol dec",
+        "on-click": "exec ~/.config/wmbash/volume vol toggle",
        "on-click-right": "gnome-control-center sound"
     },
     "pulseaudio#1": {
@@ -168,9 +168,9 @@
         "format": "{format_source}",
         "format-source": " {volume}%",
         "format-source-muted": " ",
-        "on-scroll-up": "exec ~/.config/sway/volume mic inc",
-        "on-scroll-down": "exec ~/.config/sway/volume mic dec",
-        "on-click": "exec ~/.config/sway/volume mic toggle",
+        "on-scroll-up": "exec ~/.config/wmbash/volume mic inc",
+        "on-scroll-down": "exec ~/.config/wmbash/volume mic dec",
+        "on-click": "exec ~/.config/wmbash/volume mic toggle",
         "on-click-right": "gnome-control-center sound"
     }
 }

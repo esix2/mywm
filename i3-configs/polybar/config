@@ -1,0 +1,407 @@
+[colors]
+;background = ${xrdb:color0:#222}
+background = #222
+background-alt = #444
+;foreground = ${xrdb:color7:#222}
+foreground = #dfdfdf
+foreground-alt = #555
+primary = #ffb52a
+secondary = #e60053
+green = #00ff00
+yeollow = #ff6666
+orange = #ff9933
+red = #00ff00
+
+[bar/mybar]
+;monitor = ${env:MONITOR:HDMI-1}
+width = 100%
+height = 32
+;offset-x = 1%
+;offset-y = 1%
+radius = 0.0
+fixed-center = true
+
+background = ${colors.background}
+foreground = ${colors.foreground}
+
+line-size = 3
+line-color = #f00
+
+border-size = 4
+border-color = #00000000
+
+padding-left = 0
+padding-right = 2
+
+module-margin-left = 1
+module-margin-right = 2
+
+font-0 = fixed:pixelsize=12;1
+font-1 = unifont:fontformat=truetype:size=14:antialias=true;2
+font-2 = siji:pixelsize=12;1
+font-3 = Font Awesome 5 Free:pixelsize:12; 2
+font-4 = Font Awesome 5 Free Solid:pixelsize:12; 2
+font-5 = Font Awesome 5 Free Brands:pixelsize:12; 2
+;Noto Color Emoji & nerd-fonts
+; module definition
+modules-left = i3 files settings programms 
+modules-center = date
+modules-right = temperature  cpu memory backlight microphone volume xkeyboard wlan eth battery 
+separator = |
+tray-position = left
+tray-padding = 3
+tray-background = #666666
+
+;wm-restack = bspwm
+;wm-restack = i3
+
+;override-redirect = true
+
+;scroll-up = bspwm-desknext
+;scroll-down = bspwm-deskprev
+
+;scroll-up = i3wm-wsnext
+;scroll-down = i3wm-wsprev
+
+cursor-click = pointer
+cursor-scroll = ns-resize
+
+[module/xwindow]
+type = internal/xwindow
+label = %title:0:30:...%
+
+[module/xkeyboard]
+type = internal/xkeyboard
+blacklist-0 = num lock
+
+format-prefix = " "
+format-prefix-foreground = ${colors.foreground}
+
+label-layout = %layout%
+
+label-indicator-padding = 2
+label-indicator-margin = 1
+label-indicator-background = ${colors.secondary}
+
+
+[module/i3]
+type = internal/i3
+format = <label-state> <label-mode>
+index-sort = true
+wrapping-scroll = false
+
+; Only show workspaces on the same output as the bar
+;pin-workspaces = true
+
+label-mode-padding = 2
+label-mode-foreground = #000
+label-mode-background = ${colors.primary}
+
+; focused = Active workspace on focused monitor
+label-focused = %index%
+label-focused-background = ${colors.background-alt}
+label-focused-padding = 2
+
+; unfocused = Inactive workspace on any monitor
+label-unfocused = %index%
+label-unfocused-padding = 2
+
+; visible = Active workspace on unfocused monitor
+label-visible = %index%
+label-visible-background = ${self.label-focused-background}
+label-visible-padding = ${self.label-focused-padding}
+
+; urgent = Workspace with urgency hint set
+label-urgent = %index%
+label-urgent-background = ${colors.alert}
+label-urgent-padding = 2
+
+; Separator in between workspaces
+; label-separator = |
+
+
+;[module/backlight]
+;type = internal/backlight
+;card = intel_backlight
+;enable-scroll = true
+;format =<label><ramp>
+;label = %percentage%%
+;ramp-0 = ""
+;ramp-1 = ""
+;ramp-2 = ""
+;ramp-3 = ""
+;ramp-4 = ""
+;ramp-5 = ""
+;;click = brightnessctl set 10%+ > /dev/null 2>&1
+;;click-right = bash /home/priv/.config/polybar/dimmer
+;;scroll-down = /home/priv/.config/polybar/dimmer
+;click = backlight+
+;click-right = %inc%
+
+;[module/backlight-acpi]
+;inherit = module/backlight
+;type = internal/backlight
+;card = intel_backlight
+
+[module/cpu]
+type = internal/cpu
+interval = 2
+format-prefix = " "
+format-prefix-foreground = ${colors.foreground}
+label = %percentage:2%%
+
+[module/memory]
+type = internal/memory
+interval = 2
+format-prefix = " "
+format-prefix-foreground = ${colors.foreground}
+label = %percentage_used%%
+
+[module/wlan]
+type = internal/network
+interface = wlp3s0
+interval = 3.0
+
+format-connected = <ramp-signal> <label-connected>
+label-connected = " "
+
+format-disconnected =
+;format-disconnected = <label-disconnected>
+;label-disconnected = %ifname% disconnected
+;label-disconnected-foreground = ${colors.foreground-alt}
+
+ramp-signal-0 = 
+ramp-signal-1 = 
+ramp-signal-2 = 
+ramp-signal-3 = 
+ramp-signal-4 = 
+ramp-signal-foreground = ${colors.foreground-alt}
+
+[module/eth]
+type = internal/network
+interface = wwp0s20u4
+interval = 3.0
+
+format-connected-prefix = " "
+format-connected-prefix-foreground = ${colors.foreground-alt}
+label-connected = %local_ip%
+
+format-disconnected =
+;format-disconnected = <label-disconnected>
+;label-disconnected = %ifname% disconnected
+;label-disconnected-foreground = ${colors.foreground-alt}
+
+[module/date]
+type = internal/date
+interval = 1
+date = %a %d %b %Y, 
+date-alt = %a %d %b %Y, 
+time = %H:%M:%S
+time-alt = %H:%M:%S
+format-prefix = 
+format-prefix-foreground = ${colors.foreground}
+
+label = %date% %time%
+
+[module/battery]
+type = internal/battery
+battery = BAT1
+adapter = AC
+full-at = 98
+
+format-discharging = <label-discharging> <ramp-capacity>
+format-charging = <label-charging> <animation-charging>
+
+format-full-prefix = ""
+format-full-prefix-foreground = ${colors.foreground}
+
+ramp-capacity-0 = ""
+ramp-capacity-1 = ""
+ramp-capacity-2 = ""
+ramp-capacity-3 = ""
+ramp-capacity-4 = ""
+ramp-capacity-foreground = ${colors.foreground}
+
+
+animation-charging-0 = ""
+animation-charging-foreground = ${colors.foreground}
+animation-charging-framerate = 1000
+
+[module/temperature]
+type = internal/temperature
+thermal-zone = 0
+warn-temperature = 60
+
+format = <ramp> <label>
+format-warn = <ramp> <label-warn>
+
+label = %temperature-c%
+label-warn = %temperature-c%
+label-warn-foreground = ${colors.secondary}
+
+ramp-0 = 
+ramp-1 = 
+ramp-2 =
+ramp-3 = 
+ramp-0-foreground = ${gree}
+ramp-1-foreground = ${yellow}
+ramp-2-foreground = ${orange}
+ramp-3-foreground = ${red}
+
+[module/powermenu]
+type = custom/menu
+expand-right = true
+format-spacing = 1
+label-open =""
+label-open-foreground = ${colors.secondary}
+label-close = " Exit"
+label-close-foreground = ${colors.secondary}
+;label-separator = |
+;label-separator-foreground = ${colors.foreground-alt}
+
+menu-0-0 = " reboot"
+menu-0-0-exec = menu-open-1
+menu-0-1 = " power off"
+menu-0-1-exec = menu-open-2
+
+menu-1-0 = cancel
+menu-1-0-exec = menu-close
+menu-1-1 = reboot
+menu-1-1-exec = reboot
+
+menu-2-0 = cancel
+menu-2-0-exec = menu-close
+menu-2-1 = power off
+menu-2-1-exec = poweroff
+
+[settings]
+screenchange-reload = true
+;compositing-background = xor
+;compositing-background = screen
+;compositing-foreground = source
+;compositing-border = over
+;pseudo-transparency = false
+
+[global/wm]
+margin-top = 5
+margin-bottom = 5
+
+; vim:ft=dosini
+;;; user-defined
+[module/volume]
+type = custom/script
+exec = ~/.config/wmbash/volume vol status
+click-right = gnome-control-center sound
+click-left = bash ~/.config/wmbash/volume vol toggle
+scroll-up = bash ~/.config/wmbash/volume vol  inc
+scroll-down = bash ~/.config/wmbash/volume vol dec
+format-prefix-foreground = ${colors.foreground}
+interval = 0.1
+
+[module/microphone]
+type = custom/script
+exec = ~/.config/wmbash/volume mic status
+click-right = gnome-control-center sound
+click-left = bash ~/.config/wmbash/volume mic toggle
+scroll-up = bash ~/.config/wmbash/volume mic  inc
+scroll-down = bash ~/.config/wmbash/volume mic dec
+format-prefix-foreground = ${colors.foreground}
+interval = 0.1
+
+[module/backlight]
+type = custom/script
+exec = ~/.config/wmbash/backlight status
+click-left = bash ~/.config/wmbash/backlight inc
+click-right = bash ~/.config/wmbash/backlight dark
+scroll-up = bash ~/.config/wmbash/backlight  inc
+scroll-down = bash ~/.config/wmbash/backlight dec notoff
+format-prefix-foreground = ${colors.foreground}
+interval = 0.1
+
+[module/programms]
+type = custom/menu
+expand-right = true
+format-spacing = 1
+label-open ="  "
+label-open-foreground = #ff8caa
+; ${colors.foreground}
+label-close = " Cancel"
+label-close-foreground = ${colors.foreground-alt}
+
+menu-0-0 = " "
+menu-0-0-exec = /usr/bin/rofi -show run
+menu-0-0-foreground = ${colors.foreground}
+
+menu-0-1 = " "
+menu-0-1-exec = /usr/bin/firefox
+menu-0-1-foreground = #d64203
+
+menu-0-2 = " "
+menu-0-2-exec = /usr/bin/thunderbird
+menu-0-2-foreground = #0082c0
+
+menu-0-3 = " "
+menu-0-3-exec = /usr/bin/vlc
+menu-0-3-foreground = #e85e00
+
+menu-0-4 = " "
+menu-0-4-exec = /usr/bin/libreoffice --calc
+menu-0-4-foreground = #43C330
+
+menu-0-5 = " "
+menu-0-5-exec = /usr/bin/libreoffice --writer
+menu-0-5-foreground = #0369A3
+
+menu-0-6 = " "
+menu-0-6-exec = /usr/bin/zoom
+menu-0-6-foreground = #2d8cff
+
+menu-0-7 =" "
+menu-0-7-exec = menu-open-1
+menu-0-7-foreground = ${colors.secondary}
+
+menu-1-0 = " "
+menu-1-0-exec = menu-open-2
+menu-1-0-foreground = ${colors.secondary}
+menu-1-1 = " "
+menu-1-1-exec = menu-open-3
+menu-1-1-foreground = ${colors.secondary}
+
+menu-2-0 = " Yes"
+menu-2-0-exec = reboot
+menu-2-0-foreground = ${colors.secondary}
+
+menu-3-0 = " Yes"
+menu-3-0-exec = poweroff
+menu-3-0-foreground = ${colors.secondary}
+
+[module/files]
+type = custom/script
+exec = echo ""
+click-left = /usr/bin/nemo
+format-foreground = ${colors.foreground}
+
+;[module/programms]
+;type = custom/script
+;exec = echo ""
+;click-left = /usr/bin/rofi -show run
+;format-foreground = ${colors.foreground}
+;
+;[module/firefox]
+;type = custom/script
+;exec = echo ""
+;click-left = /usr/bin/firefox
+;format-foreground = #d64203
+;
+;[module/zoom]
+;type = custom/script
+;exec = echo ""
+;click-left = /usr/bin/zoom
+;format-foreground = #2d8cff
+;
+[module/settings]
+type = custom/script
+exec = echo ""
+click-left = /usr/bin/gnome-control-center
+format-prefix-foreground = ${colors.foreground}
+
