@@ -1,7 +1,13 @@
-for_window [title="Screensaver"] floating enable
-for_window [title="Screensaver"] fullscreen enable
-set $kbdbl sudo brightnessctl -d tpacpi::kbd_backlight set
-set $scroff swaymsg "output * dpms off"
-set $scron swaymsg "output * dpms on"
-set $hidecursor swaymsg seat seat0 cursor set 2000 2000
-bindsym $mod+Shift+Delete exec  ~/.config/sway/locker
+#! /bin/sh
+term='alacritty -t Screensaver -e'
+saver=cmatrix
+#saver="xviewer -f wallpaper.jpg"
+locker='swaylock --font 32 -c 00000000'
+~/.config/sway/backlight set 10
+~/.config/sway/volume vol mute
+~/.config/sway/volume mic mute
+($term $saver) &
+sleep .2
+($locker) 
+~/.config/sway/backlight set 50 
+kill $!

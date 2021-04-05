@@ -13,6 +13,8 @@ if [ "$dev" == "vol" ]; then
 	elif [ "$action" == "dec" ]; then 
 	    pactl set-sink-volume @DEFAULT_SINK@ -5%
 	elif [ "$action" == "mute" ]; then 
+	    pactl set-sink-mute @DEFAULT_SINK@ true
+	elif [ "$action" == "toggle" ]; then 
 	    pactl set-sink-mute @DEFAULT_SINK@ toggle
 	elif [ "$action" == "status" ]; then 
 	    status=$(pacmd list-sinks | grep muted | grep yes)
@@ -41,6 +43,8 @@ elif [ "$dev" == "mic" ]; then
 	elif [ "$action" == "dec" ]; then 
 	    pactl set-source-volume @DEFAULT_SOURCE@ -5%
 	elif [ "$action" == "mute" ]; then 
+	    pactl set-source-mute @DEFAULT_SOURCE@ true
+	elif [ "$action" == "toggle" ]; then 
 	    pactl set-source-mute @DEFAULT_SOURCE@ toggle
 	elif [ "$action" == "status" ]; then 
 	    status=$(pacmd list-sources | grep muted | grep yes)

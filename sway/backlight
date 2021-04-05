@@ -12,13 +12,30 @@ if [ "$action" == "inc" ]; then
     fi
 elif [ "$action" == "dec" ]; then 
     new=$((current-percent))
-    if [ $new -gt 1 ]; then
-        echo $new > /sys/class/backlight/intel_backlight/brightness
-    else
-        echo 1 > /sys/class/backlight/intel_backlight/brightness
+    if [ -z $2 ]; then
+        if [ $new -gt 5 ]; then
+            echo $new > /sys/class/backlight/intel_backlight/brightness
+        else
+            echo 0 > /sys/class/backlight/intel_backlight/brightness
+        fi
+    ### if second argument given, e.g., notoff or dim or dark, it only dims the screen and not off
+    else  
+        if [ $new -gt 1 ]; then
+            echo $new > /sys/class/backlight/intel_backlight/brightness
+        else
+            echo 1 > /sys/class/backlight/intel_backlight/brightness
+        fi
     fi
 elif [ "$action" == "dark" ]; then 
         echo 1 > /sys/class/backlight/intel_backlight/brightness
+elif [ "$action" == "off" ]; then 
+        echo 0 > /sys/class/backlight/intel_backlight/brightness
+elif [ "$action" == "set" ]; then 
+        percent=$2
+        level=$((max_brightness * percent / 100))
+        level=$((level+1))
+        if [ $level -gt $max_brightness ]; then level=$max_brightness; fi
+        echo $level > /sys/class/backlight/intel_backlight/brightness
 elif [ "$action" == "status" ]; then 
     current=$(cat /sys/class/backlight/intel_backlight/brightness)
     current_percent=$((100 * current / max_brightness))

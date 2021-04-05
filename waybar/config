@@ -101,7 +101,7 @@
     },
 	"clock": {
         "interval" : 1,
-		"format": "{:%a  %d %b %Y, %H:%M:%S}",
+		"format": "{:%a  %d %b %Y, %H:%M}",
 		"tooltip": false,
         "on-click-right": "gnome-control-center datetime"
 	},
@@ -139,10 +139,10 @@
         "device": "intel_backlight",
         "format": "{icon} {percent}%",
         "format-icons": ["","","", "","",""],
-        "on-scroll-up": "exec ~/.config/waybar/backlight inc",
-        "on-scroll-down": "exec ~/.config/waybar/backlight dec",
-        "on-click": "exec ~/.config/waybar/backlight inc",
-        "on-click-right": "exec ~/.config/waybar/backlight dark",
+        "on-scroll-up": "exec ~/.config/sway/backlight inc",
+        "on-scroll-down": "exec ~/.config/sway/backlight dec notoff",
+        "on-click": "exec ~/.config/sway/backlight inc",
+        "on-click-right": "exec ~/.config/sway/backlight dark",
         },
     "pulseaudio": {
         "scroll-step": 5.0,
@@ -158,19 +158,19 @@
             "car": "",
             "default": ["", "", "", "","","","",""]
         },
-       "on-scroll-up": "exec ~/.config/sway/increasevolume",
-       "on-scroll-down": "pactl set-sink-volume @DEFAULT_SINK@ -5%",
-       "on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle",
-        "on-click-right": "gnome-control-center sound"
+        "on-scroll-up": "exec ~/.config/sway/volume vol inc",
+        "on-scroll-down": "exec ~/.config/sway/volume vol dec",
+        "on-click": "exec ~/.config/sway/volume vol toggle",
+       "on-click-right": "gnome-control-center sound"
     },
     "pulseaudio#1": {
         "scroll-step": 5.0,
         "format": "{format_source}",
         "format-source": " {volume}%",
         "format-source-muted": " ",
-       "on-scroll-up": "exec ~/.config/sway/increasemic",
-       "on-scroll-down": "pactl set-source-volume @DEFAULT_SOURCE@ -5%",
-       "on-click": "pactl set-source-mute @DEFAULT_SOURCE@ toggle",
+        "on-scroll-up": "exec ~/.config/sway/volume mic inc",
+        "on-scroll-down": "exec ~/.config/sway/volume mic dec",
+        "on-click": "exec ~/.config/sway/volume mic toggle",
         "on-click-right": "gnome-control-center sound"
     }
 }

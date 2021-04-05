@@ -230,9 +230,9 @@ include ./touchpad
 #### speaker/mic volume
 bindsym XF86AudioRaiseVolume exec "~/.config/sway/volume vol inc"
 bindsym XF86AudioLowerVolume exec "~/.config/sway/volume vol dec"
-bindsym XF86AudioMute exec "~/.config/sway/volume vol mute"
-bindsym XF86AudioMicMute exec "~/.config/sway/volume mic mute"
-bindsym $mod+XF86AudioMute exec "~/.config/sway/volume mic mute"
+bindsym XF86AudioMute exec "~/.config/sway/volume vol toggle"
+bindsym XF86AudioMicMute exec "~/.config/sway/volume mic toggle"
+bindsym $mod+XF86AudioMute exec "~/.config/sway/volume mic toggle"
 bindsym $mod+XF86AudioRaiseVolume exec "~/.config/sway/volume mic inc"
 bindsym $mod+XF86AudioLowerVolume exec "~/.config/sway/volume mic dec"
 
@@ -256,4 +256,4 @@ set $kbdbl sudo brightnessctl -d tpacpi::kbd_backlight set
 set $scroff swaymsg "output * dpms off"
 set $scron swaymsg "output * dpms on"
 set $hidecursor swaymsg seat seat0 cursor set 2000 2000
-bindsym $mod+Shift+Delete exec  ~/.config/sway/locker
+bindsym $mod+Shift+Delete exec  ~/.config/sway/screensaver
