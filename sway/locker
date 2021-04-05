@@ -3,7 +3,6 @@ term='alacritty -t Screensaver -e'
 saver=cmatrix
 locker='swaylock --font 32 -c 00000000'
 exec ~/.config/sway/backlight dark &
-bright='~/.config/sway/backlight inc'
 ($term $saver) &
 sleep .2
 ($locker) 
