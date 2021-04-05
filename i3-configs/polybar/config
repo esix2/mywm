@@ -46,7 +46,7 @@ font-5 = Font Awesome 5 Free Brands:pixelsize:12; 2
 ; module definition
 modules-left = i3 files settings programms 
 modules-center = date
-modules-right = temperature  cpu memory backlight microphone volume xkeyboard wlan eth battery 
+modules-right = temperature  cpu memory microphone volume backlight xkeyboard wlan eth battery 
 separator = |
 tray-position = left
 tray-padding = 3
@@ -323,7 +323,7 @@ type = custom/menu
 expand-right = true
 format-spacing = 1
 label-open ="  "
-label-open-foreground = #ff8caa
+label-open-foreground = #e6e600
 ; ${colors.foreground}
 label-close = " Cancel"
 label-close-foreground = ${colors.foreground-alt}

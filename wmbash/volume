@@ -54,7 +54,7 @@ elif [ "$dev" == "mic" ]; then
             echo ""
 	    else
             current=$(pacmd list-sources | grep -A 10 "* index" | sed -n '8p' | awk 'NR==1{print $5}')
-            echo " $current%"
+            echo " $current"
 	    fi
 	fi
 fi
