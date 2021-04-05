@@ -12,6 +12,7 @@
     "custom/teams",
     "custom/firefox",
     "custom/thunderbird",
+    "custom/vlc",
     "custom/settings"
     ],
     "modules-center": [
@@ -38,29 +39,34 @@
 		"on-click": "wofi --show run"
 	},
 	"custom/file": {
-		"format": "    ",
+		"format": "  ",
 		"tooltip": false,
 		"on-click": "nemo"
 	},
 	"custom/settings": {
-		"format": "     ",
+		"format": "  ",
 		"tooltip": false,
 		"on-click": "gnome-control-center"
 	},
 	"custom/teams": {
-		"format": "     ",
+		"format": "  ",
 		"tooltip": false,
 		"on-click": "teams"
 	},
 	"custom/firefox": {
-		"format": "     ",
-		"tooltip": false,
+		"format": "  ",
+		"tooltip": true,
 		"on-click": "firefox"
 	},
 	"custom/thunderbird": {
-		"format": " ",
+		"format": "  ",
 		"tooltip": false,
 		"on-click": "thunderbird"
+	},
+	"custom/vlc": {
+		"format": "  ",
+		"tooltip": false,
+		"on-click": "vlc"
 	},
 	"custom/comma": {
 		"format": ",",

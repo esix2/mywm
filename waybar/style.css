@@ -115,6 +115,9 @@ window#waybar {
 #custom-firefox {
     color: rgb(214, 66, 3);
 }
+#custom-vlc {
+    color: #e85e00;
+}
 #custom-thunderbird {
     color: rgb(0, 130, 192);
 }

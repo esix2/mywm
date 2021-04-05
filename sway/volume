@@ -1,14 +1,53 @@
-bindsym XF86AudioRaiseVolume exec "~/.config/sway/increasevolume"
-bindsym XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -5%
-bindsym XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle
-bindsym XF86AudioMicMute exec pactl set-source-mute @DEFAULT_SOURCE@ toggle
-bindsym $mod+XF86AudioMute exec pactl set-source-mute @DEFAULT_SOURCE@ toggle
-#bindsym $mod+XF86AudioRaiseVolume exec "pactl set-source-mute 0 false ; pactl set-source-volume @DEFAULT_SOURCE@ +5%"
-bindsym $mod+XF86AudioRaiseVolume exec "~/.config/sway/increasemic"
-bindsym $mod+XF86AudioLowerVolume exec pactl set-source-volume @DEFAULT_SOURCE@ -5%
-
-#bindsym XF86AudioPlay exec playerctl play-pause
-#bindsym XF86AudioNext exec playerctl next
-#bindsym XF86AudioPrev exec playerctl previous
-#bindsym XF86Search exec bemenu-run
-#bindsym --locked XF86AudioPlay exec playerctl play-pause
+#! /bin/sh
+dev=$1
+action=$2
+if [ "$dev" == "vol" ]; then
+	current=$(pacmd dump-volumes | awk 'NR==1{print $8}' | sed 's/\%//')
+	if [ "$action" == "inc" ]; then 
+	    pactl set-sink-mute @DEFAULT_SINK@ false
+	    if [ $current -lt 135 ]; then
+		pactl set-sink-volume @DEFAULT_SINK@ +5%
+	    else
+		pactl set-sink-volume @DEFAULT_SINK@ 140%
+	    fi
+	elif [ "$action" == "dec" ]; then 
+	    pactl set-sink-volume @DEFAULT_SINK@ -5%
+	elif [ "$action" == "mute" ]; then 
+	    pactl set-sink-mute @DEFAULT_SINK@ toggle
+	elif [ "$action" == "status" ]; then 
+	    status=$(pacmd list-sinks | grep muted | grep yes)
+	    if [ ! -z "$status" ]; then
+		echo " "
+	    else
+		current=$(pacmd dump-volumes | awk 'NR==1{print $8}' | sed 's/\%//')
+		if [ $current -gt 70 ]; then
+		    echo "  $current%"
+		elif [ $current -gt 30 ]; then
+		    echo " $current%"
+		else
+		    echo " $current%"
+		fi
+	    fi
+	fi
+elif [ "$dev" == "mic" ]; then
+	current=$(pacmd list-sources | grep dB | awk 'NR==3{print $5}' | sed 's/\%//')
+	if [ "$action" == "inc" ]; then 
+	    pactl set-source-mute @DEFAULT_SOURCE@ false
+	    if [ $current -lt 95 ]; then
+		pactl set-source-volume @DEFAULT_SOURCE@ +5%
+	    else
+		pactl set-source-volume @DEFAULT_SOURCE@ 100%
+	    fi
+	elif [ "$action" == "dec" ]; then 
+	    pactl set-source-volume @DEFAULT_SOURCE@ -5%
+	elif [ "$action" == "mute" ]; then 
+	    pactl set-source-mute @DEFAULT_SOURCE@ toggle
+	elif [ "$action" == "status" ]; then 
+	    status=$(pacmd list-sources | grep muted | grep yes)
+	    if [ ! -z "$status" ]; then
+		echo ""
+	    else
+		echo " $current%"
+	    fi
+	fi
+fi

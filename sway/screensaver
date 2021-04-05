@@ -1,0 +1,7 @@
+for_window [title="Screensaver"] floating enable
+for_window [title="Screensaver"] fullscreen enable
+set $kbdbl sudo brightnessctl -d tpacpi::kbd_backlight set
+set $scroff swaymsg "output * dpms off"
+set $scron swaymsg "output * dpms on"
+set $hidecursor swaymsg seat seat0 cursor set 2000 2000
+bindsym $mod+Shift+Delete exec  ~/.config/sway/locker
