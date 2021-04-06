@@ -9,22 +9,18 @@ fi
 
 xrandr --output HDMI-1 --left-of eDP-1
 
-#i3-msg 'workspace 2; exec gnome-control-center sound'
-#sleep 1
-#i3-msg "workspace 2, move to output eDP-1"
-#sleep 1
-if [ -z "$(pidof zoom)" ] 
-then
-    i3-msg 'workspace 1; exec zoom'
-fi
-
+i3-msg 'workspace 2; exec gnome-control-center sound'
+i3-msg '[workspace="2"]' move workspace to output eDP-1
 if [ -z "$(pidof vlc)" ] 
 then
     i3-msg 'workspace 1; exec vlc'
 fi
 
-for i in {1..5}:
-do
-    i3-msg "workspace 1, move to output HDMI-1"
-    sleep 0.5
-done
+if [ -z "$(pidof zoom)" ] 
+then
+    i3-msg 'workspace 1; exec zoom'
+fi
+
+
+i3-msg '[workspace="1"]' move workspace to output HDMI-1
+#i3-msg "workspace 1, move to output HDMI-1"

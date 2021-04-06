@@ -214,3 +214,6 @@ alias ipl='ip -br link'
 alias gettime='date +%Y-%m-%d-%H-%M-%S'
 export PATH=$PATH:/usr/local/go/bin
 alias vlanrm='for i in {1..9}; do sudo ip l del vlan."$i"00 2>/dev/null; done'
+function mvws {
+i3-msg "[workspace=$1]" move workspace to output $2
+}
