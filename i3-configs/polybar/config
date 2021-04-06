@@ -13,7 +13,7 @@ orange = #ff9933
 red = #00ff00
 
 [bar/mybar]
-;monitor = ${env:MONITOR:HDMI-1}
+monitor = ${env:MONITOR:}
 width = 100%
 height = 32
 ;offset-x = 1%

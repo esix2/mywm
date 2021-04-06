@@ -1,0 +1,30 @@
+#! /bin/bash
+ifreset=$1
+if [ "$ifreset" == "reset" ]
+then
+    killall zoom
+    killall vlc
+    killall gnome-control-center
+fi
+
+xrandr --output HDMI-1 --left-of eDP-1
+
+#i3-msg 'workspace 2; exec gnome-control-center sound'
+#sleep 1
+#i3-msg "workspace 2, move to output eDP-1"
+#sleep 1
+if [ -z "$(pidof zoom)" ] 
+then
+    i3-msg 'workspace 1; exec zoom'
+fi
+
+if [ -z "$(pidof vlc)" ] 
+then
+    i3-msg 'workspace 1; exec vlc'
+fi
+
+for i in {1..5}:
+do
+    i3-msg "workspace 1, move to output HDMI-1"
+    sleep 0.5
+done

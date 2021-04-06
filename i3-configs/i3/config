@@ -195,8 +195,11 @@ mode "resize" {
 bindsym $mod+r mode "resize"
 
 ##### user defined
-exec_always --no-startup-id $HOME/.config/polybar/launcher
-bindsym $mod+m bar mode toggle
+exec_always --no-startup-id $HOME/.config/wmbash/polylauncher
+#bindsym $mod+m bar mode toggle
 font pango: 20px
 exec --no-startup-id nitrogen --restore
 bindsym --whole-window $mod+Tab workspace next
+
+bindsym $mod+m exec --no-startup-id $HOME/.config/wmbash/sport
+bindsym $mod+Shift+m exec --no-startup-id $HOME/.config/wmbash/sport reset

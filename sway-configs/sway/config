@@ -203,6 +203,7 @@ mode "resize" {
 }
 bindsym $mod+r mode "resize"
 
+
 #
 # Status Bar:
 #
@@ -257,3 +258,8 @@ set $scroff swaymsg "output * dpms off"
 set $scron swaymsg "output * dpms on"
 set $hidecursor swaymsg seat seat0 cursor set 2000 2000
 bindsym $mod+Shift+Delete exec  ~/.config/wmbash/screensaver
+
+bindsym $mod+Shift+f workspace 2; exec firefox
+bindsym $mod+Shift+t workspace 3; exec thunderbird
+bindsym $mod+Shift+v workspace 4; exec vlc
+bindsym $mod+Shift+z workspace 5; exec zoom
