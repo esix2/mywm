@@ -34,13 +34,13 @@ if [ "$dev" == "vol" ]; then
 	fi
 elif [ "$dev" == "mic" ]; then
 #	current=$(pacmd list-sources | grep dB | awk 'NR==3{print $5}' | sed 's/\%//')
-    current=$(pacmd list-sources | grep -A 10 "* index" | sed -n '8p' | awk 'NR==1{print $5}')
+    current=$(pacmd list-sources | grep -A 10 "* index" | sed -n '8p' | awk 'NR==1{print $5}' | sed 's/\%//')
 	if [ "$action" == "inc" ]; then 
 	    pactl set-source-mute @DEFAULT_SOURCE@ false
 	    if [ $current -lt 95 ]; then
-		pactl set-source-volume @DEFAULT_SOURCE@ +5%
+            pactl set-source-volume @DEFAULT_SOURCE@ +5%
 	    else
-		pactl set-source-volume @DEFAULT_SOURCE@ 100%
+            pactl set-source-volume @DEFAULT_SOURCE@ 100%
 	    fi
 	elif [ "$action" == "dec" ]; then 
 	    pactl set-source-volume @DEFAULT_SOURCE@ -5%
