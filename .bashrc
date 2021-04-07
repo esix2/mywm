@@ -180,7 +180,7 @@ else
     fi
 fi
 unset __conda_setup
-conda config --set auto_activate_base False
+conda config --set auto_activate_base False 2>/dev/null
 ## <<< conda initialize <<<
 
 ##########################################################
