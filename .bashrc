@@ -153,6 +153,19 @@ sway output $rightdisp enable > /dev/null 2>&1
 sway output $leftdisp disable > /dev/null 2>&1
 }
 
+single-screen(){
+    if [ ! -z "$(pidof i3)" ]; then
+        xrandr --output $maindisp --off 2>/dev/null
+        xrandr --output $leftdisp --off 2>/dev/null
+    elif [ ! -z "$(pidof sway)" ]; then
+        sway output $main enable > /dev/null 2>&1
+        sway output $rightdisp disable > /dev/null 2>&1
+        sway output $leftdisp disable > /dev/null 2>&1
+    else 
+        echo "This commands does not work on any othe WM than i3 & sway"
+fi
+xrandr --output $rightdisp --auto 2>/dev/null
+}
 
 ## >>> conda initialize >>>
 ## !! Contents within this block are managed by 'conda init' !!

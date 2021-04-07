@@ -59,10 +59,10 @@ window#waybar {
  color: white;
 }
 #battery.warning {
- color: orange;
-}
-#battery.warning {
  color: yellow;
+}
+#battery.bad {
+ color: orange;
 }
 #battery.critical {
  color: red;
@@ -84,6 +84,9 @@ window#waybar {
     animation-direction: alternate;
 }
 
+temperature.critical {
+ color: red;
+}
 #cpu {
 }
 

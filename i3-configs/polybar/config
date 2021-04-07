@@ -230,7 +230,7 @@ animation-charging-framerate = 1000
 [module/temperature]
 type = internal/temperature
 thermal-zone = 0
-warn-temperature = 60
+warn-temperature = 80
 
 format = <ramp> <label>
 format-warn = <ramp> <label-warn>
@@ -239,14 +239,8 @@ label = %temperature-c%
 label-warn = %temperature-c%
 label-warn-foreground = ${colors.secondary}
 
-ramp-0 = 
-ramp-1 = 
-ramp-2 =
-ramp-3 = 
-ramp-0-foreground = ${gree}
-ramp-1-foreground = ${yellow}
-ramp-2-foreground = ${orange}
-ramp-3-foreground = ${red}
+ramp-0 = 
+ramp-1 =
 
 [module/powermenu]
 type = custom/menu
