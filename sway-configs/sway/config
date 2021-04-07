@@ -258,8 +258,13 @@ set $scroff swaymsg "output * dpms off"
 set $scron swaymsg "output * dpms on"
 set $hidecursor swaymsg seat seat0 cursor set 2000 2000
 bindsym $mod+Shift+Delete exec  ~/.config/wmbash/screensaver
+#####
 
+#### shortcut for openning frequent Apps
 bindsym $mod+Shift+f workspace 2; exec firefox
-bindsym $mod+Shift+t workspace 3; exec thunderbird
+bindsym $mod+Shift+e workspace 3; exec thunderbird
 bindsym $mod+Shift+v workspace 4; exec vlc
 bindsym $mod+Shift+z workspace 5; exec zoom
+bindsym $mod+Shift+t workspace 6; exec teams
+bindsym $mod+Shift+t+q workspace 6; exec killall teams
+
