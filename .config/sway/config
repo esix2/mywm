@@ -262,9 +262,9 @@ bindsym $mod+Shift+Delete exec  ~/.config/wmbash/screensaver
 
 #### shortcut for openning frequent Apps
 bindsym $mod+Shift+f workspace 2; exec firefox
-bindsym $mod+Shift+e workspace 3; exec thunderbird
-bindsym $mod+Shift+v workspace 4; exec vlc
-bindsym $mod+Shift+z workspace 5; exec zoom
-bindsym $mod+Shift+t workspace 6; exec teams
-bindsym $mod+Shift+t+q workspace 6; exec killall teams
+bindsym $mod+Shift+t workspace 3; exec teams
+bindsym $mod+Shift+4 workspace 4; exec thunderbird
+bindsym $mod+Shift+v workspace 5; exec vlc
+bindsym $mod+Shift+z workspace 6; exec zoom
+bindsym $mod+Shift+e workspace 6; exec killall teams
 

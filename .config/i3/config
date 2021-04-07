@@ -205,6 +205,8 @@ bindsym $mod+m exec --no-startup-id $HOME/.config/wmbash/sport
 bindsym $mod+Shift+m exec --no-startup-id $HOME/.config/wmbash/sport reset
 
 bindsym $mod+Shift+f workspace 2; exec --no-startup-id i3-msg 'exec firefox' 
-bindsym $mod+Shift+t workspace 3; exec --no-startup-id i3-msg 'exec thunderbird'
-bindsym $mod+Shift+v workspace 4; exec --no-startup-id i3-msg 'exec vlc'
-bindsym $mod+Shift+z workspace 5; exec --no-startup-id i3-msg 'exec zoom'
+bindsym $mod+Shift+t workspace 3; exec --no-startup-id i3-msg 'exec teams'
+bindsym $mod+Shift+e exec --no-startup-id  killall teams
+bindsym $mod+Shift+d workspace 4; exec --no-startup-id i3-msg 'exec thunderbird'
+bindsym $mod+Shift+v workspace 5; exec --no-startup-id i3-msg 'exec vlc'
+bindsym $mod+Shift+z workspace 6; exec --no-startup-id i3-msg 'exec zoom'
