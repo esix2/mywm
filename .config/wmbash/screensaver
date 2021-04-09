@@ -3,11 +3,11 @@ term='alacritty -t Screensaver -e'
 saver=cmatrix
 #saver="xviewer -f wallpaper.jpg"
 locker='swaylock --font 32 -c 00000000'
-~/.config/sway/backlight set 10
+~/.config/wmbash/backlight set 10
 ~/.config/sway/volume vol mute
 ~/.config/sway/volume mic mute
 ($term $saver) &
 sleep .2
 ($locker) 
-~/.config/sway/backlight set 50 
+~/.config/wmbash/backlight set 50 
 kill $!

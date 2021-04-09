@@ -222,6 +222,10 @@ alias sshcore='ssh m3c@10.1.0.1'
 #alias sshcore='ssh m3c@192.168.1.11'
 alias sshenb1='ssh -oHostKeyAlgorithms=+ssh-dss admin@192.168.1.44'
 alias sshenb2='ssh -oHostKeyAlgorithms=+ssh-dss admin@192.168.1.45'
+
+alias rsrpblinq='snmpwalk -v2c -c public 192.168.2.1 pmpDevCpeLteRSRP.0'
+alias rsrpmikro='snmpwalk -v2c -c public 192.168.4.1 mtxrLTEModemSignalRSRP.1'
+
 alias ipa='ip -br -4 a'
 alias ipl='ip -br link'
 alias gettime='date +%Y-%m-%d-%H-%M-%S'
