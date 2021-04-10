@@ -11,4 +11,5 @@ xset s off
 
 exec i3
 #exec cinnamon-session2d
-#exec lightdm
+#exec startxfce4
+#startlxqt
