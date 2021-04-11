@@ -205,7 +205,8 @@ bindsym --whole-window $mod+Tab workspace next
 bindsym $mod+m exec --no-startup-id $HOME/.config/wmbash/sport
 bindsym $mod+Shift+m exec --no-startup-id $HOME/.config/wmbash/sport reset
 
-bindsym Mod1+Ctrl+f workspace 2; exec --no-startup-id i3-msg 'exec firefox' 
+bindsym Mod1+Ctrl+q workspace 2; exec --no-startup-id i3-msg 'exec x-qutebrowser' 
+bindsym Mod1+Ctrl+f workspace 9; exec --no-startup-id i3-msg 'exec firefox' 
 bindsym Mod1+Ctrl+t workspace 3; exec --no-startup-id i3-msg 'exec teams'
 bindsym Mod1+Ctrl+e exec --no-startup-id  killall teams
 bindsym Mod1+Ctrl+d workspace 4; exec --no-startup-id i3-msg 'exec thunderbird'

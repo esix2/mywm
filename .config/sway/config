@@ -69,12 +69,16 @@ input * {
 #
     # Start a terminal
     bindsym $mod+Return exec $term
+    bindsym $mod+Shift+Return exec xfce4-terminal
 
     # Kill focused window
     bindsym $mod+q kill
 
     # Start your launcher
-    bindsym $mod+p exec $menu
+    #bindsym $mod+p exec $menu
+######## Taken from https://luxagraf.net/src/guide-to-switching-i3-to-sway
+    bindsym $mod+p exec alacritty --class 'launcher' --command bash -c 'compgen -c | sort -u | fzf | xargs -r swaymsg -t command exec'
+    for_window [app_id="^launcher$"] floating enable, border none, resize set width 25 ppt height 20 ppt, move position 0 px 0 px
 
     # Drag floating windows by holding down $mod and left mouse button.
     # Resize them with right mouse button + $mod.
@@ -261,7 +265,8 @@ bindsym $mod+Shift+Delete exec  ~/.config/wmbash/screensaver
 #####
 
 #### shortcut for openning frequent Apps
-bindsym Alt+Ctrl+f workspace 2; exec firefox
+bindsym Alt+Ctrl+q workspace 2; exec qutebrowser
+bindsym Alt+Ctrl+f workspace 9; exec firefox
 bindsym Alt+Ctrl+t workspace 3; exec teams
 bindsym Alt+Ctrl+d workspace 4; exec thunderbird
 bindsym Alt+Ctrl+v workspace 5; exec vlc

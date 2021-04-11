@@ -7,7 +7,7 @@ for f in $(ls -F .config); do
     ln -sf "$currentfolder/$f" "$HOME"/.config/
 done
 
-files='.vim/ .vimrc .bashrc .xinitrc'
+files='bin/ .bashrc .vim/ .vimrc .xinitrc'
 currentfolder=${PWD}
 for f in $files; do 
     #echo "$currentfolder/$f $HOME/.config"
