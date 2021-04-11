@@ -170,7 +170,8 @@
         "on-scroll-up": "exec ~/.config/wmbash/volume vol inc",
         "on-scroll-down": "exec ~/.config/wmbash/volume vol dec",
         "on-click": "exec ~/.config/wmbash/volume vol toggle",
-       "on-click-right": "gnome-control-center sound"
+        "on-click-right": "exec ~/.config/wmbash/volume vol speakertoggle"
+        //"on-click-right": "gnome-control-center sound"
     },
     "pulseaudio#1": {
         "scroll-step": 5.0,

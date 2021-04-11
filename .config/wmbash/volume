@@ -4,7 +4,18 @@ action=$2
 if [ "$dev" == "vol" ]; then
     devID=$(pacmd list-sinks | grep index | grep -n "*" | sed 's/:/\n/g' | sed -n '1p')
 	current=$(pacmd dump-volumes | awk NR=="$devID" | awk 'NR==1{print $8}' | sed 's/\%//')
-	if [ "$action" == "inc" ]; then 
+	if [ "$action" == "speakertoggle" ]; then 
+        numdev=$(pacmd list-sinks | grep -e 'name:' -e 'index:' | grep index | wc -l)
+        currentindex=$(pacmd list-sinks | grep -e 'name:' -e 'index:' | grep index | grep -n "* index" | sed 's/:/\n/g' | sed -n '1p' )
+        nextindex=$((currentindex+1))
+        if [ $nextindex -gt $numdev ]
+        then
+          nextindex=1
+        fi
+        tmp=$(pacmd list-sinks | grep -e 'name:' -e 'index:' | grep "name:" | sed -n "$((nextindex))p")
+        nextdev=$(echo $tmp | sed 's/</\n/g' | sed 's/>/\n/g' | sed -n '2p' | sed 's/\.monitor//g')
+        pactl set-default-sink $nextdev
+	elif [ "$action" == "inc" ]; then 
 	    pactl set-sink-mute @DEFAULT_SINK@ false
 	    if [ $current -lt 135 ]; then
 		pactl set-sink-volume @DEFAULT_SINK@ +5%
@@ -18,19 +29,30 @@ if [ "$dev" == "vol" ]; then
 	elif [ "$action" == "toggle" ]; then 
 	    pactl set-sink-mute @DEFAULT_SINK@ toggle
 	elif [ "$action" == "status" ]; then 
-	    status=$(pacmd list-sinks | grep muted | grep yes)
-	    if [ ! -z "$status" ]; then
-		echo " "
-	    else
-		current=$(pacmd dump-volumes | awk NR=="$devID" | awk 'NR==1{print $8}' | sed 's/\%//')
-		if [ $current -gt 70 ]; then
-		    echo "  $current%"
-		elif [ $current -gt 30 ]; then
-		    echo " $current%"
-		else
-		    echo " $current%"
-		fi
-	    fi
+        currentindex=$(pacmd list-sinks | grep -e 'name:' -e 'index:' | grep index | grep -n "* index" | sed 's/:/\n/g' | sed -n '1p' )
+        currentdev=$(pacmd list-sinks | grep -A 1 -e '* index:' | sed -n '2p')
+        currentdev=$(echo $currentdev | sed 's/name: <//' | sed 's/>//')
+	    status=$(pacmd list-sinks | grep muted | sed -n "$((currentindex))p" | grep yes)
+        if [ ! -z $(echo $currentdev | grep -i HDMI) ]; then
+            externalicon="  "
+        elif [ ! -z $(echo $currentdev | grep -i blu) ]; then
+            BLUE='\033[0;34m'
+            externalicon=" "
+        else
+            externalicon=""
+        fi
+        if [ ! -z "$status" ]; then
+            echo "$externalicon "
+        else
+            current=$(pacmd dump-volumes | awk NR=="$devID" | awk 'NR==1{print $8}' | sed 's/\%//')
+            if [ $current -gt 70 ]; then
+                echo "$externalicon  $current%"
+            elif [ $current -gt 30 ]; then
+                echo "$externalicon $current%"
+            else
+                echo "$externalicon $current%"
+            fi
+        fi
 	fi
 elif [ "$dev" == "mic" ]; then
 #	current=$(pacmd list-sources | grep dB | awk 'NR==3{print $5}' | sed 's/\%//')

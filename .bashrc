@@ -120,7 +120,7 @@ fi
 bind '"\e[A": history-search-backward'
 bind '"\e[B": history-search-forward'
 
-rightdisp=DP-3
+rightdisp=HDMI-A-1#DP-3
 leftdisp=DP-4
 maindisp=eDP-1
 x-main-screen(){

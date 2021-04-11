@@ -285,7 +285,8 @@ margin-bottom = 5
 [module/volume]
 type = custom/script
 exec = ~/.config/wmbash/volume vol status
-click-right = gnome-control-center sound
+;click-right = gnome-control-center sound
+click-right = bash ~/.config/wmbash/volume vol speakertoggle
 click-left = bash ~/.config/wmbash/volume vol toggle
 scroll-up = bash ~/.config/wmbash/volume vol  inc
 scroll-down = bash ~/.config/wmbash/volume vol dec
