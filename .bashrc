@@ -240,3 +240,5 @@ elif [ "$1" == "bose" ]; then
     bluetoothctl power on; bluetoothctl connect 60:AB:D2:7A:22:88
 fi
 }
+alias j='jobs'
+alias s='source ~/.bashrc'
