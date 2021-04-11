@@ -81,9 +81,16 @@ map \b v%<ESC>`>r]<ESC>`<r[<ESC>
 map \q <ESC>`>r"<ESC>`<r"<ESC>
 map \r v%<ESC>`>r <ESC>`<r <ESC>
 
-
+" set n to jump to next match
 noremap n %
 
+" Syntax highlighting in many languages
+filetype plugin on
+syntax on
+highlight Visual     ctermbg=16
+highlight IncSearch  ctermfg=197 ctermbg=none
+highlight Search     ctermfg=126 ctermbg=none  
+highlight CursorLine ctermbg=255
 
 "replace XYZ1 with XYZ2
 ":%s/XYZ\zs\(\d\+\)/\=(1+submatch(0))/g
