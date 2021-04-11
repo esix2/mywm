@@ -156,10 +156,11 @@
     "pulseaudio": {
         "scroll-step": 5.0,
         "format": "{icon} {volume}% ",
-        "format-bluetooth": "{volume}% {icon}",
+        "format-bluetooth": " {icon} {volume}% ",
         "format-muted": " ",
         "format-icons": {
             "headphones": "",
+            "hdmi": ["  ", "  ", "  ", "  ","  ","  ","  ","  "],
             "handsfree": "",
             "headset": "",
             "phone": "",

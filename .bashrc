@@ -233,3 +233,10 @@ alias vlanrm='for i in {1..9}; do sudo ip l del vlan."$i"00 2>/dev/null; done'
 function mvws {
 i3-msg "[workspace=$1]" move workspace to output $2
 }
+function blbose {
+if [ "$1" == "off" ]; then
+    bluetoothctl power off
+else
+    bluetoothctl power on; bluetoothctl connect 60:AB:D2:7A:22:88
+fi
+}
