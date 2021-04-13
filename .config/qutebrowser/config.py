@@ -207,7 +207,7 @@ config.set('content.register_protocol_handler', True, 'https://mail.google.com?e
 # Directory to save downloads to. If unset, a sensible OS-specific
 # default is used.
 # Type: Directory
-c.downloads.location.directory = '/home/priv/downloads'
+c.downloads.location.directory = '$HOME/downloads'
 
 # When to show the statusbar.
 # Type: String
