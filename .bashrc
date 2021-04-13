@@ -203,7 +203,7 @@ setxkbmap -option ctrl:nocaps
 alias ?='whatis'
 
 ### aliases for git
-alias st='git status'
+alias gst='git status'
 alias graph='git log --decorate --oneline --graph --all'
 
 # alias for latexmk
@@ -244,5 +244,5 @@ alias j='jobs'
 alias s='source ~/.bashrc'
 
 ##### To start qutebrowser natively in Wayland
-#export XDG_SESSION_TYPE=wayland 
-#export GDK_BACKEND=wayland
+export XDG_SESSION_TYPE=wayland 
+export GDK_BACKEND=wayland
