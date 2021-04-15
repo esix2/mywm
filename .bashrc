@@ -158,6 +158,7 @@ alias ?='whatis'
 ### aliases for git
 alias gst='git status'
 alias gadd='git add'
+alias gcomm='git commit -m'
 alias gdiff='git diff'
 alias gcheck='git checkout'
 alias gpull='git pull'
