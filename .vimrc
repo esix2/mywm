@@ -7,6 +7,9 @@ set autoindent
 "set smartindent
 "vnoremap // y/<C-R>"<CR>
 
+"Reload vimrc
+nmap ,rl :source $MYVIMRC<CR>
+
 " mapps + and - for going misspelled words
 noremap + ]s
 noremap - [s
@@ -89,6 +92,7 @@ filetype plugin on
 syntax on
 colorscheme pink-moon
 highlight Wildmenu   ctermfg=black ctermbg=white
+highlight MatchParen ctermbg=black ctermfg=grey
 "colorscheme mycolor
 
 set wildignore=*.pdf,*.mp3,*.mp4,*.mkv,*.ods,*.odt
