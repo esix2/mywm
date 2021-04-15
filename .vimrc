@@ -88,11 +88,36 @@ noremap n %
 filetype plugin on
 syntax on
 colorscheme pink-moon
+highlight Wildmenu   ctermfg=black ctermbg=white
 "colorscheme mycolor
 
+set wildignore=*.pdf,*.mp3,*.mp4,*.mkv,*.ods,*.odt
 "diffoff
 "if &diff
 "    set scrollbind
 "endif
 "replace XYZ1 with XYZ2
 ":%s/XYZ\zs\(\d\+\)/\=(1+submatch(0))/g
+"
+"
+"
+"Plugins
+" Make sure you use single quotes
+call plug#begin('~/.vim/plugged')
+Plug 'mbbill/undotree'
+call plug#end()
+
+
+let mapleader = ","
+"Shortcut to move to tabs
+" Go to tab by number
+noremap <leader>1 1gt
+noremap <leader>2 2gt
+noremap <leader>3 3gt
+noremap <leader>4 4gt
+noremap <leader>5 5gt
+noremap <leader>6 6gt
+noremap <leader>7 7gt
+noremap <leader>8 8gt
+noremap <leader>9 9gt
+noremap <leader>0 :tablast<cr>

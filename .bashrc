@@ -157,6 +157,11 @@ alias ?='whatis'
 
 ### aliases for git
 alias gst='git status'
+alias gadd='git add'
+alias gdiff='git diff'
+alias gcheck='git checkout'
+alias gpull='git pull'
+alias gpush='git push'
 alias graph='git log --decorate --oneline --graph --all'
 
 # alias for latexmk
@@ -196,3 +201,18 @@ alias s='source ~/.bashrc'
 ##### To start qutebrowser natively in Wayland
 #export XDG_SESSION_TYPE=wayland 
 #export GDK_BACKEND=wayland
+
+
+
+bind '"\C-f":"cd_with_fzf\n"'
+bind '"\C-o":"open_with_fzf\n"'
+bind '"\C-v":"vim\n"'
+open_with_fzf() {
+    fd -t f -H -I | fzf -m --preview="xdg-mime query default {}" | xargs -ro -d "\n" xdg-open 2>&-
+}
+cd_with_fzf() {
+cd $HOME && cd "$(fd -t d | fzf --preview="tree -L 1 {}" --bind="space:toggle-preview" --preview-window=:hidden)" && echo "$PWD" && tree -L 1
+}
+pacs() {
+sudo pacman -Syy $(pacman -Ssq | fzf -m --preview="pacman -Si {}" --preview-window=:hidden --bind=space:toggle-preview)
+}
