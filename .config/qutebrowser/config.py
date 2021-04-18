@@ -271,20 +271,16 @@ c.colors.tabs.bar.bg = '#1c1f34'
 
 # Background color of unselected odd tabs.
 # Type: QtColor
-c.colors.tabs.odd.bg = '#ffffff'
-c.colors.tabs.odd.fg = '#000000'
-
-# Background color of unselected even tabs.
-# Type: QtColor
-c.colors.tabs.even.bg = '#282c34'
-
-# Background color of selected odd tabs.
-# Type: QtColor
-c.colors.tabs.selected.odd.bg = '#282c34'
-
-# Background color of selected even tabs.
-# Type: QtColor
-c.colors.tabs.selected.even.bg = '#282c34'
+c.colors.tabs.odd.bg  = '#295562'
+c.colors.tabs.even.bg = '#295562'
+c.colors.tabs.odd.fg  = '#ffffff'
+c.colors.tabs.even.fg = '#ffffff'
+c.colors.tabs.selected.odd.bg  = '#eeeeee'
+c.colors.tabs.selected.even.bg = '#eeeeee'
+c.colors.tabs.selected.odd.fg  = '#333333'
+c.colors.tabs.selected.even.fg = '#333333'
+c.fonts.tabs.selected = '13pt "SauceCodePro Nerd Font"'
+c.fonts.tabs.unselected = '12pt "SauceCodePro Nerd Font"'
 
 # Background color of pinned unselected odd tabs.
 # Type: QtColor
@@ -350,17 +346,43 @@ config.bind(',M', 'hint links spawn mpv {hint-url}')
 config.bind(',v', 'spawn vlc {url}')
 config.bind(',V', 'hint links spawn vlc {hint-url}')
 config.bind('t', 'set-cmd-text -s :open -t')
-config.bind(',rs', 'set-cmd-text -s :restart')
-config.bind(',rl', 'set-cmd-text -s :config-source')
+config.bind(';', 'tab-prev')
+config.bind('_', 'tab-next')
+config.bind(',1', 'tab-select 1')
+config.bind(',2', 'tab-select 2')
+config.bind(',3', 'tab-select 3')
+config.bind(',4', 'tab-select 4')
+config.bind(',5', 'tab-select 5')
+config.bind(',6', 'tab-select 6')
+config.bind(',7', 'tab-select 7')
+config.bind(',8', 'tab-select 8')
+config.bind(',9', 'tab-select 9')
+config.bind(',0', 'tab-select 10')
+
+config.bind(',rl', 'config-source')
+config.bind(',rs', 'restart')
+config.bind(',ht', 'hint links tab')
+config.bind(',hy', 'hint links yank')
+config.bind(',hd', 'hint links download')
+#config.bind(',hr', 'hint links right-click')
+
+
+#config.bind(',rs', 'set-cmd-text -s :restart')
 config.bind('xb', 'config-cycle statusbar.show always never')
 config.bind('xt', 'config-cycle tabs.show always never')
 config.bind('xx', 'config-cycle statusbar.show always never;; config-cycle tabs.show always never')
 ### Bindings for search engines
-config.bind(',yt', 'set-cmd-text -s :open -t  !yt')
-config.bind(',gm', 'set-cmd-text -s :open -t  !gmail')
-config.bind(',ade', 'set-cmd-text -s :open -t !ade')
-config.bind(',nt', 'set-cmd-text -s :open -t  !netflix')
-config.bind(',leo', 'set-cmd-text -s :open -t  !leo')
-config.bind(',ld', 'set-cmd-text -s :open -t  !ld')
-config.bind(',arch', 'set-cmd-text -s :open -t  !archwiki')
+config.bind(',ade', 'open -t ade')
+config.bind(',arch', 'open -t archwiki')
+config.bind(',gm', 'open -t gm')
+config.bind(',ld', 'open -t ld')
+config.bind(',leo', 'open -t leo')
+config.bind(',nt', 'open -t nt')
+config.bind(',wh', 'open -t wh')
+config.bind(',wk', 'open -t wk')
+config.bind(',yt', 'open -t yt')
 
+###
+#c.spellcheck.languages = ["en-US", "de-DE"]
+c.window.title_format = 'qutebrowser'
+c.tabs.title.format = '{index}- {current_title}'
