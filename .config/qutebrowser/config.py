@@ -275,11 +275,11 @@ c.colors.tabs.odd.bg  = '#295562'
 c.colors.tabs.even.bg = '#295562'
 c.colors.tabs.odd.fg  = '#ffffff'
 c.colors.tabs.even.fg = '#ffffff'
-c.colors.tabs.selected.odd.bg  = '#eeeeee'
-c.colors.tabs.selected.even.bg = '#eeeeee'
-c.colors.tabs.selected.odd.fg  = '#333333'
-c.colors.tabs.selected.even.fg = '#333333'
-c.fonts.tabs.selected = '13pt "SauceCodePro Nerd Font"'
+c.colors.tabs.selected.odd.bg  = '#bbbbbb'
+c.colors.tabs.selected.even.bg = '#bbbbbb'
+c.colors.tabs.selected.odd.fg  = '#295562'
+c.colors.tabs.selected.even.fg = '#295562'
+c.fonts.tabs.selected = '12pt "SauceCodePro Nerd Font"'
 c.fonts.tabs.unselected = '12pt "SauceCodePro Nerd Font"'
 
 # Background color of pinned unselected odd tabs.
@@ -309,6 +309,12 @@ c.colors.tabs.pinned.selected.even.bg = '#282c34'
 # selective inversion of everything": Combines the two variants   above.
 # Type: Bool
 c.colors.webpage.darkmode.enabled = True
+# c.colors.webpage.darkmode.algorithm = 'lightness-cielab'
+c.colors.webpage.darkmode.algorithm = 'lightness-hsl'
+# c.colors.webpage.darkmode.algorithm = 'brightness-rgb'
+# c.colors.webpage.darkmode.grayscale.images = 0.1
+
+
 
 # Default font families to use. Whenever "default_family" is used in a
 # font setting, it's replaced with the fonts listed here. If set to an
@@ -386,3 +392,4 @@ config.bind(',yt', 'open -t yt')
 #c.spellcheck.languages = ["en-US", "de-DE"]
 c.window.title_format = 'qutebrowser'
 c.tabs.title.format = '{index}- {current_title}'
+# c.editor.command = ["gvim"]

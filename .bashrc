@@ -198,6 +198,7 @@ fi
 }
 alias j='jobs'
 alias s='source ~/.bashrc'
+export EDITOR=vim
 
 ##### To start qutebrowser natively in Wayland
 #export XDG_SESSION_TYPE=wayland 
