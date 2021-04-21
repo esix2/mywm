@@ -380,10 +380,13 @@ config.bind('xx', 'config-cycle statusbar.show always never;; config-cycle tabs.
 ### Bindings for search engines
 config.bind(',ade', 'open -t ade')
 config.bind(',arch', 'open -t archwiki')
+config.bind(',fc', 'open -t fc')
+config.bind(',gh', 'open -t gh')
 config.bind(',gm', 'open -t gm')
 config.bind(',ld', 'open -t ld')
 config.bind(',leo', 'open -t leo')
 config.bind(',nt', 'open -t nt')
+config.bind(',tw', 'open -t tw')
 config.bind(',wh', 'open -t wh')
 config.bind(',wk', 'open -t wk')
 config.bind(',yt', 'open -t yt')

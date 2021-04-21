@@ -223,4 +223,8 @@ endfunction
 :nmap <silent> <F3> ^i%<esc>
 :vmap <silent> <F4> :s/%//g<s-enter>
 :nmap <silent> <F4> ^x<esc>
-
+  
+ 
+" Wildignore
+set wildignore+=*.pdf,*.bbl,*.aux,*.log,*.code.tex,*.fls,*.acn,*fdb_lataxml,*.ist,*.thm
+set wildignore+=*.ilg,*.blg,*.idx,*.ind
