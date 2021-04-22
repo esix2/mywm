@@ -258,5 +258,10 @@ bindsym Alt+Ctrl+t workspace 3; exec teams
 bindsym Alt+Ctrl+d workspace 4; exec thunderbird
 bindsym Alt+Ctrl+v workspace 5; exec vlc
 bindsym Alt+Ctrl+z workspace 6; exec zoom
-bindsym Alt+Ctrl+e exec killall teams
 
+bindsym Alt+$mod+q exec killall qutebrowser
+bindsym Alt+$mod+f exec killall firefox
+bindsym Alt+$mod+t exec killall teams
+bindsym Alt+$mod+d exec killall thunderbird
+bindsym Alt+$mod+v exec killall vlc
+bindsym Alt+$mod+z exec killall zoom

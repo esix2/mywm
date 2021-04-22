@@ -198,17 +198,12 @@ fi
 }
 alias j='jobs'
 alias s='source ~/.bashrc'
+alias ,rl='source ~/.bashrc'
 export EDITOR=vim
 
 ##### To start qutebrowser natively in Wayland
 #export XDG_SESSION_TYPE=wayland 
 #export GDK_BACKEND=wayland
-
-
-
-bind '"\C-f":"cd_with_fzf\n"'
-bind '"\C-o":"open_with_fzf\n"'
-bind '"\C-v":"vim\n"'
 open_with_fzf() {
     fd -t f -H -I | fzf -m --preview="xdg-mime query default {}" | xargs -ro -d "\n" xdg-open 2>&-
 }
@@ -218,3 +213,8 @@ cd $HOME && cd "$(fd -t d | fzf --preview="tree -L 1 {}" --bind="space:toggle-pr
 pacs() {
 sudo pacman -Syy $(pacman -Ssq | fzf -m --preview="pacman -Si {}" --preview-window=:hidden --bind=space:toggle-preview)
 }
+#############  Key bindings
+bind '"\C-f":"cd_with_fzf\n"'
+bind '"\C-o":"open_with_fzf\n"'
+bind '"\C-v":"vim\n"'
+bind '"\C-t":"fg\n"'

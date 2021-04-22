@@ -1,0 +1,8 @@
+#! /bin/sh
+clear
+rm sample.out 2>/dev/null
+g++ -o sample.out $1 2>/dev/null
+if [ ! -f "sample.out" ]; then
+    g++ -o sample.out $1
+fi
+./sample.out
