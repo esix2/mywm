@@ -217,4 +217,4 @@ sudo pacman -Syy $(pacman -Ssq | fzf -m --preview="pacman -Si {}" --preview-wind
 bind '"\C-f":"cd_with_fzf\n"'
 bind '"\C-o":"open_with_fzf\n"'
 bind '"\C-v":"vim\n"'
-bind '"\C-t":"fg\n"'
+bind '"\C-t":" fg\n"'
