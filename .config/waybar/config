@@ -121,7 +121,7 @@
         "format": " {}%",
     },
     "battery": {
-        "bat": "BAT1",
+        "bat": "BAT0",
         "states": {
             "verygood": 90,
             "good": 50,

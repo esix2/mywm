@@ -193,7 +193,8 @@ function bl {
 if [ "$1" == "off" ]; then
     bluetoothctl power off
 elif [ "$1" == "bose" ]; then
-    bluetoothctl power on; bluetoothctl connect 60:AB:D2:7A:22:88
+    bluetoothctl power on; bluetoothctl connect 71:45:2A:19:50:8D 
+    #60:AB:D2:7A:22:88
 fi
 }
 alias j='jobs'

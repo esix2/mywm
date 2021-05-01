@@ -4,8 +4,8 @@ saver=cmatrix
 #saver="xviewer -f wallpaper.jpg"
 locker='swaylock --font 32 -c 00000000'
 ~/.config/wmbash/backlight set 10
-~/.config/sway/volume vol mute
-~/.config/sway/volume mic mute
+~/.config/wmbash/volume vol mute
+~/.config/wmbash/volume mic mute
 ($term $saver) &
 sleep .2
 ($locker) 

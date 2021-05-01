@@ -1,0 +1,3 @@
+#! /bin/sh
+### To start KDE Plasma under Wayland
+XDG_SESSION_TYPE=wayland dbus-run-session startplasma-wayland

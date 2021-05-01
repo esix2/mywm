@@ -1,15 +1,15 @@
 #Keyboard layout
 setxkbmap de &
 
-## Restarting dwm without exiting
-#while true; do
-#    dwm > /dev/null 2>&1
-#done
-## to disable screen saver (blanking)
+## Disable power saving
 xset -dpms
 xset s off
 
-exec i3
-#exec cinnamon-session2d
-#exec startxfce4
-#startlxqt
+session=${1:-kde}
+case $session in
+    i3|i3wm           ) exec i3;;
+    kde               ) export DESKTOP_SESSION=plasma; exec startplasma-x11;;
+    xfce|xfce4        ) exec startxfce4;;
+    # No known session, try to run it as command
+    #     *                 ) exec $1;;
+esac

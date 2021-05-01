@@ -1,0 +1,19 @@
+#! /bin/sh
+ifreset=$1
+if [ "$ifreset" == "reset" ]
+then
+    killall zoom 2>/dev/null
+    killall vlc 2>/dev/null
+fi
+
+xrandr --output HDMI1 --left-of eDP1
+
+if [ -z "$(pidof vlc)" ] 
+then
+    vlc &
+fi
+
+if [ -z "$(pidof zoom)" ] 
+then
+    zoom &
+fi

@@ -7,10 +7,10 @@ then
     killall gnome-control-center
 fi
 
-xrandr --output HDMI-1 --left-of eDP-1
+xrandr --output HDMI1 --left-of eDP1
 
 i3-msg 'workspace 2; exec gnome-control-center sound'
-i3-msg '[workspace="2"]' move workspace to output eDP-1
+i3-msg '[workspace="2"]' move workspace to output eDP1
 if [ -z "$(pidof vlc)" ] 
 then
     i3-msg 'workspace 1; exec vlc'
@@ -22,5 +22,5 @@ then
 fi
 
 sleep 3
-i3-msg "[workspace=1]" move workspace to output HDMI-1
-#i3-msg "workspace 1, move to output HDMI-1"
+i3-msg "[workspace=1]" move workspace to output HDMI1
+#i3-msg "workspace 1, move to output HDMI1"

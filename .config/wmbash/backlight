@@ -1,6 +1,12 @@
 #! /bin/sh
 action=$1
 step=5
+if [ "$action" == "inc" ]; then 
+    if [ ! -z $2 ]; then
+        echo "here": $2
+        step=$2
+    fi
+fi
 max_brightness=$(cat /sys/class/backlight/intel_backlight/max_brightness)
 current=$(cat /sys/class/backlight/intel_backlight/brightness)
 percent=$((max_brightness * $step / 100))
