@@ -28,7 +28,7 @@ interceptor.register(filter_yt)
 #   qute://help/settings.html
 
 # Change the argument to True to still load settings configured via autoconfig.yml
-config.load_autoconfig(False)
+config.load_autoconfig(True)
 
 # Which cookies to accept. With QtWebEngine, this setting also controls
 # other features with tracking capabilities similar to those of cookies;
@@ -308,7 +308,7 @@ c.colors.tabs.pinned.selected.even.bg = '#282c34'
 # `colors.webpage.darkmode.threshold.background` to 205.  - "With
 # selective inversion of everything": Combines the two variants   above.
 # Type: Bool
-c.colors.webpage.darkmode.enabled = True
+c.colors.webpage.darkmode.enabled = False
 # c.colors.webpage.darkmode.algorithm = 'lightness-cielab'
 c.colors.webpage.darkmode.algorithm = 'lightness-hsl'
 # c.colors.webpage.darkmode.algorithm = 'brightness-rgb'
@@ -397,3 +397,4 @@ config.bind(',yt', 'open -t yt')
 c.window.title_format = 'qutebrowser'
 c.tabs.title.format = '{index}- {current_title}'
 # c.editor.command = ["gvim"]
+c.zoom.default = '150%'
