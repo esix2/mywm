@@ -150,6 +150,10 @@ export HISTSIZE=10000
 export NO_AT_BRIDGE=1
 export PATH=$HOME/bin:$PATH
 
+export PATH=/opt/texlive/2021/bin/x86_64-linux:$PATH
+export MANPATH=/opt/texlive/2021/texmf-dist/doc/man:$MANPATH
+export INFOPATH=/opt/texlive/2021/texmf-dist/doc/info:$INFOPATH
+
 # disable CPS LOCK
 setxkbmap -option ctrl:nocaps
 
