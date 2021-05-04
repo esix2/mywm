@@ -308,7 +308,7 @@ c.colors.tabs.pinned.selected.even.bg = '#282c34'
 # `colors.webpage.darkmode.threshold.background` to 205.  - "With
 # selective inversion of everything": Combines the two variants   above.
 # Type: Bool
-c.colors.webpage.darkmode.enabled = False
+c.colors.webpage.darkmode.enabled = True
 # c.colors.webpage.darkmode.algorithm = 'lightness-cielab'
 c.colors.webpage.darkmode.algorithm = 'lightness-hsl'
 # c.colors.webpage.darkmode.algorithm = 'brightness-rgb'
@@ -346,7 +346,8 @@ c.fonts.prompts = 'default_size sans-serif'
 c.fonts.statusbar = '12pt "SauceCodePro Nerd Font"'
 
 # Bindings for normal mode
-config.bind(',dl', 'hint links spawn st -e youtube-dl {hint-url} -o yd.mp4')
+config.bind(',d', 'spawn alacritty -e youtube-dl {url} -o $HOME/downloads/yd.mp4')
+config.bind(',D', 'hint links spawn alacritty -e youtube-dl {hint-url} -o yd.mp4')
 config.bind(',m', 'spawn mpv {url}')
 config.bind(',M', 'hint links spawn mpv {hint-url}')
 config.bind(',v', 'spawn vlc {url}')
