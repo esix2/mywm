@@ -1,0 +1,11 @@
+#! /bin/bash
+#### https://wiki.archlinux.org/title/Screen_capture#Wayland
+cd ~/pictures/screenshots
+
+if [ "$1" == "part" ]; then
+    grim -g "$(slurp)"
+elif [ "$1" == "clipboard" ]; then
+    grim -g "$(slurp)" - | wl-copy
+else
+    grim -g "$(swaymsg -t get_tree | jq -r '.. | select(.focused?) | .rect | "\(.x),\(.y) \(.width)x\(.height)"')"
+fi

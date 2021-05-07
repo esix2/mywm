@@ -251,6 +251,12 @@ set $hidecursor swaymsg seat seat0 cursor set 2000 2000
 bindsym $mod+Shift+Delete exec  ~/.config/wmbash/screensaver
 #####
 
+### screenshot
+bindsym Print exec "~/bin/screenshot"
+bindsym $mod+Print exec "~/bin/screenshot part"
+bindsym $mod+Shift+Print exec "~/bin/screenshot clipboard"
+#####
+
 #### shortcut for openning frequent Apps
 bindsym Alt+Ctrl+q workspace 2; exec qutebrowser
 bindsym Alt+Ctrl+f workspace 9; exec firefox
@@ -265,3 +271,15 @@ bindsym Alt+$mod+t exec killall teams
 bindsym Alt+$mod+d exec killall thunderbird
 bindsym Alt+$mod+v exec killall vlc
 bindsym Alt+$mod+z exec killall zoom
+
+bindsym $mod+n exec nemo
+#### clipboard
+# exec wl-paste -t text --watch clipman store --no-persist
+#
+output eDP-1 scale 1.2
+
+# xwayland disable
+
+seat seat0 xcursor_theme default 24
+# seat seat0 xcursor_theme Adwaita 24
+# seat seat0 xcursor_theme Simple-and-Soft 24
