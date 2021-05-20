@@ -1,0 +1,80 @@
+#! /bin/sh
+clear
+function usage {
+    echo "Usage: $(basename $0) [-acemov]" 2>&1
+    echo '   -a   Input audio file'
+    echo '   -A   Cut audio and merge with video'
+    echo '   -c   Cut audio file'
+    echo '   -d   Merge input audio and video'
+    echo '   -e   Extract audio from input'
+    echo '   -f   Fade the last 5 seconds'
+    echo '   -h   Shows the help'
+    echo '   -o   Name of output file, e.g., example.mp4 or example.mp3'
+    echo '   -v   Input video file'
+    exit 1
+}
+if [[ ${#} -eq 0 ]]; then
+    usage
+fi
+ifDoAll=false
+ifMerge=false
+ifExtractAud=false
+ifCutAud=false
+ifFade=false
+
+fileOut="test.mp3"
+optstring=":acemov"
+
+
+while getopts :a:v:o:cefmhA  o
+do
+    case "$o" in
+        A) ifDoAll=true;;
+        m) ifMerge=true;;
+        e) ifExtractAud=true;;
+        f) ifFade=true;;
+        c) ifCutAud=true;;
+        v) vidIn="$OPTARG";;
+        a) audIn="$OPTARG";;
+        o) fileOut="$OPTARG";;
+        h) usage; exit 1;;
+        \?) echo "Error! -$OPTARG"; exit 1;;
+    esac
+done
+#     echo "#########################"
+#     echo "##### Here  "
+#     echo "#########################"
+#     echo "OPTIND: $OPTIND"
+#     echo "Action: $action"
+#     echo "-v: $vidIn"
+#     echo "-o: $fileOut"
+#     echo "-a: $audIn"
+#     read -e -p "Insert any key!"
+
+vidTemp="vidTemp.mp4"
+audTemp="audTemp.mp3"
+
+if $ifDoAll; then
+    length=$(ffmpeg -i zirkel-tmp.mp4 2>&1 | grep Duration | awk '{print $2}' | tr -d ,)
+    ifMerge=true
+    ifCutAud=true
+fi
+
+if $ifExtractAud; then
+    ffmpeg -i "$vidIn" -vn -ar 44100 -ac 2 -ab 192k -f mp3 "$fileOut"
+fi
+if $ifCutAud; then
+    ffmpeg -ss 0 -i "$audIn" -t $length -c copy "$audTemp"
+    dur=$(ffprobe -loglevel error -show_entries format=duration -of default=nk=1:nw=1 "$audTemp")
+    offset=$(bc -l <<< "$dur"-5)
+    if $ifFade; then
+        ffmpeg -i "$audTemp" -af "afade=t=out:st=$offset:d=5" "faded-$audTemp"
+        mv "faded-$audTemp" "$audTemp"
+    fi
+fi
+if $ifMerge; then
+    ffmpeg -i "$vidIn" -i "$audTemp" -c copy "$fileOut"
+fi
+
+
+rm *Temp.mp* 2>/dev/nll
