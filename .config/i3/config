@@ -51,7 +51,8 @@ bindsym XF86AudioMicMute exec --no-startup-id ~/.config/wmbash/volume mic toggle
 #### dimmmer
 bindsym XF86MonBrightnessUp exec --no-startup-id ~/.config/wmbash/backlight inc && $refresh_i3status
 bindsym XF86MonBrightnessDown exec --no-startup-id ~/.config/wmbash/backlight dec && $refresh_i3status
-bindsym $mod+XF86MonBrightnessUp exec --no-startup-id brightnessctl set 20%+ && $refresh_i3status
+bindsym $mod+XF86MonBrightnessUp exec --no-startup-id ~/.config/wmbash/backlight inc 20
+
 bindsym $mod+XF86MonBrightnessDown exec --no-startup-id ~/.config/wmbash/backlight dark && $refresh_i3status
 ####
 # Use Mouse+$mod to drag floating windows to their wanted position

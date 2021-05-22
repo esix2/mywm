@@ -207,8 +207,8 @@ alias ,rl='source ~/.bashrc'
 export EDITOR=vim
 
 ##### To start qutebrowser natively in Wayland
-export XDG_SESSION_TYPE=x11
-export GDK_BACKEND=x11
+export XDG_SESSION_TYPE=sway
+export GDK_BACKEND=sway
 open_with_fzf() {
     fd -t f -H -I | fzf -m --preview="xdg-mime query default {}" | xargs -ro -d "\n" xdg-open 2>&-
 }
