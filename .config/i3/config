@@ -1,5 +1,4 @@
-exec "setxkbmap -layout de"
-exec "setxkbmap -option 'grp:lalt_lshift_toggle'"
+exec "setxkbmap -layout de,ir -option 'grp:lalt_lshift_toggle'"
 
 #setxkbmap -layout us,de
 #setxkbmap -option 'grp:alt_shift_toggle'
@@ -200,12 +199,13 @@ bindsym $mod+r mode "resize"
 ##### user defined
 exec_always --no-startup-id $HOME/.config/wmbash/polylauncher
 #bindsym $mod+m bar mode toggle
-font pango: 20px
+font pango: 14px
 exec --no-startup-id nitrogen --restore
 bindsym --whole-window $mod+Tab workspace next
 
-bindsym $mod+m exec --no-startup-id $HOME/.config/wmbash/sport
-bindsym $mod+Shift+m exec --no-startup-id $HOME/.config/wmbash/sport reset
+bindsym $mod+m exec --no-startup-id sport -s
+bindsym $mod+d exec --no-startup-id sport -e
+bindsym $mod+Shift+m exec --no-startup-id sport -r
 
 bindsym Mod1+Ctrl+q workspace 2; exec --no-startup-id i3-msg 'exec x-qutebrowser' 
 bindsym Mod1+Ctrl+f workspace 9; exec --no-startup-id i3-msg 'exec xfox' 

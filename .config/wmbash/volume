@@ -33,7 +33,8 @@ if [ "$dev" == "vol" ]; then
         currentdev=$(pacmd list-sinks | grep -A 1 -e '* index:' | sed -n '2p')
         currentdev=$(echo $currentdev | sed 's/name: <//' | sed 's/>//')
 	    status=$(pacmd list-sinks | grep muted | sed -n "$((currentindex))p" | grep yes)
-        if [ ! -z $(echo $currentdev | grep -i HDMI) ]; then
+#         if [ ! -z $(echo $currentdev | grep -i HDMI) ]; then
+        if [ ! -z "$(echo $currentdev | grep -i hw_sofhdadsp_3__sink)" ]; then
             externalicon="  "
         elif [ ! -z $(echo $currentdev | grep -i blu) ]; then
             BLUE='\033[0;34m'

@@ -156,6 +156,7 @@ export INFOPATH=/opt/texlive/2021/texmf-dist/doc/info:$INFOPATH
 
 # disable CPS LOCK
 setxkbmap -option ctrl:nocaps
+setxkbmap de
 
 alias ?='whatis'
 
@@ -207,8 +208,8 @@ alias ,rl='source ~/.bashrc'
 export EDITOR=vim
 
 ##### To start qutebrowser natively in Wayland
-export XDG_SESSION_TYPE=sway
-export GDK_BACKEND=sway
+# export XDG_SESSION_TYPE=sway
+# export GDK_BACKEND=sway
 open_with_fzf() {
     fd -t f -H -I | fzf -m --preview="xdg-mime query default {}" | xargs -ro -d "\n" xdg-open 2>&-
 }
@@ -223,3 +224,4 @@ bind '"\C-f":"cd_with_fzf\n"'
 bind '"\C-o":"open_with_fzf\n"'
 bind '"\C-v":"vim\n"'
 bind '"\C-t":" fg\n"'
+alias goog='ping www.google.com'

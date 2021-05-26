@@ -31,6 +31,8 @@
     "custom/pipe",
     "backlight", 
     "custom/pipe",
+    "custom/lang",
+    "custom/pipe",
     "network",
     "custom/pipe",
     "battery", 
@@ -135,6 +137,15 @@
         "format-icons": ["", "", "", "", ""],
         "on-click-right": "gnome-control-center power"
     },
+      "sway/language": {
+        "format": "{}",
+          "max-length": 50
+            },
+      "custom/lang": {
+          "exec": "swaymsg -t get_inputs | grep layout_name | grep -v En | awk 'END{if(NR == 0){print \"EN\"}else{print toupper(substr($2,2,2))}}'",
+              "interval": 1,
+                  "format": "{}"
+                    },
     "network": {
         // "interface": "wlp2s0", // (Optional) To force the use of this interface
         "format-wifi": " ",

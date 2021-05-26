@@ -1,7 +1,7 @@
 [colors]
 ;background = ${xrdb:color0:#222}
 background = #222
-background-alt = #444
+jjackground-alt = #444
 ;foreground = ${xrdb:color7:#222}
 foreground = #dfdfdf
 foreground-alt = #555
@@ -162,8 +162,8 @@ type = internal/network
 interface = wlp9s0
 interval = 3.0
 
-format-connected = <ramp-signal> <label-connected>
-label-connected = " "
+format-connected = <label-connected>
+label-connected = ""
 
 format-disconnected =
 ;format-disconnected = <label-disconnected>
@@ -239,8 +239,8 @@ label = %temperature-c%
 label-warn = %temperature-c%
 label-warn-foreground = ${colors.secondary}
 
-ramp-0 = 
-ramp-1 =
+ramp-0 = 
+ramp-1 = 
 
 [module/powermenu]
 type = custom/menu
@@ -317,7 +317,7 @@ interval = 0.1
 type = custom/menu
 expand-right = true
 format-spacing = 1
-label-open ="  "
+label-open = " "
 label-open-foreground = #e6e600
 ; ${colors.foreground}
 label-close = " Cancel"
