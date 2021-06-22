@@ -1,47 +1,50 @@
 #! /bin/sh
 maindisp=eDP-1
 if [ ! -z "$(pidof i3)" ]; then
-    rightdisp=DP-2-1
-    leftdisp=DP-2-2
+ #    rightdisp=DP-2-1
+    seconddisp=DP-2-2
 else
-    rightdisp=DP-3
-    leftdisp=DP-4
+ #    rightdisp=eDP-1
+    seconddisp=DP-5
 fi
 if [ "$1" == "main" ]; then
     if [ ! -z "$(pidof i3)" ]; then
         xrandr --output $maindisp --auto 2>/dev/null
-        xrandr --output $leftdisp --off 2>/dev/null
-        xrandr --output $right --off 2>/dev/null
+        xrandr --output $seconddisp --off 2>/dev/null
     elif [ ! -z "$(pidof sway)" ]; then
         sway output $maindisp enable > /dev/null 2>&1
-        sway output $rightdisp disable > /dev/null 2>&1
-        sway output $leftdisp disable > /dev/null 2>&1
+ #        sway output $rightdisp disable > /dev/null 2>&1
+        sway output $seconddisp disable > /dev/null 2>&1
     else 
         echo "This commands does not work on any other WM than i3 & sway"
     fi
 elif [ "$1" == "single" ]; then
     if [ ! -z "$(pidof i3)" ]; then
         xrandr --output $maindisp --off 2>/dev/null
-        xrandr --output $leftdisp --off 2>/dev/null
-        xrandr --output $leftdisp --auto 2>/dev/null
+        xrandr --output $seconddisp --off 2>/dev/null
+        xrandr --output $seconddisp --auto 2>/dev/null
     elif [ ! -z "$(pidof sway)" ]; then
+ ##         sway output $rightdisp enable > /dev/null 2>&1
         sway output $maindisp disable > /dev/null 2>&1
-        sway output $rightdisp enable > /dev/null 2>&1
-        sway output $leftdisp disable > /dev/null 2>&1
+        sway output $seconddisp enable > /dev/null 2>&1
+#         echo "here"
+#         exec waybar & > /dev/null 2>1
     else 
         echo "This commands does not work on any other WM than i3 & sway"
     fi
 elif [ "$1" == "double" ]; then
     if [ ! -z "$(pidof i3)" ]; then
         xrandr --output $maindisp --off 2>/dev/null
-        xrandr --output $leftdisp --auto 2>/dev/null
-        xrandr --output $rightdisp --auto 2>/dev/null
-        xrandr --output $leftdisp --primary 2>/dev/null
-        xrandr --output $leftdisp --left-of $rightdisp 2>/dev/null
+        xrandr --output $seconddisp --auto 2>/dev/null
+ #        xrandr --output $rightdisp --auto 2>/dev/null
+        xrandr --output $seconddisp --primary 2>/dev/null
+ #        xrandr --output $seconddisp --left-of $rightdisp 2>/dev/null
     elif [ ! -z "$(pidof sway)" ]; then
-        sway output $maindisp disable > /dev/null 2>&1
-        sway output $rightdisp enable > /dev/null 2>&1
-        sway output $leftdisp enable > /dev/null 2>&1
+        sway output $maindisp enable > /dev/null 2>&1
+ #        sway output $rightdisp enable > /dev/null 2>&1
+        sway output $seconddisp enable > /dev/null 2>&1
+        sway output $seconddisp pos 0 0 > /dev/null 2>&1
+        sway output $maindisp pos 1920 0 > /dev/null 2>&1
     else 
         echo "This commands does not work on any other WM than i3 & sway"
     fi

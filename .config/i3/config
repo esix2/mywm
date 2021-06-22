@@ -208,16 +208,16 @@ bindsym $mod+d exec --no-startup-id sport -e
 bindsym $mod+Shift+m exec --no-startup-id sport -r
 
 bindsym Mod1+Ctrl+q workspace 2; exec --no-startup-id i3-msg 'exec x-qutebrowser' 
-bindsym Mod1+Ctrl+f workspace 9; exec --no-startup-id i3-msg 'exec xfox' 
-bindsym Mod1+Ctrl+t workspace 3; exec --no-startup-id i3-msg 'exec teams'
-bindsym Mod1+Ctrl+d workspace 4; exec --no-startup-id i3-msg 'exec thunderbird'
+bindsym Mod1+Ctrl+f workspace 3; exec --no-startup-id i3-msg 'exec xfox' 
+bindsym Mod1+Ctrl+t workspace 4; exec --no-startup-id i3-msg 'exec thunderbird'
 bindsym Mod1+Ctrl+v workspace 5; exec --no-startup-id i3-msg 'exec vlc'
 bindsym Mod1+Ctrl+z workspace 6; exec --no-startup-id i3-msg 'exec zoom'
 # bindsym Mod1+Ctrl+e exec --no-startup-id  killall teams
 
-bindsym Mod1+$mod+q exec killall qutebrowser
 bindsym Mod1+$mod+f exec killall firefox
-bindsym Mod1+$mod+t exec killall teams
-bindsym Mod1+$mod+d exec killall thunderbird
+bindsym Mod1+$mod+q exec killall qutebrowser
+bindsym Mod1+$mod+t exec killall thunderbird
 bindsym Mod1+$mod+v exec killall vlc
 bindsym Mod1+$mod+z exec killall zoom
+
+bindsym $mod+n exec nemo

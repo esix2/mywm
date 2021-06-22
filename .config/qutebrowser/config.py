@@ -308,7 +308,7 @@ c.colors.tabs.pinned.selected.even.bg = '#282c34'
 # `colors.webpage.darkmode.threshold.background` to 205.  - "With
 # selective inversion of everything": Combines the two variants   above.
 # Type: Bool
-c.colors.webpage.darkmode.enabled = False
+c.colors.webpage.darkmode.enabled = True
 # c.colors.webpage.darkmode.algorithm = 'lightness-cielab'
 c.colors.webpage.darkmode.algorithm = 'lightness-hsl'
 # c.colors.webpage.darkmode.algorithm = 'brightness-rgb'

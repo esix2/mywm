@@ -32,7 +32,7 @@ nmap <silent> <A-Left> :wincmd h<CR>
 nmap <silent> <A-Right> :wincmd l<CR>
 
 " line break atfter column 80
-nmap <F2> 80<bar>eli<cr><esc><home>
+"nmap <F2> 80<bar>eli<cr><esc><home>
 
 vnoremap <C-c> "+y 
 vnoremap <C-v> "+p 
@@ -96,7 +96,7 @@ highlight Wildmenu   ctermfg=black ctermbg=white
 highlight MatchParen ctermbg=red ctermfg=grey
 "colorscheme mycolor
 
-set wildignore=*.pdf,*.mp3,*.mp4,*.mkv,*.ods,*.odt
+set wildignore=*.pdf,*.mp3,*.mp4,*.mkv,*.ods,*.odt,*.out
 "diffoff
 "if &diff
 "    set scrollbind
@@ -136,6 +136,14 @@ nnoremap <silent><F4> :AutoBlockComment<CR>
 
 """ Config for tab
 cmap tb tabedit 
+
+" Who am I? The complete path of the current file
+cmap ich echo expand('%:p')<CR>
+map <F2> :echo expand('%:p')<CR>
+
+" Compile the current file (for C++)
+"map <F5> :p terminal p 
+
 let mapleader = ","
 "Shortcut to move to tabs
 " Go to tab by number

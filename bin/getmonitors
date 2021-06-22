@@ -1,0 +1,10 @@
+#! /bin/sh
+
+if [ ! -z "$(pidof i3)" ]; then
+    echo "here"
+    xrandr | grep -w connected
+elif [ ! -z "$(pidof sway)" ]; then
+    swaymsg -t get_outputs | grep name | sed 's/"/\n/g' | grep DP
+else 
+    echo "This commands does not work on any other WM than i3 & sway"
+fi

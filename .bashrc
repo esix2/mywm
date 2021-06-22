@@ -179,7 +179,6 @@ alias lastcomm='!$:p | xclip -i -selection clipboard'
 alias easypaste='xclip -selection clipboard -o'
 alias easyopen='nemo $(pwd) &'
 
-alias getmonitors='xrandr | grep -w connected'
 alias sshti='ssh zandi@draco.ti.rwth-aachen.de'
 alias sshcore='ssh m3c@10.1.0.1'
 #alias sshcore='ssh m3c@192.168.1.11'

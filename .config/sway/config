@@ -258,17 +258,16 @@ bindsym $mod+Shift+Print exec "~/bin/screenshot clipboard"
 #####
 
 #### shortcut for openning frequent Apps
+# bindsym Alt+Ctrl+q workspace 2; exec qutebrowser
 bindsym Alt+Ctrl+q workspace 2; exec qutebrowser
-bindsym Alt+Ctrl+f workspace 9; exec firefox
-bindsym Alt+Ctrl+t workspace 3; exec teams
-bindsym Alt+Ctrl+d workspace 4; exec thunderbird
+bindsym Alt+Ctrl+f workspace 3; exec firefox
+bindsym Alt+Ctrl+t workspace 4; exec thunderbird
 bindsym Alt+Ctrl+v workspace 5; exec vlc
 bindsym Alt+Ctrl+z workspace 6; exec zoom
 
-bindsym Alt+$mod+q exec killall qutebrowser
 bindsym Alt+$mod+f exec killall firefox
-bindsym Alt+$mod+t exec killall teams
-bindsym Alt+$mod+d exec killall thunderbird
+bindsym Alt+$mod+q exec killall qutebrowser
+bindsym Alt+$mod+t exec killall thunderbird
 bindsym Alt+$mod+v exec killall vlc
 bindsym Alt+$mod+z exec killall zoom
 
@@ -276,7 +275,7 @@ bindsym $mod+n exec nemo
 #### clipboard
 # exec wl-paste -t text --watch clipman store --no-persist
 #
-output eDP-1 scale 1.0
+output eDP-1 scale 1.2
 
 # xwayland disable
 
