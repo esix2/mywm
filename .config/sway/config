@@ -1,5 +1,5 @@
 #output * resolution --custom 1920x1080
-font pango: SourceCodePro Medium 12
+font pango: SourceCodePro Medium 10
 
 # Default config for sway
 #
@@ -224,6 +224,7 @@ bindsym XF86AudioRaiseVolume exec "~/.config/wmbash/volume vol inc"
 bindsym XF86AudioLowerVolume exec "~/.config/wmbash/volume vol dec"
 bindsym XF86AudioMute exec "~/.config/wmbash/volume vol toggle"
 bindsym XF86AudioMicMute exec "~/.config/wmbash/volume mic toggle"
+bindsym XF86WLAN exec "~/bin/wifi
 bindsym $mod+XF86AudioMute exec "~/.config/wmbash/volume mic toggle"
 bindsym $mod+XF86AudioRaiseVolume exec "~/.config/wmbash/volume mic inc"
 bindsym $mod+XF86AudioLowerVolume exec "~/.config/wmbash/volume mic dec"
@@ -259,11 +260,12 @@ bindsym $mod+Shift+Print exec "~/bin/screenshot clipboard"
 
 #### shortcut for openning frequent Apps
 # bindsym Alt+Ctrl+q workspace 2; exec qutebrowser
-bindsym Alt+Ctrl+q workspace 2; exec qutebrowser
-bindsym Alt+Ctrl+f workspace 3; exec firefox
-bindsym Alt+Ctrl+t workspace 4; exec thunderbird
-bindsym Alt+Ctrl+v workspace 5; exec vlc
-bindsym Alt+Ctrl+z workspace 6; exec zoom
+bindsym Alt+Ctrl+q workspace 3; exec qutebrowser
+bindsym Alt+Ctrl+f workspace 4; exec firefox
+bindsym Alt+Ctrl+t workspace 5; exec thunderbird
+bindsym Alt+Ctrl+v workspace 6; exec vlc
+bindsym Alt+Ctrl+z workspace 7; exec zoom
+bindsym $mod+c workspace 2; exec evince ~/docs/eBooks/cpp.pdf
 
 bindsym Alt+$mod+f exec killall firefox
 bindsym Alt+$mod+q exec killall qutebrowser

@@ -27,8 +27,7 @@ elif [ "$1" == "single" ]; then
  ##         sway output $rightdisp enable > /dev/null 2>&1
         sway output $maindisp disable > /dev/null 2>&1
         sway output $seconddisp enable > /dev/null 2>&1
-#         echo "here"
-#         exec waybar & > /dev/null 2>1
+        exec waybar & > /dev/null 2>1
     else 
         echo "This commands does not work on any other WM than i3 & sway"
     fi
