@@ -135,10 +135,10 @@ nnoremap <silent><F4> :AutoBlockComment<CR>
 
 
 """ Config for tab
-cmap tb tabedit 
+" cmap tb tabedit 
+nmap ,t :tabedit 
 
 " Who am I? The complete path of the current file
-cmap ich echo expand('%:p')<CR>
 map <F2> :echo expand('%:p')<CR>
 
 " Compile the current file (for C++)

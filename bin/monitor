@@ -1,44 +1,53 @@
 #! /bin/sh
 maindisp=eDP-1
-if [ ! -z "$(pidof i3)" ]; then
+whichMon=main
+ifi3=false
+ifsway=false
+if [ $(getmonitors | wc -l) -eq 2 ]; then
+    whichMon=second
+fi
+# if [ ! -z "$(pidof i3)" ]; then
+if [ ! -z "$(neofetch | grep i3)" ]; then
  #    rightdisp=DP-2-1
     seconddisp=DP-2-2
-else
+    ifi3=true
+elif [ ! -z "$(neofetch | grep sway)" ]; then
  #    rightdisp=eDP-1
     seconddisp=DP-5
+    ifsway=true
 fi
-if [ "$1" == "main" ]; then
-    if [ ! -z "$(pidof i3)" ]; then
+if [ "$whichMon" == "main" ]; then
+#     if [ ! -z "$(pidof i3)" ]; then
+    if $ifi3; then
         xrandr --output $maindisp --auto 2>/dev/null
         xrandr --output $seconddisp --off 2>/dev/null
-    elif [ ! -z "$(pidof sway)" ]; then
+    elif $ifsway; then
         sway output $maindisp enable > /dev/null 2>&1
  #        sway output $rightdisp disable > /dev/null 2>&1
         sway output $seconddisp disable > /dev/null 2>&1
     else 
         echo "This commands does not work on any other WM than i3 & sway"
     fi
-elif [ "$1" == "single" ]; then
-    if [ ! -z "$(pidof i3)" ]; then
+elif [ "$whichMon" == "second" ]; then
+    if $ifi3; then
         xrandr --output $maindisp --off 2>/dev/null
         xrandr --output $seconddisp --off 2>/dev/null
         xrandr --output $seconddisp --auto 2>/dev/null
-    elif [ ! -z "$(pidof sway)" ]; then
+    elif $ifsway; then
  ##         sway output $rightdisp enable > /dev/null 2>&1
         sway output $maindisp disable > /dev/null 2>&1
         sway output $seconddisp enable > /dev/null 2>&1
-        exec waybar & > /dev/null 2>1
     else 
         echo "This commands does not work on any other WM than i3 & sway"
     fi
-elif [ "$1" == "double" ]; then
-    if [ ! -z "$(pidof i3)" ]; then
+elif [ "$whichMon" == "double" ]; then
+    if $ifi3; then
         xrandr --output $maindisp --off 2>/dev/null
         xrandr --output $seconddisp --auto 2>/dev/null
  #        xrandr --output $rightdisp --auto 2>/dev/null
         xrandr --output $seconddisp --primary 2>/dev/null
  #        xrandr --output $seconddisp --left-of $rightdisp 2>/dev/null
-    elif [ ! -z "$(pidof sway)" ]; then
+    elif $ifsway; then
         sway output $maindisp enable > /dev/null 2>&1
  #        sway output $rightdisp enable > /dev/null 2>&1
         sway output $seconddisp enable > /dev/null 2>&1
@@ -47,4 +56,7 @@ elif [ "$1" == "double" ]; then
     else 
         echo "This commands does not work on any other WM than i3 & sway"
     fi
+fi
+if [ $ifsway ] && [ -z $(pidof waybar) ]; then
+    exec waybar & > /dev/null 2>&1
 fi
