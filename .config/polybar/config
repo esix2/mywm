@@ -194,7 +194,7 @@ format-disconnected =
 [module/date]
 type = internal/date
 interval = 1
-date = %a %d %b %Y, 
+date =  %a %d %b %Y, 
 date-alt = %a %d %b %Y, 
 time = %H:%M:%S
 time-alt = %H:%M:%S

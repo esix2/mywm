@@ -198,6 +198,19 @@ bindsym $mod+r mode "resize"
 
 ##### user defined
 exec_always --no-startup-id $HOME/.config/wmbash/polylauncher
+bar {
+    status_command i3status --config ~/.config/i3status/config
+    tray_output none
+#     font pango:DejaVu Sans Mono 12
+    font pango:monospace 16
+    position top
+    colors {
+        background #222222
+        statusline #ffffff
+    }
+
+#     bindsym --release button3 exec --no-startup-id import /tmp/latest-screenshot.png
+}
 #bindsym $mod+m bar mode toggle
 font pango: 14px
 exec --no-startup-id nitrogen --restore

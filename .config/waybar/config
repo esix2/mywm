@@ -105,7 +105,7 @@
     },
 	"clock": {
         "interval" : 1,
-		"format": "{:%a  %d %b %Y, %H:%M}",
+		"format": " {:%a  %d %b %Y, %H:%M}",
 		"tooltip": false,
         "on-click-right": "gnome-control-center datetime"
 	},
