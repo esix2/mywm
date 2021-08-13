@@ -111,6 +111,9 @@ set wildignore=*.pdf,*.mp3,*.mp4,*.mkv,*.ods,*.odt,*.out
 call plug#begin('~/.vim/plugged')
 Plug 'mbbill/undotree'
 Plug 'KarimElghamry/vim-auto-comment'
+Plug 'junegunn/fzf', { 'do': {-> fzf#install() } }
+Plug 'junegunn/fzf.vim'
+Plug 'junegunn/fzf.vim'
 call plug#end()
 
 """ Autocomment plugin config

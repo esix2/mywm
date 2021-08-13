@@ -228,7 +228,6 @@ bindsym $mod+XF86AudioMute exec "~/.config/wmbash/volume mic toggle"
 bindsym $mod+XF86AudioRaiseVolume exec "~/.config/wmbash/volume mic inc"
 bindsym $mod+XF86AudioLowerVolume exec "~/.config/wmbash/volume mic dec"
 bindsym XF86WLAN exec "~/bin/wifi"
-bindsym XF86New exec "~/bin/wifi"
 bindsym XF86Display exec "~/bin/monitor"
 # bindsym XF86TouchpadToggle input type:touchpad events toggle 
 # bindsym XF86TouchpadToggle input 2:7:SynPS/2_Synaptics_TouchPad events toggle
@@ -245,6 +244,8 @@ bindsym $mod+d exec "~/.config/wmbash/dispinit"
 
 ## move to next workspace
 bindsym $mod+Tab workspace next
+## move to next focused container in the current layout
+bindsym Alt+Tab focus next
 ## screen lock
 
 ### screensaver

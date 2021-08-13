@@ -214,6 +214,7 @@ exec_always --no-startup-id $HOME/.config/wmbash/polylauncher
 font pango: 14px
 exec --no-startup-id nitrogen --restore
 bindsym --whole-window $mod+Tab workspace next
+bindsym Mod1+Tab focus next
 
 bindsym $mod+m exec --no-startup-id sport -s
 bindsym $mod+d exec --no-startup-id sport -e

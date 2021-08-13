@@ -59,18 +59,21 @@ window#waybar {
  color: white;
 }
 #battery.warning {
+ background: #292b2e;
  color: yellow;
 }
 #battery.bad {
+ background: #292b2e;
  color: orange;
 }
 #battery.critical {
+ background: #292b2e;
  color: red;
 }
 
 @keyframes blink {
     to {
-        background-color: #ffffff;
+        background: #292b2e;
         color: black;
     }
 }

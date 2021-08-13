@@ -8,10 +8,9 @@ elif [ ! -z "$(neofetch | grep sway)" ]; then
 else 
     echo "This commands does not work on any other WM than i3 & sway"
 fi
-
 if $ifi3; then
     i3-msg "[workspace=$1]" move workspace to output $2
 elif $ifsway; then
-    swaymsg 'workspace 1; move to output $2'
+    swaymsg "Workspace $1; move to Output $2"
 #     swaymsg "workspace 1; move to workspace $2"
 fi
