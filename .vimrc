@@ -7,8 +7,6 @@ set autoindent
 "set smartindent
 "vnoremap // y/<C-R>"<CR>
 
-"Reload vimrc
-nmap ,rl :source $MYVIMRC<CR>
 
 " mapps + and - for going misspelled words
 noremap + ]s
@@ -94,6 +92,9 @@ syntax on
 colorscheme pink-moon
 highlight Wildmenu   ctermfg=black ctermbg=white
 highlight MatchParen ctermbg=red ctermfg=grey
+set hlsearch
+hi Search ctermbg=white
+hi Search ctermfg=Red
 "colorscheme mycolor
 
 set wildignore=*.pdf,*.mp3,*.mp4,*.mkv,*.ods,*.odt,*.out
@@ -112,7 +113,6 @@ call plug#begin('~/.vim/plugged')
 Plug 'mbbill/undotree'
 Plug 'KarimElghamry/vim-auto-comment'
 Plug 'junegunn/fzf', { 'do': {-> fzf#install() } }
-Plug 'junegunn/fzf.vim'
 Plug 'junegunn/fzf.vim'
 call plug#end()
 
@@ -137,11 +137,6 @@ nnoremap <silent><F4> :AutoBlockComment<CR>
 
 
 
-""" Config for tab
-" cmap tb tabedit 
-nmap ,t :tabedit 
-"A fake change
-
 " Who am I? The complete path of the current file
 map <F2> :echo expand('%:p')<CR>
 
@@ -162,3 +157,24 @@ noremap <leader>8 8gt
 noremap <leader>9 9gt
 noremap ; gT
 noremap _ gt
+
+
+
+" Mapping selecting mappings
+nmap <leader><tab> <plug>(fzf-maps-n)
+xmap <leader><tab> <plug>(fzf-maps-x)
+omap <leader><tab> <plug>(fzf-maps-o)
+
+" Insert mode completion
+imap <c-x><c-k> <plug>(fzf-complete-word)
+imap <c-x><c-f> <plug>(fzf-complete-path)
+imap <c-x><c-l> <plug>(fzf-complete-line)
+
+
+
+""" Configs starting with leader (,)
+    nmap ,t :tabedit 
+    nmap ,f :Files<CR>
+    "Reload vimrc
+    nmap ,rl :source $MYVIMRC<CR>
+
