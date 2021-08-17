@@ -15,7 +15,7 @@ set smartindent
 set lazyredraw
 
 " Ignore case when searching
-set ignorecase 
+"set ignorecase 
 
 " Don't ignore case when search has capital letter
 set smartcase
@@ -187,7 +187,7 @@ silent! if plug#begin('~/.vim/plugged')
 "My old ones
 Plug 'mbbill/undotree'
 Plug 'KarimElghamry/vim-auto-comment'
-Plug 'junegunn/fzf', { 'do': {-> fzf#install() } }
+"Plug 'junegunn/fzf', { 'do': {-> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " Colors
@@ -373,7 +373,7 @@ return filter(map(filter(split(globpath(&rtp, 'colors/*.vim'), "\n"),
 endfunction
 
 " ----------------------------------------------------------------------------
-" <F8> | Color scheme selector
+" <F9> | Color scheme selector
 " ----------------------------------------------------------------------------
 "  
 set background=dark
@@ -393,8 +393,8 @@ function! s:rotate_colors()
   echo name
 endfunction
 
-nnoremap <silent> <F8> :call <SID>rotate_colors()<cr>
-inoremap <silent> <F8> <esc>:call <SID>rotate_colors()<cr>
+nnoremap <silent> <F9> :call <SID>rotate_colors()<cr>
+inoremap <silent> <F9> <esc>:call <SID>rotate_colors()<cr>
 
 " }}}
 
