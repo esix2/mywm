@@ -116,9 +116,8 @@ autocmd BufNewFile,BufRead *.py so ~/.vim/python.vim
 ""load vim setting for python files
 "autocmd BufNewFile,BufRead *.m so ~/.vim/matlab.vim
 ""load vim setting for c++ files
-"autocmd BufNewFile,BufRead *.cpp so ~/.vim/cpp.vim
-" PLUGINS
-"autocmd BufNewFile,BufRead *.h so ~/.vim/cpp.vim
+autocmd BufNewFile,BufRead *.cpp so ~/.vim/cpp.vim
+autocmd BufNewFile,BufRead *.h so ~/.vim/cpp.vim
 
 " Show tabs and trailing whitespace visually
 if (&termencoding == "utf-8") || has("gui_running")
