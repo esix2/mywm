@@ -1,9 +1,75 @@
-set tabstop=4
-"set softtabstop=1
-set expandtab
-set shiftwidth=4
-set smarttab "set tab size
+" Allow backspacing over everything in insert mode
+set backspace=indent,eol,start
+
+" Store lots of :cmdline history
+set history=500
+
+" Show line numbers
+set nu
+
+set nowrap
+
+" Autoindent when starting new line
 set autoindent
+set smartindent
+set lazyredraw
+
+" Ignore case when searching
+set ignorecase 
+
+" Don't ignore case when search has capital letter
+set smartcase
+
+" Enable highlighted case-insensitive incremential search
+set incsearch
+
+" Enble search highlighting
+set hlsearch
+
+" Always show window statuses
+set laststatus=2
+
+" Statusline style
+set statusline=
+set statusline+=%7*\[%n]                                  "buffernr
+set statusline+=%1*\ %<%F\                                "File+path
+set statusline+=%2*\ %y\                                  "FileType
+set statusline+=%3*\ %{''.(&fenc!=''?&fenc:&enc).''}      "Encoding
+set statusline+=%3*\ %{(&bomb?\",BOM\":\"\")}\            "Encoding2
+set statusline+=%4*\ %{&ff}\                              "FileFormat (dos/unix..) 
+set statusline+=%8*\ %=\ row:%l/%L\ (%p%%)\             "Rownumber/total (%)
+set statusline+=%9*\ col:%c\                            "Colnr
+set statusline+=%0*\ \ %m%r%w\ %P\ \                      "Modified? Readonly? Top/bot.
+
+" Show the size of block one selected in visual mode
+set showcmd
+
+" Hide buffers
+set hidden
+set visualbell
+
+" Indent using four spaces
+set expandtab smarttab
+set tabstop=2
+set shiftwidth=2
+set softtabstop=2
+
+set gcr=a:block-blinkon0
+
+set guioptions-=l
+set guioptions-=L
+set guioptions-=r
+set guioptions-=R
+set guioptions-=m
+set guioptions-=T
+" autocmd VimEnter * call ToggleFullscreen()
+
+" Show the line and column number of the cursor position
+set ruler
+
+" Highlight line under cursor
+set cursorline
+set cursorcolumn
 "set smartindent
 "vnoremap // y/<C-R>"<CR>
 
@@ -49,6 +115,10 @@ autocmd BufNewFile,BufRead *.tex so ~/.vim/latex.vim
 autocmd BufNewFile,BufRead *.py so ~/.vim/python.vim
 ""load vim setting for python files
 "autocmd BufNewFile,BufRead *.m so ~/.vim/matlab.vim
+""load vim setting for c++ files
+"autocmd BufNewFile,BufRead *.cpp so ~/.vim/cpp.vim
+" PLUGINS
+"autocmd BufNewFile,BufRead *.h so ~/.vim/cpp.vim
 
 " Show tabs and trailing whitespace visually
 if (&termencoding == "utf-8") || has("gui_running")
@@ -98,6 +168,10 @@ hi Search ctermfg=Red
 "colorscheme mycolor
 
 set wildignore=*.pdf,*.mp3,*.mp4,*.mkv,*.ods,*.odt,*.out
+set wildignore+=*.o,*.out,*.obj,.git,*.pyc,*.class
+set wildignore+=*.zip,*.tar.gz,*.tar.bz2,*.rar,*.tar.xz
+set wildignore+=*.swp,*~,._*
+set wildignore+=*/tmp/*,*.so,*.swp,*.zip     " MacOSX/Linux
 "diffoff
 "if &diff
 "    set scrollbind
@@ -109,13 +183,65 @@ set wildignore=*.pdf,*.mp3,*.mp4,*.mkv,*.ods,*.odt,*.out
 "
 "Plugins
 " Make sure you use single quotes
-call plug#begin('~/.vim/plugged')
+silent! if plug#begin('~/.vim/plugged')
+"My old ones
 Plug 'mbbill/undotree'
 Plug 'KarimElghamry/vim-auto-comment'
 Plug 'junegunn/fzf', { 'do': {-> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+" Colors
+Plug 'altercation/vim-colors-solarized'
+Plug 'tomasr/molokai'
+Plug 'colepeters/spacemacs-theme.vim'
+Plug 'sheerun/vim-polyglot'
+
+" Editing
+Plug 'SirVer/ultisnips'
+Plug 'sjl/gundo.vim'
+Plug 'matze/vim-move'
+Plug 'jiangmiao/auto-pairs'
+Plug 'kana/vim-operator-user'
+Plug 'gcmt/wildfire.vim'
+"Plug 'lilydjwg/fcitx.vim'
+Plug 'scrooloose/nerdcommenter'
+Plug 'derekwyatt/vim-protodef', { 'for': ['c', 'cpp', 'objc'] }
+Plug 'suan/vim-instant-markdown', { 'for': 'markdown' }
+
+" Navigation
+Plug 'majutsushi/tagbar', { 'on': 'TagbarToggle' }
+Plug 'derekwyatt/vim-fswitch', { 'for': ['c', 'cpp', 'objc'] }
+Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
+Plug 'tpope/vim-fugitive'
+Plug 'ctrlpvim/ctrlp.vim'
+Plug 'dyng/ctrlsf.vim'
+Plug 'fholgado/minibufexpl.vim'
+
+" View
+Plug 'Yggdroot/indentLine'
+Plug 'airblade/vim-gitgutter'
+
+" Linting
+Plug 'w0rp/ale'
+
+"cd ~
+"mkdir ycm_build
+"cd ycm_build/
+"cmake -G "Unix Makefiles" -DPATH_TO_LLVM_ROOT=~/Downloads/clang+llvm-3.9.1-x86_64-linux-gnu-ubuntu-16.04 . ~/.vim/plugged/YouCompleteMe/third_party/ycmd/cpp
+"cmake --build . --target ycm_core
+
+"Plug 'Valloric/YouCompleteMe'
+
+function! BuildYCM(info)
+if a:info.status == 'installed' || a:info.force
+  !./install.py --clang-completer
+endif
+endfunction
+
+Plug 'Valloric/YouCompleteMe', { 'do': function('BuildYCM') }
+
 call plug#end()
+endif
 
 """ Autocomment plugin config
 let g:inline_comment_dict = {
@@ -139,7 +265,7 @@ nnoremap <silent><F4> :AutoBlockComment<CR>
 
 
 " Who am I? The complete path of the current file
-map <F2> :echo expand('%:p')<CR>
+map <F1> :echo expand('%:p')<CR>
 
 " Compile the current file (for C++)
 "map <F5> :p terminal p 
@@ -170,19 +296,108 @@ noremap _ gt
     nmap ,rl :source $MYVIMRC<CR>
 
 
-" Mapping selecting mappings
-nmap <leader><tab> <plug>(fzf-maps-n)
-xmap <leader><tab> <plug>(fzf-maps-x)
-omap <leader><tab> <plug>(fzf-maps-o)
-
-" Insert mode completion
-inoremap <expr> <c-x><c-k> fzf#vim#complete#word({'window': { 'width': 0.2, 'height': 0.9, 'xoffset': 1 }})
-imap <c-x><c-f> <plug>(fzf-complete-path)
-imap <c-x><c-l> <plug>(fzf-complete-line)
-
+" fzf settings
 let g:fzf_layout = {'down' : '40%' }
-nmap <C-f>  :Files<CR>
+"nmap <C-f>  :Files<CR>
 vmap ? y:Ag <C-R>=escape(@",'/\')<CR><CR>
-vmap // y:Rg <C-R>=escape(@",'/\')<CR><CR>
 
+
+
+
+
+
+
+" }}}
+
+" MAPPINGS
+" {{{
+
+" ----------------------------------------------------------------------------
+" Basic mappings
+" ----------------------------------------------------------------------------
+
+" Edit myvimrc
+"nnoremap <leader>ev :vsplit $MYVIMRC<cr>
+"nnoremap <leader>sv :source $MYVIMRC<cr>
+
+" Edit
+nnoremap <leader>" viw<esc>a"<esc>hbi"<esc>lel
+
+" Save
+"inoremap <C-s>     <C-O>:w<cr>
+"nnoremap <C-s>     :w<cr>
+"nnoremap <leader>w :w<cr>
+
+" Copy
+"vnoremap <Leader>y "+y
+"nmap <Leader>p "+p
+
+" Quit
+"nnoremap <Leader>q :q<cr>
+"nnoremap <Leader>Q :qa!<cr>
+
+" Movement in insert mode
+"inoremap <C-h> <C-o>h
+"inoremap <C-j> <C-o>j
+"inoremap <C-k> <C-o>k
+"inoremap <C-l> <C-o>a
+"inoremap <C-^> <C-o><C-^>
+
+" ----------------------------------------------------------------------------
+" Quickfix
+" ----------------------------------------------------------------------------
+
+nnoremap ]q :cnext<cr>zz
+nnoremap [q :cprev<cr>zz
+
+" ----------------------------------------------------------------------------
+" <tab> / <s-tab> | Circular windows navigation
+" ----------------------------------------------------------------------------
+
+"nnoremap <tab>   <c-w>w
+"nnoremap <S-tab> <c-w>W
+"nnoremap <Leader>hw <C-W>h
+"nnoremap <Leader>jw <C-W>j
+"nnoremap <Leader>kw <C-W>k
+"nnoremap <Leader>lw <C-W>l
+
+" ----------------------------------------------------------------------------
+" :CopyRTF
+" ----------------------------------------------------------------------------
+
+function! s:colors(...)
+return filter(map(filter(split(globpath(&rtp, 'colors/*.vim'), "\n"),
+    \                  'v:val !~ "^/usr/"'),
+    \           'fnamemodify(v:val, ":t:r")'),
+    \       '!a:0 || stridx(v:val, a:1) >= 0')
+endfunction
+
+" ----------------------------------------------------------------------------
+" <F8> | Color scheme selector
+" ----------------------------------------------------------------------------
+"  
+set background=dark
+
+let g:molokai_original = 1
+colorschem molokai
+
+function! s:rotate_colors()
+  if !exists('s:colors')
+    let s:colors = s:colors()
+  endif
+  let name = remove(s:colors, 0)
+  call add(s:colors, name)
+  set background=dark
+  execute 'colorscheme' name
+  redraw
+  echo name
+endfunction
+
+nnoremap <silent> <F8> :call <SID>rotate_colors()<cr>
+inoremap <silent> <F8> <esc>:call <SID>rotate_colors()<cr>
+
+" }}}
+
+" PLUGINS
+" {{{
 
