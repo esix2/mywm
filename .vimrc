@@ -114,6 +114,7 @@ Plug 'mbbill/undotree'
 Plug 'KarimElghamry/vim-auto-comment'
 Plug 'junegunn/fzf', { 'do': {-> fzf#install() } }
 Plug 'junegunn/fzf.vim'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 call plug#end()
 
 """ Autocomment plugin config
@@ -160,16 +161,6 @@ noremap _ gt
 
 
 
-" Mapping selecting mappings
-nmap <leader><tab> <plug>(fzf-maps-n)
-xmap <leader><tab> <plug>(fzf-maps-x)
-omap <leader><tab> <plug>(fzf-maps-o)
-
-" Insert mode completion
-imap <c-x><c-k> <plug>(fzf-complete-word)
-imap <c-x><c-f> <plug>(fzf-complete-path)
-imap <c-x><c-l> <plug>(fzf-complete-line)
-
 
 
 """ Configs starting with leader (,)
@@ -177,4 +168,21 @@ imap <c-x><c-l> <plug>(fzf-complete-line)
     nmap ,f :Files<CR>
     "Reload vimrc
     nmap ,rl :source $MYVIMRC<CR>
+
+
+" Mapping selecting mappings
+nmap <leader><tab> <plug>(fzf-maps-n)
+xmap <leader><tab> <plug>(fzf-maps-x)
+omap <leader><tab> <plug>(fzf-maps-o)
+
+" Insert mode completion
+inoremap <expr> <c-x><c-k> fzf#vim#complete#word({'window': { 'width': 0.2, 'height': 0.9, 'xoffset': 1 }})
+imap <c-x><c-f> <plug>(fzf-complete-path)
+imap <c-x><c-l> <plug>(fzf-complete-line)
+
+let g:fzf_layout = {'down' : '40%' }
+nmap <C-f>  :Files<CR>
+vmap ? y:Ag <C-R>=escape(@",'/\')<CR><CR>
+vmap // y:Rg <C-R>=escape(@",'/\')<CR><CR>
+
 
