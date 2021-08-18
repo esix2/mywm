@@ -15,7 +15,7 @@ set smartindent
 set lazyredraw
 
 " Ignore case when searching
-"set ignorecase 
+"set ignorecase
 
 " Don't ignore case when search has capital letter
 set smartcase
@@ -36,7 +36,7 @@ set statusline+=%1*\ %<%F\                                "File+path
 set statusline+=%2*\ %y\                                  "FileType
 set statusline+=%3*\ %{''.(&fenc!=''?&fenc:&enc).''}      "Encoding
 set statusline+=%3*\ %{(&bomb?\",BOM\":\"\")}\            "Encoding2
-set statusline+=%4*\ %{&ff}\                              "FileFormat (dos/unix..) 
+set statusline+=%4*\ %{&ff}\                              "FileFormat (dos/unix..)
 set statusline+=%8*\ %=\ row:%l/%L\ (%p%%)\             "Rownumber/total (%)
 set statusline+=%9*\ col:%c\                            "Colnr
 set statusline+=%0*\ \ %m%r%w\ %P\ \                      "Modified? Readonly? Top/bot.
@@ -98,9 +98,9 @@ nmap <silent> <A-Right> :wincmd l<CR>
 " line break atfter column 80
 "nmap <F2> 80<bar>eli<cr><esc><home>
 
-vnoremap <C-c> "+y 
-vnoremap <C-v> "+p 
-vnoremap <C-x> "+x 
+vnoremap <C-c> "+y
+vnoremap <C-v> "+p
+vnoremap <C-x> "+x
 set clipboard=unnamedplus
 
 set number "acticvates line numbers
@@ -116,8 +116,8 @@ autocmd BufNewFile,BufRead *.py so ~/.vim/python.vim
 ""load vim setting for python files
 "autocmd BufNewFile,BufRead *.m so ~/.vim/matlab.vim
 ""load vim setting for c++ files
-autocmd BufNewFile,BufRead *.cpp so ~/.vim/cpp.vim
-autocmd BufNewFile,BufRead *.h so ~/.vim/cpp.vim
+"autocmd BufNewFile,BufRead *.cpp so ~/.vim/cpp.vim
+"autocmd BufNewFile,BufRead *.h so ~/.vim/cpp.vim
 
 " Show tabs and trailing whitespace visually
 if (&termencoding == "utf-8") || has("gui_running")
@@ -140,7 +140,7 @@ endif
 endif
 
 " puts parantheses and brackets around visual block
-map \pp c()<ESC>P  
+map \pp c()<ESC>P
 map \cc c{}<ESC>P
 map \bb c[]<ESC>P
 map \qq c""<ESC>P
@@ -267,7 +267,7 @@ nnoremap <silent><F4> :AutoBlockComment<CR>
 map <F1> :echo expand('%:p')<CR>
 
 " Compile the current file (for C++)
-"map <F5> :p terminal p 
+"map <F5> :p terminal p
 
 let mapleader = ","
 "Shortcut to move to tabs
@@ -289,7 +289,7 @@ noremap _ gt
 
 
 """ Configs starting with leader (,)
-    nmap ,t :tabedit 
+    nmap ,t :tabedit
     nmap ,f :Files<CR>
     "Reload vimrc
     nmap ,rl :source $MYVIMRC<CR>
@@ -302,101 +302,131 @@ vmap ? y:Ag <C-R>=escape(@",'/\')<CR><CR>
 
 
 
+set nocompatible              " be iMproved, required
+filetype off                  " required
+
+" set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+Plug 'mbbill/undotree'
+Plug 'KarimElghamry/vim-auto-comment'
+"Plug 'junegunn/fzf', { 'do': {-> fzf#install() } }
+Plug 'junegunn/fzf.vim'
+" alternatively, pass a path where Vundle should install plugins
+"call vundle#begin('~/some/path/here')
+
+" let Vundle manage Vundle, required
+Plugin 'VundleVim/Vundle.vim'
+
+" The following are examples of different formats supported.
+" Keep Plugin commands between vundle#begin/end.
+" plugin on GitHub repo
+"Plugin 'tpope/vim-fugitive'
+" plugin from http://vim-scripts.org/vim/scripts.html
+"Plugin 'L9'
+" Git plugin not hosted on GitHub
+"Plugin 'git://git.wincent.com/command-t.git'
+" git repos on your local machine (i.e. when working on your own plugin)
+"Plugin 'file:///home/gmarik/path/to/plugin'
+" The sparkup vim script is in a subdirectory of this repo called vim.
+" Pass the path to set the runtimepath properly.
+"Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
+
+" The monokai color scheme.
+Plugin 'filfirst/Monota'
+
+" The project source tree browser.
+Plugin 'scrooloose/nerdtree'
+
+" The enhanced editor status bar.
+Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
+
+" The enhanced C++ syntax highlighting.
+Plugin 'octol/vim-cpp-enhanced-highlight'
+
+" The auto-complete module.
+Plugin 'Valloric/YouCompleteMe'
 
 
+" All of your Plugins must be added before the following line
+call vundle#end()            " required
+filetype plugin indent on    " required
+" To ignore plugin indent changes, instead use:
+"filetype plugin on
+"
+" Brief help
+" :PluginList       - lists configured plugins
+" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
+" :PluginSearch foo - searches for foo; append `!` to refresh local cache
+" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
+"
+" see :h vundle for more details or wiki for FAQ
+" Put your non-Plugin stuff after this line
+
+" ---------- Monokai color scheme ----------
+syntax on
+colorscheme Monota
+
+" ---------- General Settings ----------
+set backspace=indent,eol,start
+
+syntax enable
+
+" Show line numbers
+set number
+
+" Highlight matching brace
+set showmatch
+
+" Highlight all search results
+set hlsearch
+
+" Highlight the current cursor line
+set cursorline
+
+" Highlight the 80 columns margin.
+set colorcolumn=80
+
+" Trim the trailing white space on save.
+autocmd BufWritePre <buffer> :%s/\s\+$//e
+
+" ---------- Indentation ----------
+" Use spaces instead of tabs
+set expandtab
+
+" Number of spaces that a <TAB> in the file counts for
+set tabstop=4
+
+" Number of auto-indent spaces
+set shiftwidth=4
+set autoindent
+
+" ---------- Folding ----------
+set foldenable
+set foldmethod=syntax
+
+" Do not fold the code by default
+set foldlevel=10000
+
+" ---------- NerdTree Project Browser ----------
+nnoremap <C-n> :NERDTreeToggle<CR>
+
+let NERDTreeShowHidden=1
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | endif
 
 
-" }}}
+" ---------- Enhanced C++ syntax highlighting ----------
+let g:cpp_class_scope_highlight=1
+let g:cpp_concepts_highlight=1
+let g:cpp_experimental_simple_template_highlight=1
 
-" MAPPINGS
-" {{{
 
-" ----------------------------------------------------------------------------
-" Basic mappings
-" ----------------------------------------------------------------------------
+" ---------- YCM Auto Complete ----------
+nnoremap <F12> :YcmCompleter GoTo<CR>
 
-" Edit myvimrc
-"nnoremap <leader>ev :vsplit $MYVIMRC<cr>
-"nnoremap <leader>sv :source $MYVIMRC<cr>
-
-" Edit
-nnoremap <leader>" viw<esc>a"<esc>hbi"<esc>lel
-
-" Save
-"inoremap <C-s>     <C-O>:w<cr>
-"nnoremap <C-s>     :w<cr>
-"nnoremap <leader>w :w<cr>
-
-" Copy
-"vnoremap <Leader>y "+y
-"nmap <Leader>p "+p
-
-" Quit
-"nnoremap <Leader>q :q<cr>
-"nnoremap <Leader>Q :qa!<cr>
-
-" Movement in insert mode
-"inoremap <C-h> <C-o>h
-"inoremap <C-j> <C-o>j
-"inoremap <C-k> <C-o>k
-"inoremap <C-l> <C-o>a
-"inoremap <C-^> <C-o><C-^>
-
-" ----------------------------------------------------------------------------
-" Quickfix
-" ----------------------------------------------------------------------------
-
-nnoremap ]q :cnext<cr>zz
-nnoremap [q :cprev<cr>zz
-
-" ----------------------------------------------------------------------------
-" <tab> / <s-tab> | Circular windows navigation
-" ----------------------------------------------------------------------------
-
-"nnoremap <tab>   <c-w>w
-"nnoremap <S-tab> <c-w>W
-"nnoremap <Leader>hw <C-W>h
-"nnoremap <Leader>jw <C-W>j
-"nnoremap <Leader>kw <C-W>k
-"nnoremap <Leader>lw <C-W>l
-
-" ----------------------------------------------------------------------------
-" :CopyRTF
-" ----------------------------------------------------------------------------
-
-function! s:colors(...)
-return filter(map(filter(split(globpath(&rtp, 'colors/*.vim'), "\n"),
-    \                  'v:val !~ "^/usr/"'),
-    \           'fnamemodify(v:val, ":t:r")'),
-    \       '!a:0 || stridx(v:val, a:1) >= 0')
-endfunction
-
-" ----------------------------------------------------------------------------
-" <F9> | Color scheme selector
-" ----------------------------------------------------------------------------
-"  
-set background=dark
-
-let g:molokai_original = 1
-colorschem molokai
-
-function! s:rotate_colors()
-  if !exists('s:colors')
-    let s:colors = s:colors()
-  endif
-  let name = remove(s:colors, 0)
-  call add(s:colors, name)
-  set background=dark
-  execute 'colorscheme' name
-  redraw
-  echo name
-endfunction
-
-nnoremap <silent> <F9> :call <SID>rotate_colors()<cr>
-inoremap <silent> <F9> <esc>:call <SID>rotate_colors()<cr>
-
-" }}}
-
-" PLUGINS
-" {{{
+"let g:ycm_global_ycm_extra_conf = '~/.ycm_extra_conf.py'
+let g:ycm_confirm_extra_conf = 0
+let g:ycm_collect_identifiers_from_tags_files = 1
 
