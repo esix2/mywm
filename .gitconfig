@@ -1,0 +1,22 @@
+[credential "https://github.com"]
+	helper =
+	helper = !/usr/bin/gh auth git-credential
+[user]
+	email = e.zandi@gmail.com
+	name = Ehsan
+[alias]
+	b = branch
+	cm = commit -m
+	st = status
+	s = status
+	l = log
+	ch = checkout
+	sw = switch
+	sh = stash
+	g = log --decorate --oneline --graph --all
+	a = add
+	d = diff
+[diff]
+	tool = vimdiff
+[merge]
+	tool = vimdiff
