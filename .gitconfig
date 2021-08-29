@@ -16,6 +16,9 @@
 	g = log --decorate --oneline --graph --all
 	a = add
 	d = diff
+	lo = log --oneline
+	lp = log -p
+	loa = log --oneline --all
 [diff]
 	tool = vimdiff
 [merge]
