@@ -7,7 +7,7 @@ set history=500
 " Show line numbers
 set nu
 
-set nowrap
+"set nowrap
 
 " Autoindent when starting new line
 set autoindent
