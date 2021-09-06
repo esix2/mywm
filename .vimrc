@@ -189,6 +189,7 @@ Plug 'KarimElghamry/vim-auto-comment'
 "Plug 'junegunn/fzf', { 'do': {-> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'preservim/nerdtree'
 
 call plug#end()
 endif
@@ -201,7 +202,7 @@ let g:inline_comment_dict = {
         \}
 let g:block_comment_dict = {
         \'/*': ["js", "ts", "cpp", "c", "dart"],
-        \'"""': ['py'],
+        \'"""': ['.vimrc'],
         \}
 let g:autocomment_map_keys = 0
 " Inline comment mapping
@@ -250,4 +251,19 @@ noremap _ gt
 let g:fzf_layout = {'down' : '40%' }
 "nmap <C-f>  :Files<CR>
 vmap ? y:Ag <C-R>=escape(@",'/\')<CR><CR>
+
+" ----------------------------------------------------------------------------
+" nerdtree
+" ----------------------------------------------------------------------------
+
+nnoremap <leader>n :NERDTreeFocus<CR>
+nnoremap <C-n> :NERDTree<CR>
+nnoremap <C-n> :NERDTreeToggle<CR>
+nnoremap <C-f> :NERDTreeFind<CR>
+autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif
+let NERDTreeWinSize=32
+let NERDTreeWinPos="left"
+let NERDTreeShowHidden=0
+let NERDTreeMinimalUI=1
+let NERDTreeAutoDeleteBuffer=1
 
