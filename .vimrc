@@ -240,7 +240,7 @@ noremap _ gt
 
 
 """ Configs starting with leader (,)
-    nmap ,t :tabedit
+    nmap ,t :tabedit 
     nmap ,f :Files<CR>
     "Reload vimrc
     nmap ,rl :source $MYVIMRC<CR>

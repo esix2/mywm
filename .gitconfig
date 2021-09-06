@@ -19,6 +19,8 @@
 	lo = log --oneline
 	lp = log -p
 	loa = log --oneline --all
+	m = merge
+	t = tag
 [diff]
 	tool = vimdiff
 [merge]
