@@ -221,6 +221,6 @@ sudo pacman -Syy $(pacman -Ssq | fzf -m --preview="pacman -Si {}" --preview-wind
 #############  Key bindings
 bind '"\C-f":"cd_with_fzf\n"'
 bind '"\C-o":"open_with_fzf\n"'
-bind '"\C-v":"vim\n"'
+bind '"\C-v":"vifm\n"'
 bind '"\C-t":" fg\n"'
 alias goog='ping www.google.com'
