@@ -219,10 +219,10 @@ endfunction
 ":command! Cap execute 's/\<./\u&/g'
 
 "comment lines in visual and normal mode with CTRL-r and uncomment with CTRL-t
-:vmap <silent> <F3> :s/^/%/g<s-enter>
-:nmap <silent> <F3> ^i%<esc>
-:vmap <silent> <F4> :s/%//g<s-enter>
-:nmap <silent> <F4> ^x<esc>
+":vmap <silent> <F3> :s/^/%/g<s-enter>
+":nmap <silent> <F3> ^i%<esc>
+":vmap <silent> <F4> :s/%//g<s-enter>
+":nmap <silent> <F4> ^x<esc>
   
  
 " Wildignore
