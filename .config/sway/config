@@ -280,6 +280,7 @@ bindsym Alt+$mod+v exec killall vlc
 bindsym Alt+$mod+z exec killall zoom
 
 bindsym $mod+n exec nemo
+bindsym $mod+Shift+n exec alacritty --command bash -c 'vifm'
 #### clipboard
 # exec wl-paste -t text --watch clipman store --no-persist
 #
