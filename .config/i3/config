@@ -17,11 +17,17 @@ set $mod Mod4
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
-font pango:monospace 8
+# font pango:monospace 8
+# font pango: 14px
+# font pango:DejaVu Sans Mono 2
+# To disable title bar
+default_border pixel 3
+default_floating_border pixel 3
+# for_window [class="^.*"] border pixel 1
+# new_window 1pixel
 
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
-#font pango:DejaVu Sans Mono 8
 
 # The combination of xss-lock, nm-applet and pactl is a popular choice, so
 # they are included here as an example. Modify as you see fit.
@@ -211,7 +217,6 @@ exec_always --no-startup-id $HOME/.config/wmbash/polylauncher
 #     bindsym --release button3 exec --no-startup-id import /tmp/latest-screenshot.png
 # }
 #bindsym $mod+m bar mode toggle
-font pango: 14px
 exec --no-startup-id nitrogen --restore
 bindsym --whole-window $mod+Tab workspace next
 bindsym Mod1+Tab focus next

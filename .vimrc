@@ -10,7 +10,7 @@ set nu
 "set nowrap
 
 " Autoindent when starting new line
-set autoindent
+"set autoindent
 set smartindent
 set lazyredraw
 

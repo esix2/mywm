@@ -1,6 +1,14 @@
 #output * resolution --custom 1920x1080
-font pango: SourceCodePro Medium 10
-
+# font pango: SourceCodePro Medium 10
+#
+#
+# The titlebar
+font pango:monospace 0
+client.focused "#4c7899" "#2a5677" "ffffff"
+client.unfocused "#4c7899" "#4c7899" "ffffff"
+titlebar_border_thickness 4
+titlebar_padding 4 8
+#
 # Default config for sway
 #
 # Copy this to ~/.config/sway/config and edit it to your liking.
