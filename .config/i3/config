@@ -52,7 +52,7 @@ bindsym XF86AudioMicMute exec "~/.config/wmbash/volume mic toggle"
 bindsym $mod+XF86AudioMute exec "~/.config/wmbash/volume mic toggle"
 bindsym $mod+XF86AudioRaiseVolume exec "~/.config/wmbash/volume mic inc"
 bindsym $mod+XF86AudioLowerVolume exec "~/.config/wmbash/volume mic dec"
-bindsym XF86WLAN exec "~/bin/wifi"
+# bindsym XF86WLAN exec "~/bin/wifi"
 bindsym XF86Display exec "~/bin/monitor"
 
 #### dimmmer

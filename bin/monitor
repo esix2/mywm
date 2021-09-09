@@ -58,6 +58,6 @@ elif [ "$whichMon" == "double" ]; then
         echo "This commands does not work on any other WM than i3 & sway"
     fi
 fi
-if [ ! $ifsway ] && [ -z $(pidof waybar) ]; then
+if [ $ifsway ] && [ -z $(pidof waybar) ]; then
     exec waybar & > /dev/null 2>&1
 fi
