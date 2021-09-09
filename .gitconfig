@@ -21,7 +21,11 @@
 	loa = log --oneline --all
 	m = merge
 	t = tag
+	c = cat-file
+	cam = commit -am
 [diff]
 	tool = vimdiff
 [merge]
 	tool = vimdiff
+[difftool]
+	prompt = false
