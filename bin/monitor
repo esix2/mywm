@@ -1,5 +1,4 @@
 #! /bin/sh
-maindisp=eDP-1
 whichMon=main
 ifi3=false
 ifsway=false
@@ -9,10 +8,12 @@ fi
 # if [ ! -z "$(pidof i3)" ]; then
 if [ ! -z "$(neofetch | grep i3)" ]; then
  #    rightdisp=DP-2-1
-    seconddisp=DP-2-2
+    maindisp=eDP1
+    seconddisp=DP3-1
     ifi3=true
 elif [ ! -z "$(neofetch | grep sway)" ]; then
  #    rightdisp=eDP-1
+    maindisp=eDP-1
     seconddisp=DP-5
     ifsway=true
 fi
@@ -57,6 +58,6 @@ elif [ "$whichMon" == "double" ]; then
         echo "This commands does not work on any other WM than i3 & sway"
     fi
 fi
-if [ $ifsway ] && [ -z $(pidof waybar) ]; then
+if [ ! $ifsway ] && [ -z $(pidof waybar) ]; then
     exec waybar & > /dev/null 2>&1
 fi
