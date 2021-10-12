@@ -88,7 +88,10 @@ input * {
     bindsym $mod+p exec alacritty --class 'launcher' --command bash -c 'compgen -c | sort -u | fzf | xargs -r swaymsg -t command exec'
     for_window [app_id="^launcher$"] floating enable, border none, resize set width 25 ppt height 20 ppt, move position 0 px 0 px
 
-    # Drag floating windows by holding down $mod and left mouse button.
+### Open Calendar
+    bindsym $mod+c exec alacritty --class 'calendar' --command bash -c 'cal -wm; date; echo ""; read -p "Hit Enter to close the calendar!"'
+    for_window [app_id="^calendar$"] fullscreen
+     # Drag floating windows by holding down $mod and left mouse button.
     # Resize them with right mouse button + $mod.
     # Despite the name, also works for non-floating windows.
     # Change normal to inverse to use left mouse button for resizing and right
@@ -180,15 +183,7 @@ input * {
     bindsym $mod+a focus parent
 #
 # Scratchpad:
-#
-    # Sway has a "scratchpad", which is a bag of holding for windows.
-    # You can send windows there and get them back later.
-
-    # Move the currently focused window to the scratchpad
     bindsym $mod+Shift+minus move scratchpad
-
-    # Show the next scratchpad window or hide the focused scratchpad window.
-    # If there are multiple scratchpad windows, this command cycles through them.
     bindsym $mod+minus scratchpad show
 #
 # Resizing containers:
@@ -279,7 +274,7 @@ bindsym Alt+Ctrl+f workspace 4; exec firefox
 bindsym Alt+Ctrl+t workspace 5; exec thunderbird
 bindsym Alt+Ctrl+v workspace 6; exec vlc
 bindsym Alt+Ctrl+z workspace 7; exec zoom
-bindsym $mod+c workspace 2; exec evince ~/docs/eBooks/cpp.pdf
+# bindsym $mod+c workspace 2; exec evince ~/docs/eBooks/cpp.pdf
 
 bindsym Alt+$mod+f exec killall firefox
 bindsym Alt+$mod+q exec killall qutebrowser
