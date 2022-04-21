@@ -83,7 +83,7 @@ input * {
     bindsym $mod+q kill
 
     # Start your launcher
-    #bindsym $mod+p exec $menu
+    bindsym $mod+Shift+p exec $dmenu
 ######## Taken from https://luxagraf.net/src/guide-to-switching-i3-to-sway
     bindsym $mod+p exec alacritty --class 'launcher' --command bash -c 'compgen -c | sort -u | fzf | xargs -r swaymsg -t command exec'
     for_window [app_id="^launcher$"] floating enable, border none, resize set width 25 ppt height 20 ppt, move position 0 px 0 px
@@ -227,9 +227,13 @@ bindsym XF86AudioRaiseVolume exec "~/.config/wmbash/volume vol inc"
 bindsym XF86AudioLowerVolume exec "~/.config/wmbash/volume vol dec"
 bindsym XF86AudioMute exec "~/.config/wmbash/volume vol toggle"
 bindsym XF86AudioMicMute exec "~/.config/wmbash/volume mic toggle"
-bindsym $mod+XF86AudioMute exec "~/.config/wmbash/volume mic toggle"
-bindsym $mod+XF86AudioRaiseVolume exec "~/.config/wmbash/volume mic inc"
-bindsym $mod+XF86AudioLowerVolume exec "~/.config/wmbash/volume mic dec"
+# bindsym $mod+XF86AudioMute exec "~/.config/wmbash/volume mic toggle"
+# bindsym $mod+XF86AudioRaiseVolume exec "~/.config/wmbash/volume mic inc"
+# bindsym $mod+XF86AudioLowerVolume exec "~/.config/wmbash/volume mic dec"
+bindsym $mod+XF86AudioRaiseVolume exec "~/.config/wmbash/volume vol inc 20%"
+bindsym $mod+XF86AudioLowerVolume exec "~/.config/wmbash/volume vol dec 20%"
+bindsym $mod+XF86AudioMute exec "~/.config/wmbash/volume vol setmid"
+
 bindsym XF86WLAN exec "~/bin/wifi"
 bindsym XF86Display exec "~/bin/monitor"
 # bindsym XF86TouchpadToggle input type:touchpad events toggle 
@@ -294,3 +298,5 @@ output eDP-1 scale 1.2
 seat seat0 xcursor_theme default 24
 # seat seat0 xcursor_theme Adwaita 24
 # seat seat0 xcursor_theme Simple-and-Soft 24
+#
+bindsym $mod+u exec --no-startup-id CM_SELECTIONS='clipboard' CM_OUTPUT_CLIP=1 CM_OUTPUT_CLIP=1 CM_LAUNCHER=rofi clipmenu

@@ -2,6 +2,10 @@
 maxVolPercent=200
 dev=$1
 action=$2
+step=5%
+if [ ! -e $3 ]; then
+  step=$3
+fi
 if [ "$dev" == "vol" ]; then
     devID=$(pacmd list-sinks | grep index | grep -n "*" | sed 's/:/\n/g' | sed -n '1p')
 	current=$(pacmd dump-volumes | awk NR=="$devID" | awk 'NR==1{print $8}' | sed 's/\%//')
@@ -19,12 +23,15 @@ if [ "$dev" == "vol" ]; then
 	elif [ "$action" == "inc" ]; then 
 	    pactl set-sink-mute @DEFAULT_SINK@ false
         if [ $current -lt $((maxVolPercent-5)) ]; then
-		pactl set-sink-volume @DEFAULT_SINK@ +5%
+		pactl set-sink-volume @DEFAULT_SINK@ +$step
 	    else
 		pactl set-sink-volume @DEFAULT_SINK@ "$maxVolPercent%"
 	    fi
 	elif [ "$action" == "dec" ]; then 
-	    pactl set-sink-volume @DEFAULT_SINK@ -5%
+	    pactl set-sink-volume @DEFAULT_SINK@ -$step
+	elif [ "$action" == "setmid" ]; then 
+	    pactl set-sink-mute @DEFAULT_SINK@ false
+	    pactl set-sink-volume @DEFAULT_SINK@ 50%
 	elif [ "$action" == "mute" ]; then 
 	    pactl set-sink-mute @DEFAULT_SINK@ true
 	elif [ "$action" == "toggle" ]; then 
@@ -62,12 +69,12 @@ elif [ "$dev" == "mic" ]; then
 	if [ "$action" == "inc" ]; then 
 	    pactl set-source-mute @DEFAULT_SOURCE@ false
 	    if [ $current -lt 95 ]; then
-            pactl set-source-volume @DEFAULT_SOURCE@ +5%
+            pactl set-source-volume @DEFAULT_SOURCE@ +$step
 	    else
             pactl set-source-volume @DEFAULT_SOURCE@ 100%
 	    fi
 	elif [ "$action" == "dec" ]; then 
-	    pactl set-source-volume @DEFAULT_SOURCE@ -5%
+	    pactl set-source-volume @DEFAULT_SOURCE@ -$step
 	elif [ "$action" == "mute" ]; then 
 	    pactl set-source-mute @DEFAULT_SOURCE@ true
 	elif [ "$action" == "toggle" ]; then 

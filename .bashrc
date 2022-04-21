@@ -197,7 +197,7 @@ function bl {
 if [ "$1" == "off" ]; then
     bluetoothctl power off
 elif [ "$1" == "bose" ]; then
-    bluetoothctl power on; bluetoothctl connect 71:45:2A:19:50:8D 
+    bluetoothctl power on; bluetoothctl connect 60:AB:D2:7A:22:88
     #60:AB:D2:7A:22:88
 fi
 }
@@ -225,3 +225,9 @@ bind '"\C-v":"vifm\n"'
 bind '"\C-t":" fg\n"'
 alias goog='ping www.google.com'
 alias watchg='while true; do clear; git g; sleep 2; done'
+
+export CM_SELECTIONS='primary clipboard'
+export CM_DEBUG=1
+export CM_OUTPUT_CLIP=1
+export CM_MAX_CLIP=5
+export CM_LAUNCHER="rofi"

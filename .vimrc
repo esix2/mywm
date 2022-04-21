@@ -184,6 +184,7 @@ set wildignore+=*/tmp/*,*.so,*.swp,*.zip     " MacOSX/Linux
 " Make sure you use single quotes
 silent! if plug#begin('~/.vim/plugged')
 "My old ones
+Plug 'kana/vim-fakeclip'
 Plug 'mbbill/undotree'
 Plug 'KarimElghamry/vim-auto-comment'
 "Plug 'junegunn/fzf', { 'do': {-> fzf#install() } }
@@ -198,6 +199,7 @@ let g:inline_comment_dict = {
         \'//': ["js", "ts", "cpp", "c", "dart"],
         \'#': ['py', 'sh'],
         \'%': ['tex'],
+        \'"': ['vim'],
         \}
 let g:block_comment_dict = {
         \'/*': ["js", "ts", "cpp", "c", "dart"],
