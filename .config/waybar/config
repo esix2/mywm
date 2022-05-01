@@ -9,7 +9,6 @@
     "sway/mode", 
     "custom/search", 
     "custom/file",
-    "custom/teams",
     "custom/firefox",
     "custom/thunderbird",
     "custom/vlc",

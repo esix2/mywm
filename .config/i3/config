@@ -212,6 +212,8 @@ mode "resize" {
 
 bindsym $mod+r mode "resize"
 
+# Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
+ exec_always feh --bg-fill ~/pictures/wallpaper.jpg fill
 ##### user defined
 exec_always --no-startup-id $HOME/.config/wmbash/polylauncher
 # bar {

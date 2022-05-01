@@ -3,7 +3,7 @@
 #
 #
 # The titlebar
-font pango:monospace 0
+font pango:monospace 1
 client.focused "#4c7899" "#2a5677" "ffffff"
 client.unfocused "#4c7899" "#4c7899" "ffffff"
 titlebar_border_thickness 4
