@@ -4,8 +4,8 @@
 #
 # The titlebar
 font pango:monospace 1
-client.focused "#4c7899" "#2a5677" "ffffff"
-client.unfocused "#4c7899" "#4c7899" "ffffff"
+client.focused "#4c7899" "#2a5677" "2a5677"
+client.unfocused "#4c7899" "#4c7899" "#4c7899"
 titlebar_border_thickness 4
 titlebar_padding 4 8
 #
