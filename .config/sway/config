@@ -89,7 +89,7 @@ input * {
     for_window [app_id="^launcher$"] floating enable, border none, resize set width 25 ppt height 20 ppt, move position 0 px 0 px
 
 ### Open Calendar
-    bindsym $mod+c exec alacritty --class 'calendar' --command bash -c 'cal -wm; date; echo ""; read -p "Hit Enter to close the calendar!"'
+    bindsym $mod+c exec alacritty --class 'calendar' --command bash -c 'cal -wm -n6; date; echo ""; read -p "Hit Enter to close the calendar!"'
     for_window [app_id="^calendar$"] fullscreen
      # Drag floating windows by holding down $mod and left mouse button.
     # Resize them with right mouse button + $mod.
@@ -297,6 +297,6 @@ output eDP-1 scale 1.2
 
 seat seat0 xcursor_theme default 24
 # seat seat0 xcursor_theme Adwaita 24
-# seat seat0 xcursor_theme Simple-and-Soft 24
+# seat seat0 xcursor_theme Simple-and-Soft 68
 #
 bindsym $mod+u exec --no-startup-id CM_SELECTIONS='clipboard' CM_OUTPUT_CLIP=1 CM_OUTPUT_CLIP=1 CM_LAUNCHER=rofi clipmenu
