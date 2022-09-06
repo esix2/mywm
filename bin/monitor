@@ -4,6 +4,8 @@ ifi3=false
 ifsway=false
 if [ $(getmonitors | wc -l) -eq 2 ]; then
     whichMon=second
+elif [ $(getmonitors | wc -l) -eq 3 ]; then
+    whichMon=double
 fi
 # if [ ! -z "$(pidof i3)" ]; then
 if [ ! -z "$(neofetch | grep i3)" ]; then
@@ -12,9 +14,11 @@ if [ ! -z "$(neofetch | grep i3)" ]; then
     seconddisp=DP3-1
     ifi3=true
 elif [ ! -z "$(neofetch | grep sway)" ]; then
- #    rightdisp=eDP-1
     maindisp=eDP-1
-    seconddisp=DP-5
+    leftdisp=DP-7
+    firstdisp=$leftdisp
+    rightdisp=DP-6
+    seconddisp=$rightdisp
     ifsway=true
 fi
 if [ "$whichMon" == "main" ]; then
@@ -37,7 +41,9 @@ elif [ "$whichMon" == "second" ]; then
     elif $ifsway; then
  ##         sway output $rightdisp enable > /dev/null 2>&1
         sway output $maindisp disable > /dev/null 2>&1
-        sway output $seconddisp enable > /dev/null 2>&1
+        sway output $leftdisp enable > /dev/null 2>&1
+        sway output $rightdisp enable > /dev/null 2>&1
+        sway output $left pos 0 0 > /dev/null 2>&1
     else 
         echo "This commands does not work on any other WM than i3 & sway"
     fi
@@ -49,11 +55,11 @@ elif [ "$whichMon" == "double" ]; then
         xrandr --output $seconddisp --primary 2>/dev/null
  #        xrandr --output $seconddisp --left-of $rightdisp 2>/dev/null
     elif $ifsway; then
-        sway output $maindisp enable > /dev/null 2>&1
- #        sway output $rightdisp enable > /dev/null 2>&1
-        sway output $seconddisp enable > /dev/null 2>&1
-        sway output $seconddisp pos 0 0 > /dev/null 2>&1
-        sway output $maindisp pos 1920 0 > /dev/null 2>&1
+        sway output $maindisp disable > /dev/null 2>&1
+        sway output $leftdisp enable > /dev/null 2>&1
+        sway output $rightdisp enable > /dev/null 2>&1
+        sway output $leftdisp pos 0 0 > /dev/null 2>&1
+        sway output $seconddisp pos 1920 0 > /dev/null 2>&1
     else 
         echo "This commands does not work on any other WM than i3 & sway"
     fi
