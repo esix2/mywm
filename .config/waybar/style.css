@@ -24,13 +24,14 @@ window#waybar {
 #workspaces button {
     padding: 0 5px;
     background: transparent;
-    color: white;
     border-top: 2px solid transparent;
+    color: rgb(128, 128, 128);
 }
 
 #workspaces button.focused {
     color: #c9545d;
     border-top: 2px solid #c9545d;
+    color: rgb(128, 128, 128);
 }
 
 #mode {
@@ -44,19 +45,21 @@ window#waybar {
 }
 
 #clock {
+    color: rgb(128, 128, 128);
 }
 
 #battery {
+    color: rgb(128, 128, 128);
 }
 
 #battery.full {
- color: white;
+    color: rgb(128, 128, 128);
 }
 #battery.verygood {
- color: white;
+    color: rgb(128, 128, 128);
 }
 #battery.good {
- color: white;
+    color: rgb(128, 128, 128);
 }
 #battery.warning {
  background: #292b2e;
@@ -91,29 +94,34 @@ temperature.critical {
  color: red;
 }
 #cpu {
+    color: rgb(128, 128, 128);
 }
 
 #memory {
+    color: rgb(128, 128, 128);
 }
 
 #network {
+    color: rgb(128, 128, 128);
 }
 
 #network.disconnected {
-    background: #f53c3c;
+    color: rgb(128, 128, 128);
 }
 
 #pulseaudio {
+    color: rgb(128, 128, 128);
 }
 
 #pulseaudio.muted {
+    color: rgb(128, 128, 128);
 }
 
 #custom-search {
-    color: rgb(214, 214, 214);
+    color: rgb(128, 128, 128);
 }
 #custom-file {
-    color: rgb(214, 214, 214);
+    color: rgb(128, 128, 128);
 }
 #custom-teams {
     color: rgb(123, 131, 235);
@@ -128,8 +136,14 @@ temperature.critical {
     color: rgb(0, 130, 192);
 }
 
+#custom-lang {
+    color: rgb(128, 128, 128);
+}
+#backlight {
+    color: rgb(128, 128, 128);
+}
 #custom-settings {
-    color: rgb(120, 120, 150);
+    color: rgb(128, 128, 128);
 }
 #tray {
 }

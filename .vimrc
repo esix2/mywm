@@ -68,8 +68,8 @@ set guioptions-=T
 set ruler
 
 " Highlight line under cursor
-set cursorline
-set cursorcolumn
+"set cursorline
+"set cursorcolumn
 "set smartindent
 "vnoremap // y/<C-R>"<CR>
 
