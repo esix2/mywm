@@ -9,6 +9,7 @@ locker='swaylock --font 32 -c 00000000'
 ~/.config/wmbash/backlight set 10
 ~/.config/wmbash/volume vol mute
 ~/.config/wmbash/volume mic mute
+systemctl suspend
 ($term $saver) &
 sleep .2
 ($locker) 

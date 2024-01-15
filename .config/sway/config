@@ -109,10 +109,10 @@ input * {
 # Moving around:
 #
     # Move your focus around
-    bindsym $mod+$left focus left
-    bindsym $mod+$down focus down
-    bindsym $mod+$up focus up
-    bindsym $mod+$right focus right
+#     bindsym $mod+$left focus left
+#     bindsym $mod+$down focus down
+#     bindsym $mod+$up focus up
+#     bindsym $mod+$right focus right
     # Or use $mod+[up|down|left|right]
     bindsym $mod+Left focus left
     bindsym $mod+Down focus down
@@ -120,10 +120,10 @@ input * {
     bindsym $mod+Right focus right
 
     # Move the focused window with the same, but add Shift
-    bindsym $mod+Shift+$left move left
-    bindsym $mod+Shift+$down move down
-    bindsym $mod+Shift+$up move up
-    bindsym $mod+Shift+$right move right
+#     bindsym $mod+Shift+$left move left
+#     bindsym $mod+Shift+$down move down
+#     bindsym $mod+Shift+$up move up
+#     bindsym $mod+Shift+$right move right
     # Ditto, with arrow keys
     bindsym $mod+Shift+Left move left
     bindsym $mod+Shift+Down move down
@@ -263,6 +263,8 @@ set $scroff swaymsg "output * dpms off"
 set $scron swaymsg "output * dpms on"
 set $hidecursor swaymsg seat seat0 cursor set 2000 2000
 bindsym $mod+Shift+Delete exec  ~/.config/wmbash/screensaver
+#bindsym $mod+X exec  systemctl suspend
+bindsym $mod+X exec  shutdown --halt
 #####
 
 ### screenshot
@@ -275,17 +277,20 @@ bindsym $mod+Shift+Print exec "~/bin/screenshot clipboard"
 # bindsym Alt+Ctrl+q workspace 2; exec qutebrowser
 bindsym Alt+Ctrl+q workspace 3; exec qutebrowser
 bindsym Alt+Ctrl+f workspace 4; exec firefox
+#-developer-edition
 bindsym Alt+Ctrl+t workspace 5; exec thunderbird
 bindsym Alt+Ctrl+v workspace 6; exec vlc
 bindsym Alt+Ctrl+z workspace 7; exec zoom
 # bindsym $mod+c workspace 2; exec evince ~/docs/eBooks/cpp.pdf
 
 bindsym Alt+$mod+f exec killall firefox
+#-developer-edition
 bindsym Alt+$mod+q exec killall qutebrowser
 bindsym Alt+$mod+t exec killall thunderbird
 bindsym Alt+$mod+v exec killall vlc
 bindsym Alt+$mod+z exec killall zoom
 
+bindsym $mod+m bindsym $mod+p exec nemo $(xdotool getwindowfocus getwindowpid)
 bindsym $mod+n exec nemo
 bindsym $mod+Shift+n exec alacritty --command bash -c 'vifm'
 #### clipboard

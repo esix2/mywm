@@ -2,8 +2,8 @@
 setxkbmap de &
 
 ## Disable power saving
-xset -dpms
-xset s off
+# xset -dpms
+# xset s off
 
 session=${1:-kde}
 case $session in
