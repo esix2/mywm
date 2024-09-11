@@ -263,6 +263,7 @@ set $scroff swaymsg "output * dpms off"
 set $scron swaymsg "output * dpms on"
 set $hidecursor swaymsg seat seat0 cursor set 2000 2000
 bindsym $mod+Shift+Delete exec  ~/.config/wmbash/screensaver
+bindsym $mod+i exec  ~/.config/wmbash/screensaver
 #bindsym $mod+X exec  systemctl suspend
 bindsym $mod+X exec  shutdown --halt
 #####
@@ -275,10 +276,10 @@ bindsym $mod+Shift+Print exec "~/bin/screenshot clipboard"
 
 #### shortcut for openning frequent Apps
 # bindsym Alt+Ctrl+q workspace 2; exec qutebrowser
-bindsym Alt+Ctrl+q workspace 3; exec qutebrowser
+bindsym Alt+Ctrl+q workspace 1; exec qutebrowser
 bindsym Alt+Ctrl+f workspace 4; exec firefox
 #-developer-edition
-bindsym Alt+Ctrl+t workspace 5; exec thunderbird
+bindsym Alt+Ctrl+t workspace 2; exec thunderbird
 bindsym Alt+Ctrl+v workspace 6; exec vlc
 bindsym Alt+Ctrl+z workspace 7; exec zoom
 # bindsym $mod+c workspace 2; exec evince ~/docs/eBooks/cpp.pdf

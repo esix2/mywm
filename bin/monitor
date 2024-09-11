@@ -2,9 +2,9 @@
 whichMon=main
 ifi3=false
 ifsway=false
-if [ $(getmonitors | wc -l) -eq 2 ]; then
+if [ $(getmonitors | wc -l) -eq 1 ]; then
     whichMon=second
-elif [ $(getmonitors | wc -l) -eq 3 ]; then
+elif [ $(getmonitors | wc -l) -eq 2 ]; then
     whichMon=double
 fi
 # if [ ! -z "$(pidof i3)" ]; then
@@ -17,7 +17,7 @@ elif [ ! -z "$(neofetch | grep sway)" ]; then
     maindisp=eDP-1
     leftdisp=DP-7
     firstdisp=$leftdisp
-    rightdisp=DP-6
+    rightdisp=HDMI-A-1
     seconddisp=$rightdisp
     ifsway=true
 fi
@@ -41,9 +41,9 @@ elif [ "$whichMon" == "second" ]; then
     elif $ifsway; then
  ##         sway output $rightdisp enable > /dev/null 2>&1
         sway output $maindisp disable > /dev/null 2>&1
-        sway output $leftdisp enable > /dev/null 2>&1
-        sway output $rightdisp enable > /dev/null 2>&1
-        sway output $left pos 0 0 > /dev/null 2>&1
+#         sway output $leftdisp enable > /dev/null 2>&1
+#         sway output $rightdisp enable > /dev/null 2>&1
+#         sway output $left pos 0 0 > /dev/null 2>&1
     else 
         echo "This commands does not work on any other WM than i3 & sway"
     fi

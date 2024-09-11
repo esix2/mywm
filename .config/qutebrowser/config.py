@@ -170,7 +170,7 @@ c.statusbar.show = 'never'
 #   - never: Always hide the tab bar.
 #   - multiple: Hide the tab bar if only one tab is open.
 #   - switching: Show the tab bar when switching tabs.
-c.tabs.show = 'always'
+c.tabs.show = 'never'
 
 # Text color of the completion widget. May be a single color to use for
 # all columns or a list of three colors, one for each column.
@@ -308,7 +308,7 @@ c.colors.tabs.pinned.selected.even.bg = '#282c34'
 # `colors.webpage.darkmode.threshold.background` to 205.  - "With
 # selective inversion of everything": Combines the two variants   above.
 # Type: Bool
-c.colors.webpage.darkmode.enabled = False
+c.colors.webpage.darkmode.enabled = True
 # c.colors.webpage.darkmode.algorithm = 'lightness-cielab'
 c.colors.webpage.darkmode.algorithm = 'lightness-hsl'
 # c.colors.webpage.darkmode.algorithm = 'brightness-rgb'
@@ -382,13 +382,15 @@ config.bind('xx', 'config-cycle statusbar.show always never;; config-cycle tabs.
 config.bind(',ade', 'open -t ade')
 config.bind(',arch', 'open -t archwiki')
 config.bind(',cn', 'open -t cn')
-config.bind(',fb', 'open -t fb')
+config.bind(',fl', 'open -t flex')
 config.bind(',gh', 'open -t gh')
 config.bind(',gm', 'open -t gm')
+config.bind(',gpt', 'open -t gpt')
+config.bind(',intra', 'open -t intra')
+config.bind(',jsc', 'open -t jsc')
 config.bind(',ld', 'open -t ld')
 config.bind(',leo', 'open -t leo')
 config.bind(',ln', 'open -t ln')
-config.bind(',nf', 'open -t nf')
 config.bind(',nt', 'open -t nt')
 config.bind(',sp', 'open -t sp')
 config.bind(',tw', 'open -t tw')
@@ -402,3 +404,8 @@ c.window.title_format = 'qutebrowser'
 c.tabs.title.format = '{index}- {current_title}'
 # c.editor.command = ["gvim"]
 c.zoom.default = '150%'
+
+
+
+config.bind('p', 'hint links spawn zathura {hint-url}', mode='normal')
+

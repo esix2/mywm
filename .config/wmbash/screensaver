@@ -1,17 +1,28 @@
 #! /bin/sh
-max_brightness=$(cat /sys/class/backlight/intel_backlight/max_brightness)
-current_brightness=$(cat /sys/class/backlight/intel_backlight/brightness)
-current_brightness_percent=$((current_brightness * 100 / max_brightness ))
-term='alacritty -t Screensaver -e'
-saver=cmatrix
+# max_brightness=$(cat /sys/class/backlight/intel_backlight/max_brightness)
+# current_brightness=$(cat /sys/class/backlight/intel_backlight/brightness)
+# current_brightness_percent=$((current_brightness * 100 / max_brightness ))
+# term='alacritty -t Screensaver -e'
+# saver=cmatrix
 # saver="xviewer -f wallpaper.jpg"
-locker='swaylock --font 32 -c 00000000'
-~/.config/wmbash/backlight set 10
+# locker='swaylock --font 32 -c 00000000'
+# ~/.config/wmbash/backlight set 100
 ~/.config/wmbash/volume vol mute
 ~/.config/wmbash/volume mic mute
-systemctl suspend
-($term $saver) &
-sleep .2
-($locker) 
-~/.config/wmbash/backlight set $current_brightness_percent
-kill $!
+# systemctl suspend
+# ($term $saver) &
+# sleep .2
+# ($locker) 
+# ~/.config/wmbash/backlight set $current_brightness_percent
+# kill $!
+
+
+IN=333333
+RING=111111
+swaylock -c 000000 \
+--show-keyboard-layout --indicator-idle-visible \
+--ring-color $RING --key-hl-color $IN \
+--text-ver-color ffffff   --ring-ver-color   $IN --inside-ver-color  $RING \
+--text-wrong-color ffffff --ring-wrong-color $IN --inside-wrong-color $RING \
+--text-clear-color ffffff --ring-clear-color $IN --inside-clear-color $RING \
+--bs-hl-color $IN

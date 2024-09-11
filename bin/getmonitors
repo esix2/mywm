@@ -3,7 +3,7 @@
 if [ ! -z "$(neofetch | grep i3)" ]; then
     xrandr | grep -w connected
 elif [ ! -z "$(neofetch | grep sway)" ]; then
-    swaymsg -t get_outputs | grep name | sed 's/"/\n/g' | grep DP
+    swaymsg -t get_outputs | grep name | sed 's/"/\n/g' | grep HDMI
 else 
     echo "This commands does not work on any other WM than i3 & sway"
 fi

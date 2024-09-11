@@ -155,8 +155,9 @@ export MANPATH=/opt/texlive/2021/texmf-dist/doc/man:$MANPATH
 export INFOPATH=/opt/texlive/2021/texmf-dist/doc/info:$INFOPATH
 
 # disable CPS LOCK
-setxkbmap -option ctrl:nocaps
-setxkbmap de
+#setxkbmap -option ctrl:nocaps
+#setxkbmap de
+#setxkbmap us
 
 alias ?='whatis'
 
@@ -218,6 +219,11 @@ cd $HOME && cd "$(fd -t d | fzf --preview="tree -L 1 {}" --bind="space:toggle-pr
 pacs() {
 sudo pacman -Syy $(pacman -Ssq | fzf -m --preview="pacman -Si {}" --preview-window=:hidden --bind=space:toggle-preview)
 }
+###### Git parsing
+parse_git_branch() {
+     git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1)/'
+}
+export PS1="\u@\h \[\e[32m\]\w \[\e[91m\]\$(parse_git_branch)\[\e[00m\]$ "
 #############  Key bindings
 bind '"\C-f":"cd_with_fzf\n"'
 bind '"\C-o":"open_with_fzf\n"'
@@ -231,3 +237,24 @@ export CM_DEBUG=1
 export CM_OUTPUT_CLIP=1
 export CM_MAX_CLIP=5
 export CM_LAUNCHER="rofi"
+
+######## Vim keybinding in jupyter notebook
+#### Enbaling
+jvim-on() {
+#   conda activate
+  jupyter nbextension enable vim_binding/vim_binding 
+#   conda deactivate
+}
+#### Disabling
+jvim-off() {
+#   conda activate
+  jupyter nbextension enable vim_binding/vim_binding 
+#   conda deactivate
+}
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:~/.local/lib/mojo
+export PATH=$PATH:~/.modular/pkg/packages.modular.com_mojo/bin/
+export MODULAR_HOME="/home/ehsan/.modular"
+export PATH="/home/ehsan/.modular/pkg/packages.modular.com_mojo/bin:$PATH"
+
+alias list_monitors='swaymsg -t get_outputs | grep name'
+alias outlook='prospect-mail'
