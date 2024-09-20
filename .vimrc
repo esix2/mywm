@@ -98,10 +98,16 @@ nmap <silent> <A-Right> :wincmd l<CR>
 " line break atfter column 80
 "nmap <F2> 80<bar>eli<cr><esc><home>
 
-vnoremap <C-c> "+y
-vnoremap <C-v> "+p
-vnoremap <C-x> "+x
-set clipboard=unnamedplus
+"vnoremap <C-c> "+y
+"vnoremap <C-v> "+p
+"vnoremap <C-x> "+x
+
+" puting yank content into clipboard
+set clipboard=unnamed,unnamedplus
+" Copy and paste with Wayland 
+"noremap <silent> y :w !wl-copy<CR><CR>
+"noremap <silent> p :r !wl-paste<CR><CR>
+
 
 set number "acticvates line numbers
 " Advanced tab completion for :
@@ -184,6 +190,12 @@ set wildignore+=*/tmp/*,*.so,*.swp,*.zip     " MacOSX/Linux
 " Make sure you use single quotes
 silent! if plug#begin('~/.vim/plugged')
 "My old ones
+let g:polyglot_disabled = ['markdown']
+Plug 'sheerun/vim-polyglot'
+Plug 'godlygeek/tabular'
+Plug 'preservim/vim-markdown'
+
+
 Plug 'kana/vim-fakeclip'
 Plug 'mbbill/undotree'
 Plug 'KarimElghamry/vim-auto-comment'
@@ -253,3 +265,4 @@ let g:fzf_layout = {'down' : '40%' }
 "nmap <C-f>  :Files<CR>
 vmap ? y:Ag <C-R>=escape(@",'/\')<CR><CR>
 
+autocmd BufEnter *.md exe 'noremap <F5> :!open -a "Google Chrome.app" %:p<CR>'

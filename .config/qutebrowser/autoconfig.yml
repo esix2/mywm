@@ -6,9 +6,13 @@
 
 config_version: 2
 settings:
+  content.javascript.enabled:
+    global: true
+  content.local_content_can_access_remote_urls:
+    global: false
   content.pdfjs:
     global: true
   statusbar.show:
     global: always
   tabs.show:
-    global: never
+    global: always

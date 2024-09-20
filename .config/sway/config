@@ -77,7 +77,7 @@ input * {
 #
     # Start a terminal
     bindsym $mod+Return exec $term
-    bindsym $mod+Shift+Return exec xfce4-terminal
+    bindsym $mod+Shift+Return exec xfce4-terminal --hide-menubar --font=16
 
     # Kill focused window
     bindsym $mod+q kill

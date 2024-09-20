@@ -1,8 +1,9 @@
 #! bin/sh
-config_list='.gitconfig .vim .bashrc'
-target_list='juerca, jusuf,judac' 
+config_list='.gitconfig .vim .vimrc .bashrc'
+target_list='jureca jusuf judac' 
 for target in $target_list; do
   for config in $config_list; do
+    echo $target
     rsync -aL /home/ehsan/$config   $target:/p/home/jusers/zandi2/$target/
   done
 done
