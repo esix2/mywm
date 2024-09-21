@@ -7,6 +7,7 @@ for file in *.md; do
     pandoc -s --metadata title="Home" "$file" -o "$filename.html" 
   else
     pandoc -f markdown -t html  "$filename.md" -o "$filename.html" 
+    pandoc -f markdown -t html  "$filename.md" -o "$filename" 
   fi
   sed -i.bak "s/\.html//g" "$filename.md"
   cp "$file" ../

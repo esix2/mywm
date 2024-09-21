@@ -279,9 +279,10 @@ bindsym $mod+Shift+Print exec "~/bin/screenshot clipboard"
 bindsym Alt+Ctrl+q workspace 1; exec qutebrowser
 bindsym Alt+Ctrl+f workspace 4; exec firefox
 #-developer-edition
-bindsym Alt+Ctrl+t workspace 2; exec thunderbird
+bindsym Alt+Ctrl+t workspace 2; exec "~/.config/wmbash/thunderbird-slack"
 bindsym Alt+Ctrl+v workspace 6; exec vlc
 bindsym Alt+Ctrl+z workspace 7; exec zoom
+bindsym $mod+n workspace 10; exec "~/.config/wmbash/resetnyxt reset"
 # bindsym $mod+c workspace 2; exec evince ~/docs/eBooks/cpp.pdf
 
 bindsym Alt+$mod+f exec killall firefox
@@ -292,7 +293,7 @@ bindsym Alt+$mod+v exec killall vlc
 bindsym Alt+$mod+z exec killall zoom
 
 bindsym $mod+m bindsym $mod+p exec nemo $(xdotool getwindowfocus getwindowpid)
-bindsym $mod+n exec nemo
+bindsym $mod+o exec nemo
 bindsym $mod+Shift+n exec alacritty --command bash -c 'vifm'
 #### clipboard
 # exec wl-paste -t text --watch clipman store --no-persist

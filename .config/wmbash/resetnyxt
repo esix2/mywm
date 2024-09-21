@@ -1,0 +1,9 @@
+#! /bin/sh
+ifreset=$1
+if [ "$ifreset" == "reset" ]
+then
+    killall nyxt
+fi
+
+killall nyxt  2>/dev/null
+nyxt

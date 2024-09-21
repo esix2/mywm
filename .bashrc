@@ -258,3 +258,6 @@ export PATH="/home/ehsan/.modular/pkg/packages.modular.com_mojo/bin:$PATH"
 
 alias list_monitors='swaymsg -t get_outputs | grep name'
 alias outlook='prospect-mail'
+
+export XDG_CURRENT_DESKTOP=sway
+export QT_QPA_PLATFORM=xcb

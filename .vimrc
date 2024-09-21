@@ -211,7 +211,7 @@ let g:inline_comment_dict = {
         \'//': ["js", "ts", "cpp", "c", "dart"],
         \'#': ['py', 'sh'],
         \'%': ['tex'],
-        \'"': ['vim'],
+        \'"': ['vim', 'lisp'],
         \}
 let g:block_comment_dict = {
         \'/*': ["js", "ts", "cpp", "c", "dart"],
