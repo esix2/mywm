@@ -44,9 +44,10 @@ font-4 = Font Awesome 6 Free Solid:pixelsize:12; 2
 font-5 = Font Awesome 6 Free Brands:pixelsize:12; 2
 ;Noto Color Emoji & nerd-fonts
 ; module definition
-modules-left = i3 files settings programms 
+modules-left = i3 
 modules-center = date
-modules-right = temperature  cpu memory microphone volume backlight xkeyboard wlan eth battery 
+modules-right = settings
+; modules-right = temperature cpu memory xkeyboard wlan eth battery 
 separator = |
 tray-position = left
 tray-padding = 3
@@ -159,7 +160,7 @@ label = %percentage_used%%
 
 [module/wlan]
 type = internal/network
-interface = wlp9s0
+interface = wlp6s0
 interval = 3.0
 
 format-connected = <label-connected>
@@ -396,7 +397,7 @@ format-foreground = ${colors.foreground}
 ;
 [module/settings]
 type = custom/script
-exec = echo ""
+exec = echo "Settings"
 click-left = /usr/bin/gnome-control-center
 format-prefix-foreground = ${colors.foreground}
 

@@ -23,8 +23,8 @@ set $mod Mod4
 # To disable title bar
 font pango:DejaVu Sans Mono 3
 ### Gaps ###
-gaps inner 0
-gaps outer 0
+# gaps inner 0
+# gaps outer 0
 client.focused "#4c7899" "#2a5677"  "#2a5677" "#2a5677"
 client.unfocused "#4c7899" "#4c7899" "#4c7899" "#4c7899"
 #
