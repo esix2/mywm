@@ -153,7 +153,7 @@ config.set('content.register_protocol_handler', True, 'https://mail.google.com?e
 # Directory to save downloads to. If unset, a sensible OS-specific
 # default is used.
 # Type: Directory
-c.downloads.location.directory = '$HOME/downloads'
+c.downloads.location.directory = '$HOME/Downloads'
 
 # When to show the statusbar.
 # Type: String
@@ -346,7 +346,7 @@ c.fonts.prompts = 'default_size sans-serif'
 c.fonts.statusbar = '12pt "SauceCodePro Nerd Font"'
 
 # Bindings for normal mode
-config.bind(',d', 'spawn alacritty -e youtube-dl {url} -o $HOME/downloads/yd.mp4')
+config.bind(',d', 'spawn alacritty -e youtube-dl {url} -o $HOME/Downloads/yd.mp4')
 config.bind(',D', 'hint links spawn alacritty -e youtube-dl {hint-url} -o yd.mp4')
 config.bind(',m', 'spawn mpv {url}')
 config.bind(',M', 'hint links spawn mpv {hint-url}')
