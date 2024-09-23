@@ -105,8 +105,9 @@ nmap <silent> <A-Right> :wincmd l<CR>
 " puting yank content into clipboard
 set clipboard=unnamed,unnamedplus
 " Copy and paste with Wayland 
-"noremap <silent> y :w !wl-copy<CR><CR>
-"noremap <silent> p :r !wl-paste<CR><CR>
+vmap <silent> <C-c> :w !wl-copy<CR><CR>
+nmap <silent> <C-c> :w !wl-copy<CR><CR>
+nmap <silent> <C-x> :r !wl-paste<CR><CR>
 
 
 set number "acticvates line numbers
@@ -211,7 +212,7 @@ let g:inline_comment_dict = {
         \'//': ["js", "ts", "cpp", "c", "dart"],
         \'#': ['py', 'sh'],
         \'%': ['tex'],
-        \'"': ['vim', 'lisp'],
+        \'"': ['vim', 'lisp', 'el'],
         \}
 let g:block_comment_dict = {
         \'/*': ["js", "ts", "cpp", "c", "dart"],
@@ -246,6 +247,7 @@ noremap <leader>6 6gt
 noremap <leader>7 7gt
 noremap <leader>8 8gt
 noremap <leader>9 9gt
+noremap <C-Tab> gT
 noremap ; gT
 noremap _ gt
 
