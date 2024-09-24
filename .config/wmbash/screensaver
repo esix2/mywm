@@ -16,6 +16,7 @@
 # ~/.config/wmbash/backlight set $current_brightness_percent
 # kill $!
 
+#-i ~/pictures/wallpaper.jpg \
 
 IN=333333
 RING=111111

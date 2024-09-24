@@ -1,69 +1,37 @@
 #! /bin/sh
-whichMon=main
-ifi3=false
-ifsway=false
-if [ $(getmonitors | wc -l) -eq 1 ]; then
-    whichMon=second
-elif [ $(getmonitors | wc -l) -eq 2 ]; then
-    whichMon=double
+
+wm="$(neofetch | grep -i wm | cut -f2 -d' ')"
+maindisp="eDP-1"
+
+if [[ $wm =~ "sway" ]]; then
+    wm="sway"
+    seconddisp="$(get-second-monitor sway)"
+    echo "here"
+else
+    seconddisp="$(get-second-monitor i3)"
+    wm="i3"
 fi
-# if [ ! -z "$(pidof i3)" ]; then
-if [ ! -z "$(neofetch | grep i3)" ]; then
- #    rightdisp=DP-2-1
-    maindisp=eDP1
-    seconddisp=DP3-1
-    ifi3=true
-elif [ ! -z "$(neofetch | grep sway)" ]; then
-    maindisp=eDP-1
-    leftdisp=DP-7
-    firstdisp=$leftdisp
-    rightdisp=HDMI-A-1
-    seconddisp=$rightdisp
-    ifsway=true
-fi
-if [ "$whichMon" == "main" ]; then
-#     if [ ! -z "$(pidof i3)" ]; then
-    if $ifi3; then
-        xrandr --output $maindisp --auto 2>/dev/null
-        xrandr --output $seconddisp --off 2>/dev/null
-    elif $ifsway; then
-        sway output $maindisp enable > /dev/null 2>&1
- #        sway output $rightdisp disable > /dev/null 2>&1
-        sway output $seconddisp disable > /dev/null 2>&1
-    else 
-        echo "This commands does not work on any other WM than i3 & sway"
-    fi
-elif [ "$whichMon" == "second" ]; then
-    if $ifi3; then
+
+    echo $seconddisp
+
+if [ "$wm" == "sway" ] ; then
+    echo $wm
+    sway output $maindisp toggle > /dev/null 2>&1
+    sway output $seconddisp enable > /dev/null 2>&1
+elif [ "$wm" == "i3" ] ; then
+    if [ ! -z "$seconddisp" ]; then
         xrandr --output $maindisp --off 2>/dev/null
-        xrandr --output $seconddisp --off 2>/dev/null
-        xrandr --output $seconddisp --auto 2>/dev/null
-    elif $ifsway; then
- ##         sway output $rightdisp enable > /dev/null 2>&1
-        sway output $maindisp disable > /dev/null 2>&1
-#         sway output $leftdisp enable > /dev/null 2>&1
-#         sway output $rightdisp enable > /dev/null 2>&1
-#         sway output $left pos 0 0 > /dev/null 2>&1
     else 
-        echo "This commands does not work on any other WM than i3 & sway"
+        xrandr --output $maindisp --auto
     fi
-elif [ "$whichMon" == "double" ]; then
-    if $ifi3; then
-        xrandr --output $maindisp --off 2>/dev/null
-        xrandr --output $seconddisp --auto 2>/dev/null
- #        xrandr --output $rightdisp --auto 2>/dev/null
-        xrandr --output $seconddisp --primary 2>/dev/null
- #        xrandr --output $seconddisp --left-of $rightdisp 2>/dev/null
-    elif $ifsway; then
-        sway output $maindisp disable > /dev/null 2>&1
-        sway output $leftdisp enable > /dev/null 2>&1
-        sway output $rightdisp enable > /dev/null 2>&1
-        sway output $leftdisp pos 0 0 > /dev/null 2>&1
-        sway output $seconddisp pos 1920 0 > /dev/null 2>&1
-    else 
-        echo "This commands does not work on any other WM than i3 & sway"
-    fi
+    xrandr --output $seconddisp --auto 2>/dev/null
+else
+    echo "$wm is not a known window manager to me. Sorry!"
 fi
-if [ $ifsway ] && [ -z $(pidof waybar) ]; then
-    exec waybar & > /dev/null 2>&1
+
+if [ "$wm" == "sway" ] ; then
+#         echo "HERE"
+    if [ -z $(pidof waybar) ]; then
+        exec waybar & > /dev/null 2>&1
+    fi
 fi

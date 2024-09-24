@@ -3,14 +3,17 @@
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 (defvar *my-keymap* (make-keymap "my-map"))
 (define-key *my-keymap*
+            "r" 'reload-current-buffer
+            "D" 'delete-current-buffer
             "t" 'make-buffer-focus
-            "u" 'reopen-last-buffer
             "x t" 'toggle-status-buffer
             "x b" 'toggle-toolbars
             ", f z" 'fzj  
             ", g m " 'gmail
             ", g p t " 'gpt
-            ", i n v " 'invidious
+            ", v " 'invidious
+            ", w h " 'whatsapp
+            ", w i k i " 'wiki
             ", l e o " 'leo
             ", y t" 'youtube
             "_" 'switch-buffer-next
@@ -21,8 +24,8 @@
   ((override-map
     (let ((map (make-keymap "override-map")))
       (define-key map 
-                  "d" 'delete-current-buffer
-                  "u" 'reopen-last-buffer)))))
+                  "D" 'delete-current-buffer
+                  "U" 'reopen-last-buffer)))))
 "Dummy mode for the custom key bindings in *my-keymap*."
 (define-mode my-mode
     nil
@@ -67,6 +70,13 @@
 (define-command leo () "Leo dictrionary"
   (make-buffer-focus :url "https://dict.leo.org/german-english"))
 
+(define-command whatsapp () "Opens whatsaApp"
+  (make-buffer-focus :url "https://web.whatsapp.com/"))
+
+(define-command wiki () "Opens my Wiki page"
+   (preview-file :file "/home/ehsan/git/wiki.wiki/Home.html"))
+
+
 (define-command youtube () "Opens Youtube"
   (make-buffer-focus :url "https://www.youtube.com"))
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -85,6 +95,14 @@
 " Making dark mode for the web pages"
 (define-configuration (web-buffer)
   ((default-modes (pushnew 'nyxt/mode/style:dark-mode %slot-value%))))
+
+(define-configuration buffer
+  ((download-policy
+    (lambda (url)
+      (when (quri:uri-pathmatch-p ".*\\.pdf" url)
+        (uiop:launch-program (list "zathura" (quri:render-uri url)))
+        'download))))
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
             "General configurations"
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -94,4 +112,22 @@
 
 
 
-
+    
+    (defun mpv (url)
+      "MPV launches with given url using the fast profile."
+      (uiop:run-program (list "mpv" "--profile=fast" url "&")))
+    
+    ;; Let's create a function to hint videos, convert the url to a sting, and play them in MPV
+    (define-command hint-mpv (&key nyxt/web-mode::annotate-visible-only-p)
+      "Show a set of element hints, and copy the URL of the user inputted one."
+      (nyxt/web-mode:query-hints "Copy element URL"
+                                 (lambda (nyxt/web-mode::result)
+                                   ;; this converts the url to a string to be used in mpv
+                                   (let*
+                                       ((url
+                                          (format nil "~a"
+                                                  (url (first nyxt/web-mode::result)))))
+                                     ;; here we take that string and pipe it into mpv
+                                     (mpv url)))
+                                 :annotate-visible-only-p
+                                 nyxt/web-mode::annotate-visible-only-p))

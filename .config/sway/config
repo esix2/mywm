@@ -237,6 +237,7 @@ bindsym $mod+XF86AudioMute exec "~/.config/wmbash/volume vol setmid"
 
 bindsym XF86WLAN exec "~/bin/wifi"
 bindsym XF86Display exec "~/bin/monitor"
+bindsym F7 exec "~/bin/monitor"
 # bindsym XF86TouchpadToggle input type:touchpad events toggle 
 # bindsym XF86TouchpadToggle input 2:7:SynPS/2_Synaptics_TouchPad events toggle
 #xmodmap -pke
@@ -278,13 +279,12 @@ bindsym $mod+Shift+Print exec "~/bin/screenshot clipboard"
 #### shortcut for openning frequent Apps
 # bindsym Alt+Ctrl+q workspace 2; exec qutebrowser
 bindsym Alt+Ctrl+q workspace 1; exec qutebrowser
-bindsym Alt+Ctrl+f workspace 4; exec firefox
-#-developer-edition
 bindsym Alt+Ctrl+t workspace 2; exec "~/.config/wmbash/thunderbird-slack"
+bindsym Alt+Ctrl+n workspace 3; exec "~/.config/wmbash/resetnyxt reset"
+bindsym Alt+Ctrl+f workspace 4; exec firefox
 bindsym Alt+Ctrl+v workspace 6; exec vlc
 bindsym Alt+Ctrl+z workspace 7; exec zoom
-bindsym $mod+m workspace 8; exec "~/.config/wmbash/startemacs"
-bindsym $mod+n workspace 10; exec "~/.config/wmbash/resetnyxt reset"
+bindsym Alt+Ctrl+m workspace 8; exec "~/.config/wmbash/startemacs"
 # bindsym $mod+c workspace 2; exec evince ~/docs/eBooks/cpp.pdf
 
 bindsym Alt+$mod+f exec killall firefox
@@ -295,7 +295,7 @@ bindsym Alt+$mod+v exec killall vlc
 bindsym Alt+$mod+z exec killall zoom
 
 # bindsym $mod+m bindsym $mod+p exec nemo $(xdotool getwindowfocus getwindowpid)
-bindsym $mod+o exec nemo
+bindsym $mod+n exec nemo
 bindsym $mod+Shift+n exec alacritty --command bash -c 'vifm'
 #### clipboard
 # exec wl-paste -t text --watch clipman store --no-persist

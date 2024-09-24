@@ -13,6 +13,6 @@ settings:
   content.pdfjs:
     global: true
   statusbar.show:
-    global: always
+    global: never
   tabs.show:
     global: always

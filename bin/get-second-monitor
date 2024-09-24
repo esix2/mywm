@@ -1,9 +1,11 @@
 #! /bin/sh
 
-if [ ! -z "$(neofetch | grep i3)" ]; then
-    xrandr | grep -w connected
-elif [ ! -z "$(neofetch | grep sway)" ]; then
-    swaymsg -t get_outputs | grep name | sed 's/"/\n/g' | grep HDMI
-else 
-    echo "This commands does not work on any other WM than i3 & sway"
+wm=$1
+if [ "$wm" == "sway" ];  then
+    seconddisp=$(swaymsg -t get_outputs | grep name | sed 's/"/\n/g' | grep HDMI)
+elif [ "$wm" == "i3" ];  then
+    seconddisp=$(xrandr | grep 'HDMI' | grep -v disconnected | cut -d ' ' -f 1)
+else
+    echo "$wm is not a known window manager to me. Sorry!"
 fi
+echo $seconddisp

@@ -58,6 +58,7 @@ bindsym $mod+XF86AudioMute exec "~/.config/wmbash/volume vol setmid"
 
 # bindsym XF86WLAN exec "~/bin/wifi"
 bindsym XF86Display exec "~/bin/monitor"
+bindsym F7 exec "~/bin/monitor"
 
 #### dimmmer
 bindsym XF86MonBrightnessUp exec --no-startup-id ~/.config/wmbash/backlight inc && $refresh_i3status
@@ -237,11 +238,14 @@ bindsym $mod+m exec --no-startup-id sport -s
 bindsym $mod+d exec --no-startup-id sport -e
 bindsym $mod+Shift+m exec --no-startup-id sport -r
 
-bindsym Mod1+Ctrl+q workspace 2; exec --no-startup-id i3-msg 'exec x-qutebrowser' 
-bindsym Mod1+Ctrl+f workspace 3; exec --no-startup-id i3-msg 'exec xfox' 
-bindsym Mod1+Ctrl+t workspace 4; exec --no-startup-id i3-msg 'exec thunderbird'
-bindsym Mod1+Ctrl+v workspace 5; exec --no-startup-id i3-msg 'exec vlc'
-bindsym Mod1+Ctrl+z workspace 6; exec --no-startup-id i3-msg 'exec zoom'
+bindsym Mod1+Ctrl+q workspace 1; exec --no-startup-id i3-msg 'exec x-qutebrowser' 
+bindsym Mod1+Ctrl+t workspace 2; exec --no-startup-id i3-msg 'exec ~/.config/wmbash/thunderbird-slack'
+bindsym Mod1+Ctrl+n workspace 3; exec --no-startup-id i3-msg 'exec ~/.config/wmbash/resetnyxt reset'
+bindsym Mod1+Ctrl+f workspace 4; exec --no-startup-id i3-msg 'exec xfox' 
+bindsym Mod1+Ctrl+v workspace 6; exec --no-startup-id i3-msg 'exec vlc'
+bindsym Mod1+Ctrl+z workspace 7; exec --no-startup-id i3-msg 'exec zoom'
+bindsym Mod1+Ctrl+m workspace 8; exec --no-startup-id i3-msg 'exec ~/.config/wmbash/startemacs'
+
 # bindsym Mod1+Ctrl+e exec --no-startup-id  killall teams
 
 bindsym Mod1+$mod+f exec killall firefox
