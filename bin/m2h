@@ -1,15 +1,26 @@
 ### Customized script to convert markdown to github flavoured html
 #! /bin/sh
 # rm *.html 2>/dev/null
+if [ ! -z "$1" ]; then
+  cd $1
+fi
+if [ ! -f Home.md ]; then
+    echo "Please specify the correct directory!"
+    exit 64
+fi
+
+function convert-markdown-to-html {
 for file in *.md; do
   filename="${file%.*}"
   if [ "$file" = "Home.md" ]; then
     pandoc -s --metadata title="Home" "$file" -o "$filename.html" 
   else
-    pandoc -f markdown -t html  "$filename.md" -o "$filename.html" 
+#     pandoc -f markdown -t html  "$filename.md" -o "$filename.html" 
     pandoc -f markdown -t html  "$filename.md" -o "$filename" 
   fi
-  sed -i.bak "s/\.html//g" "$filename.md"
-  cp "$file" ../
-  mv "$file.bak" "$file"
+#   sed -i.bak "s/\.html//g" "$filename.md"
+#   cp "$file" ../
+#   mv "$file.bak" "$file"
 done
+}
+while true; do if [ -e $(inotifywait -e modify *.md) ]; then clear; convert-markdown-to-html; fi; done

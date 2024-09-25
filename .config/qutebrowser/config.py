@@ -345,14 +345,35 @@ c.fonts.prompts = 'default_size sans-serif'
 # Type: Font
 c.fonts.statusbar = '12pt "SauceCodePro Nerd Font"'
 
+# Rebinding some of the default key bindings
+## closing tab
+config.bind('D', 'tab-close')
+config.unbind('d')
+config.unbind('<Ctrl+w>')
+## Undoing
+config.bind('U', 'undo')
+config.unbind('u')
+config.unbind('<Ctrl+Shift+t>')
+## Reloading
+config.bind('R', 'reload')
+config.unbind('r')
+config.unbind('<F5>')
+
+## Yanking URL
+config.bind('yu', 'yank url')
+config.unbind('yy')
+
+## Opening new tab
+# config.unbind('t')
+config.bind('<Ctrl+t>', 'open -t')
+
 # Bindings for normal mode
 config.bind(',d', 'spawn alacritty -e youtube-dl {url} -o $HOME/downloads/yd.mp4')
 config.bind(',D', 'hint links spawn alacritty -e youtube-dl {hint-url} -o yd.mp4')
 config.bind(',m', 'spawn mpv {url}')
-config.bind(',M', 'hint links spawn mpv {hint-url}')
+config.bind(',M', 'hint links spawn --detach mpv {hint-url}')
 config.bind(',v', 'spawn vlc {url}')
 config.bind(',V', 'hint links spawn vlc {hint-url}')
-config.bind('t', 'open -t')
 config.bind(';', 'tab-prev')
 config.bind('_', 'tab-next')
 config.bind(',1', 'tab-select 1')
@@ -396,7 +417,9 @@ config.bind(',sp', 'open -t sp')
 config.bind(',tw', 'open -t tw')
 config.bind(',wh', 'open -t wh')
 config.bind(',wk', 'open -t wk')
+config.bind(',wmail', 'open -t https://webmail.fz-juelich.de/lm_auth_proxy?DoLMLogin?curl=L2fowa&curlid=431412334-1850291788&curlmode=0')
 config.bind(',yt', 'open -t yt')
+config.unbind('o')
 
 ###
 #c.spellcheck.languages = ["en-US", "de-DE"]

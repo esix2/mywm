@@ -18,7 +18,7 @@
   ((style (str:concat
            %slot-value%
            (theme:themed-css (theme *browser*)
-	     `("#controls,#tabs"
+	     `("#url, #controls"
 	       :display none !important))))))
 
 (defmethod format-status-load-status ((status status-buffer))
