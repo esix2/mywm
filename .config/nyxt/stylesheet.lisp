@@ -12,7 +12,7 @@
            :highlight-color "#000022"
            :contrast-text-color "#ffffff"
            :text-color "#333333"
-           :accent-color "#77aa00"
+           :accent-color "#882222"
            :primary-color "#333333"
            :secondary-color "#333333"
            :tertiary-color "#333333"
