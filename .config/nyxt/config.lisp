@@ -3,36 +3,44 @@
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 (defvar *my-keymap* (make-keymap "my-map"))
 (define-key *my-keymap*
-            "r" 'reload-current-buffer
+            "C-space" 'nothing ; disabling Ctrl-space (only ":" works for command--> to make qutebrowser like)
+            "C-l" 'nothing ; disabling Ctrl-l (only ":" works for open url-> to make qutebrowser like)
+            "M" 'toggle-buffer-dark
             "D" 'delete-current-buffer
-            "t" 'make-buffer-focus
+            "C-d" 'delete-all-buffers
+            "U" 'reopen-last-buffer
+            "R" 'reload-current-buffer
+            "C-t" 'make-buffer-focus
+            "C-n" 'openinternal ;open nyxt internal page in a new buffer
             "x t" 'toggle-status-buffer
             "x b" 'toggle-toolbars
-            ", f z" 'fzj  
+            " y h " 'nyxt/mode/hint:copy-hint-url ;yank hint url 
+            ", a t" 'atlas
+            ", b i b" 'bibliothek
+            ", f l e x" 'flex
+            ", f z j" 'fzj  
+            ", g l" 'gitlab  
             ", g m " 'gmail
-            ", g p t " 'gpt
+            ", g p t" 'gpt
+            ", h t" 'nyxt/mode/history:history-tree
+            ", i n t r a" 'intra
             ", v " 'invidious
+            ", l e o " 'leo
+            ", m i t" 'mitarbeiterportal
+            ", s d" 'searchDuck
+            ", s l a c k" 'slack
+            ", j s c" 'jsc
+            ", j u d o o r" 'judoor
             ", w h " 'whatsapp
             ", w i k i " 'wiki
-            ", l e o " 'leo
             ", y t" 'youtube
             "_" 'switch-buffer-next
             "s-;" 'switch-buffer-previous
             ";" 'switch-buffer-previous)
 
-(define-configuration web-buffer
-  ((override-map
-    (let ((map (make-keymap "override-map")))
-      (define-key map 
-                  "D" 'delete-current-buffer
-                  "U" 'reopen-last-buffer)))))
-"Dummy mode for the custom key bindings in *my-keymap*."
-(define-mode my-mode
-    nil
-  ((keyscheme-map
-    (nkeymaps/core:make-keyscheme-map nyxt/keyscheme:cua *my-keymap*
-                                      nyxt/keyscheme:emacs *my-keymap*
-                                      nyxt/keyscheme:vi-normal *my-keymap*))))
+(define-mode my-mode nil
+  ((keyscheme-map (nkeymaps/core:make-keyscheme-map 
+                    nyxt/keyscheme:vi-normal *my-keymap*))))
 
 
 " Adding my keybindings to the browser"
@@ -51,12 +59,29 @@
            "Creating and defininf my own key binding"
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+(define-command toggle-buffer-dark () "Toggle dark and refresh"
+  (nyxt/mode/style:dark-mode)
+  (reload-current-buffer))
 
+(define-command openinternal () "Shows the whole history"
+  (make-buffer-focus :url "nyxt:new"))
+
+(define-command atlas () "Shows the whole history"
+  (make-buffer-focus :url "https://search.atlas.engineer/searxng/"))
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "SECTION:     Commands for openning different web pages"
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+(define-command bibliothek () "Opens Bibliothek"
+  (make-buffer-focus :url "https://intranet.fz-juelich.de/de/organisation/zb"))
+
+(define-command flex () "Opens Flex"
+  (make-buffer-focus :url "https://booked.jsc.fz-juelich.de/Web/?"))
+
 (define-command fzj () "Opens Forschungszentrum Jülich"
   (make-buffer-focus :url "https://www.fz-juelich.de"))
+
+(define-command gitlab () "Opens Gitlab"
+  (make-buffer-focus :url "https://gitlab.jsc.fz-juelich.de/"))
 
 (define-command gmail () "Opens Gmail"
   (make-buffer-focus :url "https://gmail.com"))
@@ -64,11 +89,30 @@
 (define-command gpt () "Opens ChatGPT"
   (make-buffer-focus :url "https://chatgpt.com"))
 
+(define-command intra () "Opens Intranet"
+  (make-buffer-focus :url "https://intranet.fz-juelich.de/de"))
+
 (define-command invidious () "Opens Invidious"
-  (make-buffer-focus :url "http://localhost:3000/feed/popular"))
+  (make-buffer-focus :url "http://localhost:3000/feed/history"))
+
+(define-command jsc () "Opens JSC"
+  (make-buffer-focus :url "https://herten1.pages.jsc.fz-juelich.de/jsc-new-employees/#conf:hpcls,hpccdss,hpcase,tech,atmlpp,xdev,sarch,scsup,appreview,dma,esde"))
+
+(define-command judoor () "Opens JuDoor"
+  (make-buffer-focus :url "https://judoor.fz-juelich.de/login"))
 
 (define-command leo () "Leo dictrionary"
-  (make-buffer-focus :url "https://dict.leo.org/german-english"))
+  (make-buffer-focus :url "https://dict.leo.org/german-english")
+  toggle-buffer-dark)
+
+(define-command mitarbeiterportal () "Opens Mitarbeiterportal"
+  (make-buffer-focus :url "https://service1.edv.kfa-juelich.de/cgi-bin/Prod/InfoSystem/eMapor/eMapor.pl"))
+
+(define-command searchDuck () "Search in the current buffer"
+  (set-url :url "https://start.duckduckgo.com"))
+
+(define-command slack () "Opens Slack"
+  (make-buffer-focus :url "https://app.slack.com/client/T01D7M1B6HF/D07PC2AH2GH"))
 
 (define-command whatsapp () "Opens whatsaApp"
   (make-buffer-focus :url "https://web.whatsapp.com/"))
@@ -95,39 +139,12 @@
 " Making dark mode for the web pages"
 (define-configuration (web-buffer)
   ((default-modes (pushnew 'nyxt/mode/style:dark-mode %slot-value%))))
+; 
 
-(define-configuration buffer
-  ((download-policy
-    (lambda (url)
-      (when (quri:uri-pathmatch-p ".*\\.pdf" url)
-        (uiop:launch-program (list "zathura" (quri:render-uri url)))
-        'download))))
-
+  ; Duckduckgo as default new page
+(defmethod customize-instance ((browser browser) &key)
+  (setf (slot-value browser 'default-new-buffer-url) "https://start.duckduckgo.com/"))
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
             "General configurations"
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-
-" ChatGPT slution which are useless :-)"
-
-
-
-    
-    (defun mpv (url)
-      "MPV launches with given url using the fast profile."
-      (uiop:run-program (list "mpv" "--profile=fast" url "&")))
-    
-    ;; Let's create a function to hint videos, convert the url to a sting, and play them in MPV
-    (define-command hint-mpv (&key nyxt/web-mode::annotate-visible-only-p)
-      "Show a set of element hints, and copy the URL of the user inputted one."
-      (nyxt/web-mode:query-hints "Copy element URL"
-                                 (lambda (nyxt/web-mode::result)
-                                   ;; this converts the url to a string to be used in mpv
-                                   (let*
-                                       ((url
-                                          (format nil "~a"
-                                                  (url (first nyxt/web-mode::result)))))
-                                     ;; here we take that string and pipe it into mpv
-                                     (mpv url)))
-                                 :annotate-visible-only-p
-                                 nyxt/web-mode::annotate-visible-only-p))
