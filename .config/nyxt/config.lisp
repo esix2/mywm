@@ -5,6 +5,7 @@
 (define-key *my-keymap*
             "C-space" 'nothing ; disabling Ctrl-space (only ":" works for command--> to make qutebrowser like)
             "C-l" 'nothing ; disabling Ctrl-l (only ":" works for open url-> to make qutebrowser like)
+;             "t" 'nothing ; disable showing list of headings
             "M" 'toggle-buffer-dark
             "D" 'delete-current-buffer
             "C-d" 'delete-all-buffers
@@ -139,7 +140,7 @@
 " Making dark mode for the web pages"
 (define-configuration (web-buffer)
   ((default-modes (pushnew 'nyxt/mode/style:dark-mode %slot-value%))))
-; 
+
 
   ; Duckduckgo as default new page
 (defmethod customize-instance ((browser browser) &key)
@@ -148,3 +149,20 @@
             "General configurations"
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+(in-package #:nyxt-user)
+
+;; Import Files
+; (nyxt::load-lisp "~/.config/nyxt/statusline.lisp")
+(nyxt::load-lisp "~/.config/nyxt/stylesheet.lisp")
+; (nyxt::load-lisp "~/.config/nyxt/hint.lisp")
+
+
+(define-configuration web-buffer
+  ((glyph-mode-presentation-p t)))  ;; Disable the glyph (lambda) presentation
+
+(define-configuration :hint-mode
+  "Set up QWERTY home row as the hint keys."
+  ((hints-alphabet "0123456789")))
+
+(define-nyxt-user-system-and-load nyxt-user/basic-config
+  :components ("status"))
