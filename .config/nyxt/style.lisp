@@ -2,6 +2,19 @@
 ;; For version 3
 (in-package #:nyxt-user)
 
+; " Making dark mode for the whole browser"
+(define-configuration browser
+  ((theme theme:+dark-theme+)))
+
+" Making dark mode for the web pages"
+(define-configuration (web-buffer)
+  ((default-modes (pushnew 'nyxt/mode/style:dark-mode %slot-value%))))
+
+
+  ; Duckduckgo as default new page
+(defmethod customize-instance ((browser browser) &key)
+  (setf (slot-value browser 'default-new-buffer-url) "https://start.duckduckgo.com/"))
+
 ;; This only works on the versions of Nyxt after 2.2.4.
 (define-configuration browser
   ((theme (make-instance
