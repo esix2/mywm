@@ -46,7 +46,7 @@ font-5 = Font Awesome 6 Free Brands:pixelsize:12; 2
 ; module definition
 modules-left = i3 
 modules-center = date
-modules-right = settings
+modules-right = xkeyboard settings
 ; modules-right = temperature cpu memory xkeyboard wlan eth battery 
 separator = |
 tray-position = left
