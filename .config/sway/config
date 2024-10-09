@@ -90,6 +90,15 @@ input * {
     for_window [app_id="^launcher$"] floating enable, border none, resize set width 25 ppt height 20 ppt, move position 0 px 0 px
 
 ### Open Calendar
+    bindsym $mod+y exec alacritty --class 'calendar' --command bash -c 'nmtui-connect FZJ; echo ""'
+    for_window [app_id="^calendar$"] fullscreen
+     # Drag floating windows by holding down $mod and left mouse button.
+    # Resize them with right mouse button + $mod.
+    # Despite the name, also works for non-floating windows.
+    # Change normal to inverse to use left mouse button for resizing and right
+    # mouse button for dragging.
+    floating_modifier $mod normal
+### Open Calendar
     bindsym $mod+c exec alacritty --class 'calendar' --command bash -c 'cal -wm -n6; date; echo ""; read -p "Hit Enter to close the calendar!"'
     for_window [app_id="^calendar$"] fullscreen
      # Drag floating windows by holding down $mod and left mouse button.
@@ -220,6 +229,7 @@ bar {
     swaybar_command waybar
 }
 
+# exec_always --no-startup-id $HOME/.config/wmbash/polylauncher
 include /etc/sway/config.d/*
 include ./touchpad
 
@@ -278,25 +288,25 @@ bindsym $mod+Shift+Print exec "~/bin/screenshot clipboard"
 
 #### shortcut for openning frequent Apps
 # bindsym Alt+Ctrl+q workspace 2; exec qutebrowser
-bindsym Alt+Ctrl+q workspace 1; exec qutebrowser
-bindsym Alt+Ctrl+t workspace 2; exec "~/.config/wmbash/thunderbird-slack"
-bindsym $mod+n workspace 10; exec "~/.config/wmbash/resetnyxt reset"
-bindsym Alt+Ctrl+f workspace 4; exec firefox
-bindsym Alt+Ctrl+v workspace 6; exec vlc
-bindsym Alt+Ctrl+z workspace 7; exec zoom
-bindsym Alt+Ctrl+m workspace 8; exec "~/.config/wmbash/startemacs"
-# bindsym $mod+c workspace 2; exec evince ~/docs/eBooks/cpp.pdf
+bindsym Alt+Ctrl+f workspace 4; exec restart-app firefox
+bindsym Alt+Ctrl+m workspace 8; exec restart-app emacs
+bindsym Alt+Ctrl+n workspace 2; exec restart-app nyxt 
+bindsym Alt+Ctrl+q workspace 1; exec restart-app qutebrowser
+bindsym Alt+Ctrl+t workspace 3; exec restart-app thunderbird slack mattermost-desktop
+bindsym Alt+Ctrl+v workspace 6; exec restart-app vlc
+bindsym Alt+Ctrl+z workspace 7; exec restart-app zoom
 
-bindsym Alt+$mod+f exec killall firefox
-#-developer-edition
-bindsym Alt+$mod+q exec killall qutebrowser
-bindsym Alt+$mod+t exec killall thunderbird
-bindsym Alt+$mod+v exec killall vlc
-bindsym Alt+$mod+z exec killall zoom
+bindsym Alt+$mod+f exec restart-app stop firefox
+bindsym Alt+$mod+m exec restart-app stop emacs
+bindsym Alt+$mod+n exec restart-app stop nyxt
+bindsym Alt+$mod+q exec restart-app stop qutebrowser
+bindsym Alt+$mod+t exec restart-app stop thunderbird slack mattermost-desktop
+bindsym Alt+$mod+v exec restart-app stop vlc
+bindsym Alt+$mod+z exec restart-app stop zoom
 
 # bindsym $mod+m bindsym $mod+p exec nemo $(xdotool getwindowfocus getwindowpid)
 bindsym $mod+o exec nemo
-bindsym $mod+Shift+n exec alacritty --command bash -c 'vifm'
+bindsym $mod+Shift+o exec alacritty --command bash -c 'vifm'
 #### clipboard
 # exec wl-paste -t text --watch clipman store --no-persist
 #

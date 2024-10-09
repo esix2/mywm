@@ -7,8 +7,8 @@
   ((theme theme:+dark-theme+)))
 
 " Making dark mode for the web pages"
-(define-configuration (web-buffer)
-  ((default-modes (pushnew 'nyxt/mode/style:dark-mode %slot-value%))))
+;(define-configuration (web-buffer)
+;  ((default-modes (pushnew 'nyxt/mode/style:dark-mode %slot-value%))))
 
 
   ; Duckduckgo as default new page
@@ -19,13 +19,15 @@
 (define-configuration browser
   ((theme (make-instance
            'theme:theme
-           :background-color "#555555"
-           :background-color- "#333333"
-           :background-color+ "#882222"
-           :highlight-color "#000022"
+           :background-color "#222222"
+           :background-color- "#333333";hint, secondardy modes
+;            :background-color+ "#882222"
+;            :accent-color "#882222"
+           :background-color+ "#de5833"
+           :accent-color "#de5833"
+           :highlight-color "#0000ff"
            :contrast-text-color "#ffffff"
            :text-color "#333333"
-           :accent-color "#882222"
            :primary-color "#333333"
            :secondary-color "#333333"
            :tertiary-color "#333333"

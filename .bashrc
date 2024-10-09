@@ -258,6 +258,6 @@ export PATH="/home/ehsan/.modular/pkg/packages.modular.com_mojo/bin:$PATH"
 
 alias list_monitors='swaymsg -t get_outputs | grep name'
 alias outlook='prospect-mail'
-
-export XDG_CURRENT_DESKTOP=sway
-export QT_QPA_PLATFORM=xcb
+alias killwebex="kill $(swaymsg -t get_tree | grep -n2 CiscoCollabHost | grep pid | sed 's/[0-9]\{2,\}/&\n/g' | sed -n '2p' | sed 's/[^0-9]\{2,\}//g') 2>/dev/null"
+# alias killwebex="kill $(swaymsg -t get_tree | grep -n4 xdg_shell | grep pid | sed 's/[0-9]\{2,\}/&\n/g' | sed -n '2p' | sed 's/[^0-9]\{2,\}//g')"
+alias killmattermost="kill $(swaymsg -t get_tree | grep -n4 xwayland | grep pid | sed 's/[0-9]\{2,\}/&\n/g' | sed -n '2p' | sed 's/[^0-9]\{2,\}//g')"

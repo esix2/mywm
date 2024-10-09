@@ -2,4 +2,7 @@
 
 (define-configuration :hint-mode
   "Set up QWERTY home row as the hint keys."
-  ((hints-alphabet "12345")))
+  ((hints-alphabet 
+;      "123456789"
+    "abcdefghijklmnopqrstuvwxyz"
+     )))

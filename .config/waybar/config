@@ -11,7 +11,6 @@
     "custom/file",
     "custom/firefox",
     "custom/thunderbird",
-    "custom/vlc",
     "custom/settings"
     ],
     "modules-center": [
@@ -181,8 +180,7 @@
         "on-scroll-up": "exec ~/.config/wmbash/volume vol inc",
         "on-scroll-down": "exec ~/.config/wmbash/volume vol dec",
         "on-click": "exec ~/.config/wmbash/volume vol toggle",
-        "on-click-right": "exec ~/.config/wmbash/volume vol speakertoggle"
-        //"on-click-right": "gnome-control-center sound"
+        "on-click-right": "exec ~/.config/wmbash/volume vol devicetoggle"
     },
     "pulseaudio#1": {
         "scroll-step": 5.0,
@@ -192,6 +190,6 @@
         "on-scroll-up": "exec ~/.config/wmbash/volume mic inc",
         "on-scroll-down": "exec ~/.config/wmbash/volume mic dec",
         "on-click": "exec ~/.config/wmbash/volume mic toggle",
-        "on-click-right": "gnome-control-center sound"
+        "on-click-right": "exec ~/.config/wmbash/volume mic devicetoggle"
     }
 }

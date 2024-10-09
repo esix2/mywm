@@ -239,8 +239,8 @@ bindsym $mod+d exec --no-startup-id sport -e
 bindsym $mod+Shift+m exec --no-startup-id sport -r
 
 bindsym Mod1+Ctrl+q workspace 1; exec --no-startup-id i3-msg 'exec x-qutebrowser' 
-bindsym Mod1+Ctrl+t workspace 2; exec --no-startup-id i3-msg 'exec ~/.config/wmbash/thunderbird-slack'
-bindsym Mod1+Ctrl+n workspace 3; exec --no-startup-id i3-msg 'exec ~/.config/wmbash/resetnyxt reset'
+bindsym Mod1+Ctrl+t workspace 2; exec --no-startup-id i3-msg 'exec thunderbird-slack'
+bindsym Mod1+Ctrl+n workspace 3; exec --no-startup-id i3-msg 'exec resetnyxt reset'
 bindsym Mod1+Ctrl+f workspace 4; exec --no-startup-id i3-msg 'exec xfox' 
 bindsym Mod1+Ctrl+v workspace 6; exec --no-startup-id i3-msg 'exec vlc'
 bindsym Mod1+Ctrl+z workspace 7; exec --no-startup-id i3-msg 'exec zoom'

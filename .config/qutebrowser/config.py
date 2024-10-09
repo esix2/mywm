@@ -347,6 +347,8 @@ c.fonts.statusbar = '12pt "SauceCodePro Nerd Font"'
 
 # Rebinding some of the default key bindings
 ## closing tab
+config.bind('M', 'set colors.webpage.darkmode.enabled true')
+config.bind('m', 'set colors.webpage.darkmode.enabled false')
 config.bind('D', 'tab-close')
 config.unbind('d')
 config.unbind('<Ctrl+w>')
@@ -366,6 +368,9 @@ config.unbind('yy')
 ## Opening new tab
 # config.unbind('t')
 config.bind('<Ctrl+t>', 'open -t')
+
+config.bind('o', 'open ')
+
 
 # Bindings for normal mode
 config.bind(',d', 'spawn alacritty -e youtube-dl {url} -o $HOME/downloads/yd.mp4')

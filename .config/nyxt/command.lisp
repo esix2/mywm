@@ -12,8 +12,15 @@
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "SECTION:     Commands for openning different web pages"
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+(define-command amazon () "Opens Bibliothek"
+  (make-buffer-focus :url 
+"https://www.amazon.de/-/en/Amazon-Video/b/?ie=UTF8&node=3010075031&ref_=nav_cs_prime_video_bf88699d61904c72940f61552dfe7a32"))
+
 (define-command bibliothek () "Opens Bibliothek"
   (make-buffer-focus :url "https://intranet.fz-juelich.de/de/organisation/zb"))
+
+(define-command confluence () "Opens 3D-ABC Confluence"
+  (make-buffer-focus :url "https://spaces.awi.de/display/H3D/3D-ABC+Team"))
 
 (define-command flex () "Opens Flex"
   (make-buffer-focus :url "https://booked.jsc.fz-juelich.de/Web/?"))
@@ -42,13 +49,22 @@
 (define-command judoor () "Opens JuDoor"
   (make-buffer-focus :url "https://judoor.fz-juelich.de/login"))
 
+(define-command jupyter-lab () "Opens Jupyter on remote side"
+  (make-buffer-focus :url "http://localhost:8080"))
+
+(define-command juwels-doc () "Opens Juwels documentatioin"
+  (make-buffer-focus :url "https://apps.fz-juelich.de/jsc/hps/juwels/index.html#"))
+
 (define-command leo () "Leo dictrionary"
   (make-buffer-focus :url "https://dict.leo.org/german-english"))
+
+(define-command llview () "Open LLView"
+  (make-buffer-focus :url "https://www.fz-juelich.de/en/ias/jsc/services/user-support/software-tools/llview"))
 
 (define-command mitarbeiterportal () "Opens Mitarbeiterportal"
   (make-buffer-focus :url "https://service1.edv.kfa-juelich.de/cgi-bin/Prod/InfoSystem/eMapor/eMapor.pl"))
 
-(define-command searchDuck () "Search in the current buffer"
+(define-command duckSearch () "Search in the current buffer"
   (set-url :url "https://start.duckduckgo.com"))
 
 (define-command slack () "Opens Slack"

@@ -1,0 +1,8 @@
+#! /bin/sh
+killall thunderbird  2>/dev/null
+killall slack  2>/dev/null
+killall mattermost-desktop  2>/dev/null
+
+thunderbird&
+slack&
+mattermost-desktop&

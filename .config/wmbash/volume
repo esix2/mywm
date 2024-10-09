@@ -1,24 +1,33 @@
 #! /bin/sh
 maxVolPercent=200
+maxMicPercent=250
 dev=$1
 action=$2
 step=5%
 
-set_next_sink_device () {
-    pacmd list-sinks | grep -e 'name:' -e 'index:' -e 'available:' | sed '$!N;$!N;s/\n/ /g' | grep -v 'available: no' > list_sink
-    current_dev=$(pacmd list-sinks | grep -A 1 -e '* index:' | sed -n '2p' | sed 's/name: <//g' | sed 's/>//g')
-    current_dev=$(cat list_sink | grep '*' | sed 's/name: </\n/g' | sed 's/>/\n/g' | sed -n '2p')
-    current_dev_index=$(cat list_sink | grep -n '*'  | cut -f1 -d:)
-    num_dev=$(cat list_sink | wc -l)
+set_next_device () {
+  pacmd list-$1 | grep -e 'name:' -e 'index:' -e 'available:' | tr '\n' ' ' | 
+    sed 's/* index:/index: */g'  | sed 's/index:/\n/g' | grep -e 'available: yes' -e 'available: unknown' > "list_$1"
+    current_dev=$(cat list_$1 | grep '*' | sed 's/name: </\n/g' | sed 's/>/\n/g' | sed -n '2p')
+    current_dev_index=$(cat list_$1 | grep -n '*'  | cut -f1 -d:)
+    num_dev=$(cat list_$1 | wc -l)
     next_dev_index=$((current_dev_index+1))
     next_dev_index=$((next_dev_index > num_dev ? 1 : next_dev_index))
-    next_dev=$(cat list_sink | sed -n "$next_dev_index p" | sed 's/name: </\n/g' | sed 's/>/\n/g' | sed -n '2p')
-#     rm list_sink > /dev/null 2>&1
-    pactl set-default-sink $next_dev
-    for input_stream_index in {0..50}; do
-#             echo $input_stream_index
-        pactl move-sink-input $input_stream_index $next_dev > /dev/null 2>&1
-    done
+    next_dev=$(cat list_$1 | sed -n "$next_dev_index p" | sed 's/name: </\n/g' | sed 's/>/\n/g' | sed -n '2p')
+
+#     rm list_$1 > /dev/null 2>&1
+    if [ $1 == "sinks" ]
+    then
+      pactl set-default-sink $next_dev
+      for input_stream_index in {0..50}; do
+          pactl move-sink-input $input_stream_index $next_dev > /dev/null 2>&1
+      done
+    else
+      for input_stream_index in {0..50}; do
+          pactl move-source-input $input_stream_index $next_dev > /dev/null 2>&1
+      done
+      pactl set-default-source $next_dev
+    fi
 }
 
 if [ ! -e $3 ]; then
@@ -27,8 +36,8 @@ fi
 if [ "$dev" == "vol" ]; then
     devID=$(pacmd list-sinks | grep index | grep -n "*" | sed 's/:/\n/g' | sed -n '1p')
 	current=$(pacmd dump-volumes | awk NR=="$devID" | awk 'NR==1{print $8}' | sed 's/\%//')
-	if [ "$action" == "speakertoggle" ]; then 
-      set_next_sink_device
+	if [ "$action" == "devicetoggle" ]; then 
+      set_next_device sinks
 	elif [ "$action" == "inc" ]; then 
 	    pactl set-sink-mute @DEFAULT_SINK@ false
         if [ $current -lt $((maxVolPercent-5)) ]; then
@@ -78,10 +87,10 @@ elif [ "$dev" == "mic" ]; then
     current=$(pacmd list-sources | grep -A 10 "* index" | sed -n '8p' | awk 'NR==1{print $5}' | sed 's/\%//')
 	if [ "$action" == "inc" ]; then 
 	    pactl set-source-mute @DEFAULT_SOURCE@ false
-	    if [ $current -lt 95 ]; then
+      if [ $current -lt $((maxMicPercent-5)) ]; then
             pactl set-source-volume @DEFAULT_SOURCE@ +$step
 	    else
-            pactl set-source-volume @DEFAULT_SOURCE@ 100%
+            pactl set-source-volume @DEFAULT_SOURCE@ "$maxMicPercent%"
 	    fi
 	elif [ "$action" == "dec" ]; then 
 	    pactl set-source-volume @DEFAULT_SOURCE@ -$step
@@ -89,6 +98,8 @@ elif [ "$dev" == "mic" ]; then
 	    pactl set-source-mute @DEFAULT_SOURCE@ true
 	elif [ "$action" == "toggle" ]; then 
 	    pactl set-source-mute @DEFAULT_SOURCE@ toggle
+	elif [ "$action" == "devicetoggle" ]; then 
+      set_next_device sources
 	elif [ "$action" == "status" ]; then 
 	    status=$(pacmd list-sources | grep muted | grep yes)
 	    if [ ! -z "$status" ]; then
