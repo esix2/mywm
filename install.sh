@@ -1,6 +1,6 @@
 #! /bin/sh
 clear
-files='alacritty/ i3/ .nyxt/ polybar/ qutebrowser/ sway/ user-dirs.dirs waybar/ wmbash/'
+files='alacritty/ i3/ latexmk/ nyxt/ polybar/ qutebrowser/ sway/ user-dirs.dirs waybar/ wmbash/ zathura/'
 currentfolder=${PWD}/.config
 for f in $(ls -F .config); do
     #echo "$currentfolder/$f $HOME/.config"
