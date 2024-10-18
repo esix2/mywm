@@ -16,6 +16,7 @@
 	g = log --decorate --oneline --graph --all
 	a = add
 	d = diff
+	dn = diff --name-only
 	lo = log --oneline
 	lp = log -p
 	loa = log --oneline --all
