@@ -1,0 +1,40 @@
+set recolor "true"
+
+set recolor-lightcolor "#000000"
+set recolor-darkcolor "#666666"
+
+set recolor-lightcolor "#111111"
+set recolor-darkcolor "#aaaaaa"
+
+# m toggles between dark and light mode
+map m set recolor "toggle"
+
+# Ctrl+d jumps to bookmark 0
+map <C-d> feedkeys ":bmark 0 <Return>"
+# b jumps to bookmark 0
+# map b feedkeys ":bjump 0 <Return>"
+map H feedkeys ":bjump 0 <Return>"
+
+#Side-by-side mode
+# map D set "first-page-column 1:1"
+# map <C-a> set "first-page-column 1:2"
+
+#Enable copy to clipboard
+set selection-clipboard clipboard
+
+map ,rl feedkeys ":source <Return>"
+map n navigate next
+map p navigate previous
+map t navigate top
+# map T navigate previous; bottom
+map b scroll page-bottom
+# map <C-d> scroll half-down
+# map <C-u> scroll half-up
+map \# search forward
+map * search backward
+unmap q
+
+# SET URL-handler qutebrowser
+
+
+
