@@ -2,9 +2,9 @@
 
 wm=$1
 if [ "$wm" == "sway" ];  then
-    seconddisp=$(swaymsg -t get_outputs | grep name | sed 's/"/\n/g' | grep HDMI)
+  seconddisp=$(swaymsg -t get_outputs | grep name | grep -v eDP | sed "s/\"/\n/g"| sed -n '4p')
 elif [ "$wm" == "i3" ];  then
-    seconddisp=$(xrandr | grep 'HDMI' | grep -v disconnected | cut -d ' ' -f 1)
+    seconddisp=$(xrandr | grep connected | grep -v disconnected | grep -v eDP | cut -d ' ' -f 1)
 else
     echo "$wm is not a known window manager to me. Sorry!"
 fi
