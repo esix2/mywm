@@ -286,7 +286,7 @@ margin-bottom = 5
 type = custom/script
 exec = ~/.config/wmbash/volume vol status
 ;click-right = gnome-control-center sound
-click-right = bash ~/.config/wmbash/volume vol speakertoggle
+click-right = bash ~/.config/wmbash/volume vol devicetoggle
 click-left = bash ~/.config/wmbash/volume vol toggle
 scroll-up = bash ~/.config/wmbash/volume vol  inc
 scroll-down = bash ~/.config/wmbash/volume vol dec
@@ -296,7 +296,7 @@ interval = 0.1
 [module/microphone]
 type = custom/script
 exec = ~/.config/wmbash/volume mic status
-click-right = gnome-control-center sound
+click-right = bash ~/.config/wmbash/volume mic devicetoggle
 click-left = bash ~/.config/wmbash/volume mic toggle
 scroll-up = bash ~/.config/wmbash/volume mic  inc
 scroll-down = bash ~/.config/wmbash/volume mic dec

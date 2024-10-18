@@ -1,24 +1,18 @@
 #! /bin/sh
 
-wm="$(neofetch | grep -i wm | cut -f2 -d' ')"
+WM="$(neofetch | grep -i WM | cut -f2 -d' ')"
 maindisp="eDP-1"
 
-if [[ $wm =~ "sway" ]]; then
-    wm="sway"
+if [[ $WM =~ "sway" ]]; then
     seconddisp="$(get-second-monitor sway)"
-    echo "here"
 else
     seconddisp="$(get-second-monitor i3)"
-    wm="i3"
 fi
 
-    echo $seconddisp
-
-if [ "$wm" == "sway" ] ; then
-    echo $wm
+if [[ "$WM" =~ "sway" ]] ; then
     sway output $maindisp toggle > /dev/null 2>&1
     sway output $seconddisp enable > /dev/null 2>&1
-elif [ "$wm" == "i3" ] ; then
+elif [[  "$WM" =~ "i3" || "$WM" =~ "KWin" ]] ; then
     if [ ! -z "$seconddisp" ]; then
         xrandr --output $maindisp --off 2>/dev/null
     else 
@@ -26,10 +20,10 @@ elif [ "$wm" == "i3" ] ; then
     fi
     xrandr --output $seconddisp --auto 2>/dev/null
 else
-    echo "$wm is not a known window manager to me. Sorry!"
+    echo "$WM is not a known window manager to me. Sorry!"
 fi
 
-if [ "$wm" == "sway" ] ; then
+if [ "$WM" == "sway" ] ; then
 #         echo "HERE"
     if [ -z $(pidof waybar) ]; then
         exec waybar & > /dev/null 2>&1

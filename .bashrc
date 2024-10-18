@@ -174,10 +174,20 @@ alias graph='git log --decorate --oneline --graph --all'
 # alias for latexmk
 alias texmake='latexmk -pdf -pvc -interaction=nonstopmode' 
 # alias for easycopy
-alias easypath='echo $(pwd) | xclip -i -selection clipboard'
-alias lastcomm='!$:p | xclip -i -selection clipboard'
+# export WM="$(neofetch | grep -i wm | cut -f2 -d' ')"
 
-alias easypaste='xclip -selection clipboard -o'
+copycommand="xclip -i -selection clipboard"
+copycommand="xclip -i -selection clipboard -o"
+echo "test"| wl-copy >/dev/null 2>&1 
+if [ "$?" -eq 0 ]
+then 
+    copycommand="wl-copy"
+    pastecommand="wl-paste -n"
+fi
+
+alias easypath='echo $(pwd) | $copycommand'
+alias easycopy='echo "!! | $copycommand"'
+alias easypaste='$pastecommand'
 alias easyopen='nemo $(pwd) &'
 
 alias sshti='ssh zandi@draco.ti.rwth-aachen.de'

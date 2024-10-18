@@ -4,6 +4,8 @@
 if [ ! -z "$1" ]; then
   cd $1
 fi
+BROWSER="$2"
+PAGE="$3"
 if [ ! -f Home.md ]; then
     echo "Please specify the correct directory!"
     exit 64
@@ -13,7 +15,8 @@ function convert-markdown-to-html {
 for file in *.md; do
   filename="${file%.*}"
   if [ "$file" = "Home.md" ]; then
-    pandoc -s --metadata title="Home" "$file" -o "$filename.html" 
+    HOMEPAGE="$filename.html"
+    pandoc -s --metadata title="Home" "$file" -o "$HOMEPAGE" 
   else
 #     pandoc -f markdown -t html  "$filename.md" -o "$filename.html" 
     pandoc -f markdown -t html  "$filename.md" -o "$filename" 
@@ -22,5 +25,16 @@ for file in *.md; do
 #   cp "$file" ../
 #   mv "$file.bak" "$file"
 done
+if [ ! -z "$BROWSER" ]
+then
+  BROWSERPID="$(pidof $BROWSER)"
+  if [ ! -z "$BROWSERPID" ]
+    then 
+      echo "$BROWSERPID"
+#     killall $BROWSER
+  fi
+  $BROWSER $PAGE & > /dev/null 2>&1
+fi
 }
+# convert-markdown-to-html
 while true; do if [ -e $(inotifywait -e modify *.md) ]; then clear; convert-markdown-to-html; fi; done

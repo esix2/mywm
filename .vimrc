@@ -211,7 +211,7 @@ endif
 let g:inline_comment_dict = {
         \'//': ["js", "ts", "cpp", "c", "dart"],
         \'#': ['py', 'sh'],
-        \'%': ['tex'],
+        \'%': ['tex', 'sty'],
         \';': ['lisp', 'el'],
         \'"': ['vim'],
         \}

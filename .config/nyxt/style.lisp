@@ -7,8 +7,8 @@
   ((theme theme:+dark-theme+)))
 
 " Making dark mode for the web pages"
-;(define-configuration (web-buffer)
-;  ((default-modes (pushnew 'nyxt/mode/style:dark-mode %slot-value%))))
+(define-configuration (web-buffer)
+ ((default-modes (pushnew 'nyxt/mode/style:dark-mode %slot-value%))))
 
 
   ; Duckduckgo as default new page
