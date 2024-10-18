@@ -292,7 +292,7 @@ bindsym Alt+Ctrl+f workspace 4; exec restart-app firefox
 bindsym Alt+Ctrl+m workspace 8; exec restart-app emacs
 bindsym Alt+Ctrl+n workspace 2; exec restart-app nyxt 
 bindsym Alt+Ctrl+q workspace 1; exec restart-app qutebrowser
-bindsym Alt+Ctrl+t workspace 3; exec restart-app thunderbird slack mattermost-desktop
+bindsym Alt+Ctrl+t workspace 3; exec thunderbird-slack
 bindsym Alt+Ctrl+v workspace 6; exec restart-app vlc
 bindsym Alt+Ctrl+z workspace 7; exec restart-app zoom
 

@@ -1,8 +1,17 @@
 #! /bin/sh
-killall thunderbird  2>/dev/null
-killall slack  2>/dev/null
-killall mattermost-desktop  2>/dev/null
+killall thunderbird > /dev/null 2>&1
+killall slack > /dev/null 2>&1
+killall mattermost-desktop > /dev/null 2>&1
+kill "$(swaymsg -t get_tree | grep -n4 xwayland | grep pid | sed 's/[0-9]\{2,\}/&\n/g' | sed -n '2p' | sed 's/[^0-9]\{2,\}//g')" 
 
-thunderbird&
-slack&
-mattermost-desktop&
+sleep 1
+thunderbird > /dev/null 2>&1 &
+
+sleep 1
+swaymsg splith
+slack > /dev/null 2>&1 &
+
+sleep 1
+swaymsg splitv
+mattermost-desktop > /dev/null 2>&1 &
+# swaymsg move right
