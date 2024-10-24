@@ -1,0 +1,4 @@
+### Customized script to convert markdown to github flavoured html
+#! /bin/sh
+# rm *.html 2>/dev/null
+exec /usr/bin/systemsettings kcm_networkmanagement >/dev/null 2>&1 &

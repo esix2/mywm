@@ -15,7 +15,7 @@ set_next_device () {
     next_dev_index=$((next_dev_index > num_dev ? 1 : next_dev_index))
     next_dev=$(cat list_$1 | sed -n "$next_dev_index p" | sed 's/name: </\n/g' | sed 's/>/\n/g' | sed -n '2p')
 
-#     rm list_$1 > /dev/null 2>&1
+    rm list_$1 > /dev/null 2>&1
     if [ $1 == "sinks" ]
     then
       pactl set-default-sink $next_dev

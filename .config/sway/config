@@ -1,9 +1,11 @@
 #output * resolution --custom 1920x1080
+
 # font pango: SourceCodePro Medium 10
 #
 #
 # The titlebar
-exec invidious-start
+exec mako
+
 font pango:monospace 1
 client.focused "#4c7899" "#2a5677" "2a5677"
 client.unfocused "#4c7899" "#4c7899" "#4c7899"
@@ -287,14 +289,14 @@ bindsym $mod+Shift+Print exec "~/bin/screenshot clipboard"
 #####
 
 #### shortcut for openning frequent Apps
-# bindsym Alt+Ctrl+q workspace 2; exec qutebrowser
-bindsym Alt+Ctrl+f workspace 4; exec restart-app firefox
-bindsym Alt+Ctrl+m workspace 8; exec restart-app emacs
-bindsym Alt+Ctrl+n workspace 2; exec restart-app nyxt 
 bindsym Alt+Ctrl+q workspace 1; exec restart-app qutebrowser
-bindsym Alt+Ctrl+t workspace 3; exec thunderbird-slack
+bindsym Alt+Ctrl+n workspace 2; exec restart-app nyxt 
+bindsym Alt+Ctrl+t workspace 3; exec restart-app thunderbird slack
+# bindsym Alt+Ctrl+t workspace 3; exec thunderbird-slack
+bindsym Alt+Ctrl+f workspace 4; exec restart-app firefox
 bindsym Alt+Ctrl+v workspace 6; exec restart-app vlc
 bindsym Alt+Ctrl+z workspace 7; exec restart-app zoom
+bindsym Alt+Ctrl+m workspace 8; exec restart-app emacs
 
 bindsym Alt+$mod+f exec restart-app stop firefox
 bindsym Alt+$mod+m exec restart-app stop emacs

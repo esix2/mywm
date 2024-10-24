@@ -1,11 +1,9 @@
 #! /bin/sh
-
-wm=$1
-if [ "$wm" == "sway" ];  then
+if [ "$XDG_SESSION_TYPE" == "wayland" ];  then
   seconddisp=$(swaymsg -t get_outputs | grep name | grep -v eDP | sed "s/\"/\n/g"| sed -n '4p')
-elif [ "$wm" == "i3" ];  then
+elif [ "$XDG_SESSION_TYPE" == "tty" ];  then
     seconddisp=$(xrandr | grep connected | grep -v disconnected | grep -v eDP | cut -d ' ' -f 1)
 else
-    echo "$wm is not a known window manager to me. Sorry!"
+    echo "$XDG_SESSION_TYPE is not a known window manager to me. Sorry!"
 fi
 echo $seconddisp

@@ -1,11 +1,29 @@
 ### Customized script to convert markdown to github flavoured html
 #! /bin/sh
 # rm *.html 2>/dev/null
-if [ ! -z "$1" ]; then
-  cd $1
+
+while getopts b:d:h:ls:p:  o
+    do
+    case "$o" in
+    h) echo "m2h updates the html files and optionally the page in the borwser"
+       echo "-b: Specify the browser"
+       echo "-p: The page to open in the given browser (see -b)"
+       echo "-d: The directory of the markdown files"
+       echo "-i: Runs the script in an infinite loop and updates the page, each time a markdown change is stored"
+       exit
+       ;;
+    b) browser="$OPTARG";;
+    p) page="$OPTARG";;
+    d) directory="$OPTARG";;
+    l) ifIter="loop";;
+    \?) echo "Error! -$OPTARG"; exit 1;;
+    esac
+done
+
+shift $((OPTIND-1))
+if [ ! -z "$directory" ]; then
+  cd $directory
 fi
-BROWSER="$2"
-PAGE="$3"
 if [ ! -f Home.md ]; then
     echo "Please specify the correct directory!"
     exit 64
@@ -15,8 +33,8 @@ function convert-markdown-to-html {
 for file in *.md; do
   filename="${file%.*}"
   if [ "$file" = "Home.md" ]; then
-    HOMEPAGE="$filename.html"
-    pandoc -s --metadata title="Home" "$file" -o "$HOMEPAGE" 
+    HOMEpage="$filename.html"
+    pandoc -s --metadata title="Home" "$file" -o "$HOMEpage" 
   else
 #     pandoc -f markdown -t html  "$filename.md" -o "$filename.html" 
     pandoc -f markdown -t html  "$filename.md" -o "$filename" 
@@ -25,16 +43,35 @@ for file in *.md; do
 #   cp "$file" ../
 #   mv "$file.bak" "$file"
 done
-if [ ! -z "$BROWSER" ]
+
+
+if [ ! -z "$browser" ]
 then
-  BROWSERPID="$(pidof $BROWSER)"
-  if [ ! -z "$BROWSERPID" ]
-    then 
-      echo "$BROWSERPID"
-#     killall $BROWSER
+  browserPID="$(pidof $browser)"
+#   if [ ! -z "$browserPID" ]
+#     then 
+#     killall $browser
+#   fi
+  page="${page%.*}"
+  if [ ! -z "$page" ]
+    then
+      if [ "$page" == "Home" ]
+      then
+        page="Home.html"
+      else
+#         page="$page.md"
+        if [ ! -f "$page" ]; then page="Home.html"; fi
+      fi
+    else
+      page="Home.html"
+      echo "$page"
   fi
-  $BROWSER $PAGE & > /dev/null 2>&1
+   $browser $page & > /dev/null 2>&1
 fi
 }
-# convert-markdown-to-html
-while true; do if [ -e $(inotifywait -e modify *.md) ]; then clear; convert-markdown-to-html; fi; done
+if [ ! -z "$ifIter" ]
+  then
+    while true; do if [ -e $(inotifywait -e modify *.md) ]; then clear; convert-markdown-to-html; fi; done
+  else
+   convert-markdown-to-html
+fi

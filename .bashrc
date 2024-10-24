@@ -127,9 +127,9 @@ if [ $? -eq 0 ]; then
     eval "$__conda_setup"
 else
     if [ -f "$HOME/anaconda3/etc/profile.d/conda.sh" ]; then
-        . "$HOME/anaconda3/etc/profile.d/conda.sh"
+. "$HOME/anaconda3/etc/profile.d/conda.sh"  # commented out by conda initialize
     else
-        export PATH="$HOME/anaconda3/bin:$PATH"
+export PATH="$HOME/anaconda3/bin:$PATH"  # commented out by conda initialize
     fi
 fi
 unset __conda_setup
@@ -185,7 +185,9 @@ then
     pastecommand="wl-paste -n"
 fi
 
-alias easypath='echo $(pwd) | $copycommand'
+easypath() {
+  echo $(pwd) | $copycommand
+}
 alias easycopy='echo "!! | $copycommand"'
 alias easypaste='$pastecommand'
 alias easyopen='nemo $(pwd) &'
@@ -266,8 +268,16 @@ export PATH=$PATH:~/.modular/pkg/packages.modular.com_mojo/bin/
 export MODULAR_HOME="/home/ehsan/.modular"
 export PATH="/home/ehsan/.modular/pkg/packages.modular.com_mojo/bin:$PATH"
 
-alias list_monitors='swaymsg -t get_outputs | grep name'
-alias outlook='prospect-mail'
-alias killwebex="kill $(swaymsg -t get_tree | grep -n2 CiscoCollabHost | grep pid | sed 's/[0-9]\{2,\}/&\n/g' | sed -n '2p' | sed 's/[^0-9]\{2,\}//g') 2>/dev/null"
-# alias killwebex="kill $(swaymsg -t get_tree | grep -n4 xdg_shell | grep pid | sed 's/[0-9]\{2,\}/&\n/g' | sed -n '2p' | sed 's/[^0-9]\{2,\}//g')"
-alias killmattermost="kill $(swaymsg -t get_tree | grep -n4 xwayland | grep pid | sed 's/[0-9]\{2,\}/&\n/g' | sed -n '2p' | sed 's/[^0-9]\{2,\}//g')"
+
+
+#export LC_ALL="en_US.UTF-8"
+
+bind '"\C-y":"easypath\n"'
+bind '"\C-p":"easypaste\n"'
+
+#Open a new terminal in the current terminal
+bind '"\C-n":"opennewterm\n"'
+opennewterm() {
+    alacritty &
+    alacritty --command bash -c 'cd "$(PWD)" &'
+}

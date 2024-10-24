@@ -151,7 +151,7 @@
         "tooltip-format-wifi": "{essid}   \n {signaldBm}dBm, {frequency}MHz, {signalStrength}%\n {ipaddr} ",
         "tooltip-format-ethernet": "{ipaddr} ",
         "format-disconnected": "⚠",
-        "on-click-right": "gnome-control-center wifi"
+        "on-click-right": "networkmgrgui"
     },
     "backlight": {
         "device": "intel_backlight",

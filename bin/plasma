@@ -1,0 +1,3 @@
+#! /bin/sh
+### To start i3 under X
+exec startx 
